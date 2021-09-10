@@ -18,7 +18,20 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <div class="menu">
-                            <!--MENÚ PARA DIBUJAR-->
+                            <div class="section draw">
+                                <h5>Herramientas</h5>
+                                <div>
+                                    <button id="btn-pencil" class="btn btn-primary">Lapiz</button>
+                                    <input type="range" class="custom-range" min="1" max="20" id="rangePencil">
+                                    <input type="color" id="color">
+                                </div>
+                                
+                                <div>
+
+                                    <button id="btn-goma" class="btn btn-primary">Goma</button>
+                                    <input type="range" class="custom-range" min="1" max="50" id="rangoGoma">
+                                </div>
+                            </div>
                             <div class="section imageLoad">
                                 <h5>Cargar imagen</h5>
                                 <input type="file" class="btn btn-outline-primary" id="inputFile">
@@ -26,7 +39,7 @@
                             <div class="section filtros">
                                 <h5>Filtros</h5>
                                 <button id="btn-baw" class="btn btn-primary">Blanco y negro</button>
-                                <button id="btn-neg"  class="btn btn-primary">Negativo</button>
+                                <button id="btn-neg" class="btn btn-primary">Negativo</button>
                                 <button id="btn-sepia" class="btn btn-primary">Sepia</button>
                                 <button class="btn btn-primary">Otro filtro</button>
                                 <button class="btn btn-primary">Otro filtro</button>

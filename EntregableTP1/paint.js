@@ -8,6 +8,99 @@ let btnBaW = document.getElementById('btn-baw');
 let btnNeg = document.getElementById('btn-neg');
 let btnSepia = document.getElementById('btn-sepia');
 
+/* ------------- DRAW ---------------*/
+
+pencil = document.getElementById("btn-pencil");
+pencil.addEventListener("click", draw);
+color = document.getElementById("color");
+rangePencil = document.getElementById("rangePencil");
+goma = document.getElementById("btn-goma");
+goma.addEventListener("click", eraser);
+rangeEraser = document.getElementById("rangoGoma");
+
+function draw() {
+
+    let isDrawing = false;
+    let x = 0;
+    let y = 0;
+    canvas.addEventListener('mousedown', e => {
+        x = e.offsetX;
+        y = e.offsetY;
+        isDrawing = true;
+    });
+
+    canvas.addEventListener('mousemove', e => {
+        if (isDrawing === true) {
+            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+    canvas.addEventListener('mouseup', e => {
+        if (isDrawing === true) {
+            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+        }
+    });
+
+    function drawLine(color, rangePencil, context, x1, y1, x2, y2) {
+
+        context.beginPath();
+        context.strokeStyle = color.value;
+        context.lineWidth = rangePencil.value;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+}
+
+function eraser() {
+    let isEraser = false;
+    let x = 0;
+    let y = 0;
+    canvas.addEventListener('mousedown', e => {
+        x = e.offsetX;
+        y = e.offsetY;
+        isEraser = true;
+    });
+
+    canvas.addEventListener('mousemove', e => {
+        if (isEraser === true) {
+           eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+    canvas.addEventListener('mouseup', e => {
+        if (isEraser === true) {
+            eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+        }
+    });
+
+    function eraserLine(rangeEraser, context, x1, y1, x2, y2) {
+
+        context.beginPath();
+        context.strokeStyle = 'white';
+        context.lineWidth = rangeEraser.value;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+}
+
+/*-----------------------------------*/
+
+
+
 inputFile.addEventListener('change', e => {
     showImage();
 });
@@ -88,9 +181,9 @@ function filterSepia() {
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y 
-            let r = (pixel[0] * 0.460 + pixel[1] * 0.470 + pixel[2] * 0.060) ;
-            let g = (pixel[0] * 0.350 + pixel[1] * 0.425 + pixel[2] * 0.070) ;
-            let b = (pixel[0] * 0.270 + pixel[1] * 0.135 + pixel[2] * 0.050) ;
+            let r = (pixel[0] * 0.460 + pixel[1] * 0.470 + pixel[2] * 0.060);
+            let g = (pixel[0] * 0.350 + pixel[1] * 0.425 + pixel[2] * 0.070);
+            let b = (pixel[0] * 0.270 + pixel[1] * 0.135 + pixel[2] * 0.050);
             if (r === 0 && g === 0) {
                 setPixel(image, x, y, 255, 255, 255, 255);
             } else {
