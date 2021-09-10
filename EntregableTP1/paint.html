@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="paint.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container-fluid">
-    <div class="card mb-3 ">
-        <div class="row g-0">
-          <div class="col-md-4 menu">
-            <span>Filtros</span>
-            <button>Blanco y negro</button>
-            <button>Negativo</button>
-            <button>Otro filtro</button>
-            <button>Otro filtro</button>
-            <button>Otro filtro</button>
-            
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-                <canvas id="canvas" width="500" height="500"></canvas>
+        <div class="col-10 offset-1">
+            <div class="card mb-3 margin-top">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="menu">
+                            <!--MENÚ PARA DIBUJAR-->
+                            <div class="section imageLoad">
+                                <h5>Cargar imagen</h5>
+                                <input type="file" class="btn btn-outline-primary" id="inputFile">
+                            </div>
+                            <div class="section filtros">
+                                <h5>Filtros</h5>
+                                <button id="btn-baw" class="btn btn-primary">Blanco y negro</button>
+                                <button id="btn-neg"  class="btn btn-primary">Negativo</button>
+                                <button id="btn-sepia" class="btn btn-primary">Sepia</button>
+                                <button class="btn btn-primary">Otro filtro</button>
+                                <button class="btn btn-primary">Otro filtro</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 offset-1">
+                        <div class="card-body">
+                            <canvas id="canvas" width="600" height="600"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
     <script src="paint.js"></script>
 </body>
+
 </html>
