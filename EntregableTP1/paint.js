@@ -45,7 +45,9 @@ function loadPicture(source) {
             let scale = Math.min(canvas.width / image.width, canvas.height / image.height);
             let x = (canvas.width / 2) - (image.width / 2) * scale;
             let y = (canvas.height / 2) - (image.height / 2) * scale;
-            ctx.drawImage(image, x, y, image.width * scale, image.height * scale);
+            canvas.width = image.width * scale;
+            canvas.height = image.height * scale;
+            ctx.drawImage(image, 0, 0, image.width * scale, image.height * scale);
             imageData = ctx.getImageData(0, 0, image.width, image.height);
             ctx.putImageData(imageData, 0, 0);
         }
@@ -59,11 +61,9 @@ function filterBaW() {
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
             let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
-            if (prom === 0) {
-                setPixel(image, x, y, 255, 255, 255, 255);
-            } else {        //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
-                setPixel(image, x, y, prom, prom, prom, 255);
-            }
+            //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
+            setPixel(image, x, y, prom, prom, prom, 255);
+            
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
@@ -91,11 +91,7 @@ function filterSepia() {
             let r = (pixel[0] * 0.460 + pixel[1] * 0.470 + pixel[2] * 0.060) ;
             let g = (pixel[0] * 0.350 + pixel[1] * 0.425 + pixel[2] * 0.070) ;
             let b = (pixel[0] * 0.270 + pixel[1] * 0.135 + pixel[2] * 0.050) ;
-            if (r === 0 && g === 0) {
-                setPixel(image, x, y, 255, 255, 255, 255);
-            } else {
-                setPixel(image, x, y, r, g, b, 255);
-            }
+            setPixel(image, x, y, r, g, b, 255);
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
