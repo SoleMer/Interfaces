@@ -8,6 +8,99 @@ let btnBaW = document.getElementById('btn-baw');
 let btnNeg = document.getElementById('btn-neg');
 let btnSepia = document.getElementById('btn-sepia');
 
+/* ------------- DRAW ---------------*/
+
+pencil = document.getElementById("btn-pencil");
+pencil.addEventListener("click", draw);
+color = document.getElementById("color");
+rangePencil = document.getElementById("rangePencil");
+goma = document.getElementById("btn-goma");
+goma.addEventListener("click", eraser);
+rangeEraser = document.getElementById("rangoGoma");
+
+function draw() {
+
+    let isDrawing = false;
+    let x = 0;
+    let y = 0;
+    canvas.addEventListener('mousedown', e => {
+        x = e.offsetX;
+        y = e.offsetY;
+        isDrawing = true;
+    });
+
+    canvas.addEventListener('mousemove', e => {
+        if (isDrawing === true) {
+            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+    canvas.addEventListener('mouseup', e => {
+        if (isDrawing === true) {
+            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+        }
+    });
+
+    function drawLine(color, rangePencil, context, x1, y1, x2, y2) {
+
+        context.beginPath();
+        context.strokeStyle = color.value;
+        context.lineWidth = rangePencil.value;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+}
+
+function eraser() {
+    let isEraser = false;
+    let x = 0;
+    let y = 0;
+    canvas.addEventListener('mousedown', e => {
+        x = e.offsetX;
+        y = e.offsetY;
+        isEraser = true;
+    });
+
+    canvas.addEventListener('mousemove', e => {
+        if (isEraser === true) {
+           eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+    canvas.addEventListener('mouseup', e => {
+        if (isEraser === true) {
+            eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+        }
+    });
+
+    function eraserLine(rangeEraser, context, x1, y1, x2, y2) {
+
+        context.beginPath();
+        context.strokeStyle = 'white';
+        context.lineWidth = rangeEraser.value;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+}
+
+/*-----------------------------------*/
+
+
+
 inputFile.addEventListener('change', e => {
     showImage();
 });
