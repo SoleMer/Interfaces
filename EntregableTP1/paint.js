@@ -7,6 +7,8 @@ let inputFile = document.getElementById('inputFile');
 let btnBaW = document.getElementById('btn-baw');
 let btnNeg = document.getElementById('btn-neg');
 let btnSepia = document.getElementById('btn-sepia');
+let btnCleanFilter = document.getElementById('btn-clean-filter');
+let btnCleanCanvas = document.getElementById('btn-clean-canvas');
 
 /* ------------- DRAW ---------------*/
 
@@ -17,6 +19,7 @@ rangePencil = document.getElementById("rangePencil");
 goma = document.getElementById("btn-goma");
 goma.addEventListener("click", eraser);
 rangeEraser = document.getElementById("rangoGoma");
+
 
 function draw() {
 
@@ -97,9 +100,11 @@ function eraser() {
     }
 }
 
-/*-----------------------------------*/
+/*-------------- FILTROS ---------------------*/
 
-
+let aplicatedFilters = false;
+let originalImage = ctx.createImageData(width, height);
+let cantImg = 0;
 
 inputFile.addEventListener('change', e => {
     showImage();
@@ -117,7 +122,18 @@ btnSepia.addEventListener('click', e => {
     filterSepia();
 })
 
+btnCleanFilter.addEventListener('click', e => {
+    cleanFilter();
+})
+
+btnCleanCanvas.addEventListener('click', e=> {
+    cleanCanvas();
+})
+
 function showImage() {
+    if (cantImg != 0) {
+        cleanCanvas();
+    }
     var archivo = document.getElementById('inputFile').files[0];
     var reader = new FileReader();  //obtenemos el path de la imagen
     if (archivo) {  //si encontramos el archivo pasamos el source para empezar a dibujar
@@ -143,12 +159,14 @@ function loadPicture(source) {
             ctx.drawImage(image, 0, 0, image.width * scale, image.height * scale);
             imageData = ctx.getImageData(0, 0, image.width, image.height);
             ctx.putImageData(imageData, 0, 0);
+            cantImg++;
         }
     }
 
 };
 
 function filterBaW() {
+    comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -163,6 +181,7 @@ function filterBaW() {
 }
 
 function filterNegative() {
+    comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -177,6 +196,7 @@ function filterNegative() {
 }
 
 function filterSepia() {
+    comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -189,6 +209,8 @@ function filterSepia() {
     }
     ctx.putImageData(image, 0, 0) * 4;
 }
+
+//--------------- GET Y SET DE PIXEL --------------
 
 function getPixel(imageData, x, y) {
     let index = (x + y * imageData.height) * 4;
@@ -206,3 +228,49 @@ function setPixel(imageData, x, y, r, g, b, a) {
     imageData.data[index + 2] = b;
     imageData.data[index + 3] = a;
 }
+
+/**
+ * ---------------- LIMPIAR FILTROS Y LIENZO ---------------------
+ */
+
+//al aplicarse el primer filtro a una imagen, se señala que tiene filtros aplicados y se guarda la imagen original (sin filtros)
+function comprobarFiltros() {
+    if (!aplicatedFilters) {
+        saveOriginalImage();
+        aplicatedFilters = true;
+    }
+}
+
+//función que guarda la imagen original
+function saveOriginalImage() {
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    originalImage = image;
+}
+
+//si la imagen tiene filtros aplicados, los borra y vuelve a mostrar la imagen como fue cargada originalmente
+function cleanFilter() {
+    if (aplicatedFilters) {
+        let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+        image = originalImage;
+        ctx.putImageData(image, 0, 0) * 4;
+        aplicatedFilters = false;
+        originalImage = ctx.createImageData(width, height);
+    }
+}
+
+//se borra todo el lienzo y se deja como al inicio
+function cleanCanvas() {
+    canvas.width = width;
+    canvas.height = height;
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
+        for (let y = 0; y < image.height; y++) {
+            setPixel(image, x, y, 255, 255, 255, 255);
+        }
+    }
+    ctx.putImageData(image, 0, 0) * 4;
+    aplicatedFilters = false;
+    originalImage = ctx.createImageData(width, height);
+}
+
+
