@@ -11,94 +11,95 @@ let btnCleanFilter = document.getElementById('btn-clean-filter');
 let btnCleanCanvas = document.getElementById('btn-clean-canvas');
 
 /* ------------- DRAW ---------------*/
-
-pencil = document.getElementById("btn-pencil");
-pencil.addEventListener("click", draw);
-color = document.getElementById("color");
-rangePencil = document.getElementById("rangePencil");
-goma = document.getElementById("btn-goma");
-goma.addEventListener("click", eraser);
-rangeEraser = document.getElementById("rangoGoma");
+let color = document.getElementById("color");
+let rangePencil = document.getElementById("rangePencil");
+let rubber = document.getElementById("btn-rubber");
+let pencil = document.getElementById("btn-pencil");
+let rangeRubber = document.getElementById("rangeRubber");
 
 
-function draw() {
+pencil.addEventListener("click", e => {
+    draw(true);
+});
+
+rubber.addEventListener("click", e=> {  
+    draw(false);
+});
+
+
+
+function draw(isPencil) {
 
     let isDrawing = false;
     let x = 0;
     let y = 0;
-    canvas.addEventListener('mousedown', e => {
+    
+    canvas.addEventListener('mousedown', mouseDown);
+    canvas.addEventListener('mousemove', mouseMove);
+    canvas.addEventListener('mouseup', mouseUp);
+    canvas.addEventListener('mouseenter', mouseEnter);
+    canvas.addEventListener('mouseleave', mouseLeave);
+    
+    function mouseLeave(e){
+        x = 0;
+        y = 0;
+    }
+
+    function mouseEnter(e){
+        if (isDrawing === true){
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    }
+
+    function mouseUp(e){
+        if (isDrawing === true) {
+            drawLine(x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+    }
+    canvas.removeEventListener('mousedown', mouseDown);
+    canvas.removeEventListener('mousemove', mouseMove);
+    canvas.removeEventListener('mouseup', mouseUp);
+    canvas.removeEventListener('mouseenter', mouseEnter);
+    canvas.removeEventListener('mouseleave', mouseLeave);
+    }
+    function mouseDown(e){
         x = e.offsetX;
         y = e.offsetY;
         isDrawing = true;
-    });
+    }
 
-    canvas.addEventListener('mousemove', e => {
+    function mouseMove(e) {
         if (isDrawing === true) {
-            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
+            drawLine(x, y, e.offsetX, e.offsetY);
             x = e.offsetX;
             y = e.offsetY;
         }
-    });
+    }
+    function drawLine(x1, y1, x2, y2) {
 
-    canvas.addEventListener('mouseup', e => {
-        if (isDrawing === true) {
-            drawLine(color, rangePencil, ctx, x, y, e.offsetX, e.offsetY);
-            x = 0;
-            y = 0;
-            isDrawing = false;
+        ctx.beginPath();
+        ctx.lineCap = "round";
+        if (isPencil) {
+            ctx.strokeStyle = color.value;
+            ctx.lineWidth = rangePencil.value;
+
         }
-    });
+        else{
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = rangeRubber.value;
 
-    function drawLine(color, rangePencil, context, x1, y1, x2, y2) {
-
-        context.beginPath();
-        context.strokeStyle = color.value;
-        context.lineWidth = rangePencil.value;
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.stroke();
-        context.closePath();
+        }
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.closePath();
     }
 }
 
-function eraser() {
-    let isEraser = false;
-    let x = 0;
-    let y = 0;
-    canvas.addEventListener('mousedown', e => {
-        x = e.offsetX;
-        y = e.offsetY;
-        isEraser = true;
-    });
 
-    canvas.addEventListener('mousemove', e => {
-        if (isEraser === true) {
-           eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
-            x = e.offsetX;
-            y = e.offsetY;
-        }
-    });
-
-    canvas.addEventListener('mouseup', e => {
-        if (isEraser === true) {
-            eraserLine(rangeEraser, ctx, x, y, e.offsetX, e.offsetY);
-            x = 0;
-            y = 0;
-            isDrawing = false;
-        }
-    });
-
-    function eraserLine(rangeEraser, context, x1, y1, x2, y2) {
-
-        context.beginPath();
-        context.strokeStyle = 'white';
-        context.lineWidth = rangeEraser.value;
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.stroke();
-        context.closePath();
-    }
-}
 
 /*-------------- FILTROS ---------------------*/
 
