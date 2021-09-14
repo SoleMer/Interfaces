@@ -11,19 +11,20 @@ let rangePencil = document.getElementById("rangePencil");
 let rubber = document.getElementById("btn-rubber");
 let pencil = document.getElementById("btn-pencil");
 let rangeRubber = document.getElementById("rangeRubber");
-
-
+let isPencil = false;
 pencil.addEventListener("click", e => {
-    draw(true);
+    isPencil = true;
+    draw(isPencil);
 });
 
 rubber.addEventListener("click", e => {
-    draw(false);
+    isPencil = false;
+    draw(isPencil);
 });
 
 
 
-function draw(isPencil) {
+function draw() {
 
     let isDrawing = false;
     let x = 0;
@@ -54,11 +55,7 @@ function draw(isPencil) {
             y = 0;
             isDrawing = false;
         }
-        canvas.removeEventListener('mousedown', mouseDown);
-        canvas.removeEventListener('mousemove', mouseMove);
-        canvas.removeEventListener('mouseup', mouseUp);
-        canvas.removeEventListener('mouseenter', mouseEnter);
-        canvas.removeEventListener('mouseleave', mouseLeave);
+
     }
     function mouseDown(e) {
         x = e.offsetX;
