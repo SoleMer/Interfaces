@@ -13,6 +13,7 @@ let btnBlur = document.getElementById('btn-blur');
 let btnSCR = document.getElementById('btn-scr');
 let btnSCG = document.getElementById('btn-scg');
 let btnSCB = document.getElementById('btn-scb');
+let btnSobel = document.getElementById('btn-sobel');
 
 /* ------------- DRAW ---------------*/
 let color = document.getElementById("color");
@@ -26,7 +27,7 @@ pencil.addEventListener("click", e => {
     draw(true);
 });
 
-rubber.addEventListener("click", e=> {  
+rubber.addEventListener("click", e => {
     draw(false);
 });
 
@@ -37,39 +38,39 @@ function draw(isPencil) {
     let isDrawing = false;
     let x = 0;
     let y = 0;
-    
+
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mouseup', mouseUp);
     canvas.addEventListener('mouseenter', mouseEnter);
     canvas.addEventListener('mouseleave', mouseLeave);
-    
-    function mouseLeave(e){
+
+    function mouseLeave(e) {
         x = 0;
         y = 0;
     }
 
-    function mouseEnter(e){
-        if (isDrawing === true){
+    function mouseEnter(e) {
+        if (isDrawing === true) {
             x = e.offsetX;
             y = e.offsetY;
         }
     }
 
-    function mouseUp(e){
+    function mouseUp(e) {
         if (isDrawing === true) {
             drawLine(x, y, e.offsetX, e.offsetY);
             x = 0;
             y = 0;
             isDrawing = false;
+        }
+        canvas.removeEventListener('mousedown', mouseDown);
+        canvas.removeEventListener('mousemove', mouseMove);
+        canvas.removeEventListener('mouseup', mouseUp);
+        canvas.removeEventListener('mouseenter', mouseEnter);
+        canvas.removeEventListener('mouseleave', mouseLeave);
     }
-    canvas.removeEventListener('mousedown', mouseDown);
-    canvas.removeEventListener('mousemove', mouseMove);
-    canvas.removeEventListener('mouseup', mouseUp);
-    canvas.removeEventListener('mouseenter', mouseEnter);
-    canvas.removeEventListener('mouseleave', mouseLeave);
-    }
-    function mouseDown(e){
+    function mouseDown(e) {
         x = e.offsetX;
         y = e.offsetY;
         isDrawing = true;
@@ -91,7 +92,7 @@ function draw(isPencil) {
             ctx.lineWidth = rangePencil.value;
 
         }
-        else{
+        else {
             ctx.strokeStyle = "#ffffff";
             ctx.lineWidth = rangeRubber.value;
 
@@ -141,6 +142,10 @@ btnSCB.addEventListener('click', e => {
 
 btnBlur.addEventListener('click', e => {
     filterBlur();
+})
+
+btnSobel.addEventListener('click', e => {
+    filterSobel();
 })
 
 btnCleanFilter.addEventListener('click', e => {
@@ -238,12 +243,12 @@ function filterSplashColorRed() {
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
-            if (pixel[0] > pixel[1] && pixel[0] > pixel[2]) {
+            if (pixel[0] > pixel[1] && pixel[0] > pixel[2] && pixel[1] < 100) {
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
             } else {
-            let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
-            //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
-            setPixel(image, x, y, prom, prom, prom, 255);
+                let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
+                //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
+                setPixel(image, x, y, prom, prom, prom, 255);
             }
         }
     }
@@ -259,9 +264,9 @@ function filterSplashColorGreen() {
             if (pixel[1] > pixel[0] && pixel[1] > pixel[2]) {
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
             } else {
-            let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
-            //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
-            setPixel(image, x, y, prom, prom, prom, 255);
+                let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
+                //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
+                setPixel(image, x, y, prom, prom, prom, 255);
             }
         }
     }
@@ -277,9 +282,9 @@ function filterSplashColorBlue() {
             if (pixel[2] > pixel[0] && pixel[2] > pixel[1]) {
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
             } else {
-            let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
-            //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
-            setPixel(image, x, y, prom, prom, prom, 255);
+                let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
+                //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
+                setPixel(image, x, y, prom, prom, prom, 255);
             }
         }
     }
@@ -296,97 +301,144 @@ function filterBlur() {
         if (x === 0) {      //limitamos la cantidad de comprobaciones que se debe hacer en cada caso
             for (let y = 0; y < image.height; y++) {
                 if (y === 0) {    //en cada caso particular, obtenemos el promedio de los valores vecinos a la posición actual
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    let x1y1 = getPixel(originalImage, x+1, y+1);
-                    r = (xy1[0] + x1y[0] + x1y1[0]) /3;
-                    g = (xy1[1] + x1y[1] + x1y1[1]) /3;
-                    b = (xy1[2] + x1y[2] + x1y1[2]) /3;
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
+                    r = (xy1[0] + x1y[0] + x1y1[0]) / 3;
+                    g = (xy1[1] + x1y[1] + x1y1[1]) / 3;
+                    b = (xy1[2] + x1y[2] + x1y1[2]) / 3;
                 } else if (y === image.height - 1) {
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    let x1y0 = getPixel(originalImage, x+1, y-1);
-                    r = (xy0[0] + x1y[0] + x1y0[0]) /3;
-                    g = (xy0[1] + x1y[1] + x1y0[1]) /3;
-                    b = (xy0[2] + x1y[2] + x1y0[2]) /3;
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
+                    r = (xy0[0] + x1y[0] + x1y0[0]) / 3;
+                    g = (xy0[1] + x1y[1] + x1y0[1]) / 3;
+                    b = (xy0[2] + x1y[2] + x1y0[2]) / 3;
                 } else {
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x1y0 = getPixel(originalImage, x+1, y-1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    let x1y1 = getPixel(originalImage, x+1, y+1);
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    r = (xy0[0] + x1y0[0] + x1y[0] + x1y1[0] + xy1[0]) /5;
-                    g = (xy0[1] + x1y0[1] + x1y[1] + x1y1[1] + xy1[1]) /5;
-                    b = (xy0[2] + x1y0[2] + x1y[2] + x1y1[2] + xy1[2]) /5;
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    r = (xy0[0] + x1y0[0] + x1y[0] + x1y1[0] + xy1[0]) / 5;
+                    g = (xy0[1] + x1y0[1] + x1y[1] + x1y1[1] + xy1[1]) / 5;
+                    b = (xy0[2] + x1y0[2] + x1y[2] + x1y1[2] + xy1[2]) / 5;
                 }
                 setPixel(image, x, y, r, g, b, 255);
             }
         } else if (x === image.width - 1) {
             for (let y = 0; y < image.height; y++) {
                 if (y === 0) {
-                    let x0y = getPixel(originalImage, x-1, y);
-                    let x0y1 = getPixel(originalImage, x-1, y+1);
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    r = (x0y[0] + x0y1[0] + xy1[0]) /3;
-                    g = (x0y[1] + x0y1[1] + xy1[1]) /3;
-                    b = (x0y[2] + x0y1[2] + xy1[2]) /3;
+                    let x0y = getPixel(originalImage, x - 1, y);
+                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    r = (x0y[0] + x0y1[0] + xy1[0]) / 3;
+                    g = (x0y[1] + x0y1[1] + xy1[1]) / 3;
+                    b = (x0y[2] + x0y1[2] + xy1[2]) / 3;
                 } else if (y === image.height - 1) {
-                    let x0y = getPixel(originalImage, x-1, y);
-                    let x0y0 = getPixel(originalImage, x-1, y-1);
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    r = (x0y[0] + x0y0[0] + xy0[0]) /3;
-                    g = (x0y[1] + x0y0[1] + xy0[1]) /3;
-                    b = (x0y[2] + x0y0[2] + xy0[2]) /3;
+                    let x0y = getPixel(originalImage, x - 1, y);
+                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    r = (x0y[0] + x0y0[0] + xy0[0]) / 3;
+                    g = (x0y[1] + x0y0[1] + xy0[1]) / 3;
+                    b = (x0y[2] + x0y0[2] + xy0[2]) / 3;
                 } else {
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x0y0 = getPixel(originalImage, x-1, y-1);
-                    let x0y = getPixel(originalImage, x-1, y);
-                    let x0y1 = getPixel(originalImage, x-1, y+1);
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    r = (xy0[0] + x0y0[0] + x0y[0] + x0y1[0] + xy1[0]) /5;
-                    g = (xy0[1] + x0y0[1] + x0y[1] + x0y1[1] + xy1[1]) /5;
-                    b = (xy0[2] + x0y0[2] + x0y[2] + x0y1[2] + xy1[2]) /5;
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
+                    let x0y = getPixel(originalImage, x - 1, y);
+                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    r = (xy0[0] + x0y0[0] + x0y[0] + x0y1[0] + xy1[0]) / 5;
+                    g = (xy0[1] + x0y0[1] + x0y[1] + x0y1[1] + xy1[1]) / 5;
+                    b = (xy0[2] + x0y0[2] + x0y[2] + x0y1[2] + xy1[2]) / 5;
                 }
                 setPixel(image, x, y, r, g, b, 255);
             }
         } else {
             for (let y = 0; y < image.height; y++) {
                 if (y === 0) {
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x0y1 = getPixel(originalImage, x-1, y+1);
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    let x1y1 = getPixel(originalImage, x+1, y+1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    r = (xy0[0] + x1y1[0] + x1y[0] + x0y1[0] + xy1[0]) /5;
-                    g = (xy0[1] + x1y1[1] + x1y[1] + x0y1[1] + xy1[1]) /5;
-                    b = (xy0[2] + x1y1[2] + x1y[3] + x0y1[2] + xy1[2]) /5;
-                } else if (y === image.height-1) {
-                    let x0y = getPixel(originalImage, x-1, y);
-                    let x0y0 = getPixel(originalImage, x-1, y-1);
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x1y0 = getPixel(originalImage, x+1, y-1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0]) /5;
-                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1]) /5;
-                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2]) /5;
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    r = (xy0[0] + x1y1[0] + x1y[0] + x0y1[0] + xy1[0]) / 5;
+                    g = (xy0[1] + x1y1[1] + x1y[1] + x0y1[1] + xy1[1]) / 5;
+                    b = (xy0[2] + x1y1[2] + x1y[3] + x0y1[2] + xy1[2]) / 5;
+                } else if (y === image.height - 1) {
+                    let x0y = getPixel(originalImage, x - 1, y);
+                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0]) / 5;
+                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1]) / 5;
+                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2]) / 5;
                 } else {
-                    let x0y0 = getPixel(originalImage, x-1, y-1);
-                    let xy0 = getPixel(originalImage, x, y-1);
-                    let x1y0 = getPixel(originalImage, x+1, y-1);
-                    let x1y = getPixel(originalImage, x+1, y);
-                    let x1y1 = getPixel(originalImage, x+1, y+1);
-                    let xy1 = getPixel(originalImage, x, y+1);
-                    let x0y1 = getPixel(originalImage, x-1, y+1);
-                    let x0y = getPixel(originalImage, x-1, y);
-                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) /8;
-                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) /8;
-                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2]) /8;
+                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
+                    let xy0 = getPixel(originalImage, x, y - 1);
+                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
+                    let x1y = getPixel(originalImage, x + 1, y);
+                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
+                    let xy1 = getPixel(originalImage, x, y + 1);
+                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
+                    let x0y = getPixel(originalImage, x - 1, y);
+                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) / 8;
+                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) / 8;
+                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2]) / 8;
                 }
                 setPixel(image, x, y, r, g, b, 255);
             }
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
+}
+
+function promedio(rgba) {
+    let contador = 0;
+    for (let i = 0; i < rgba.length-1; i++) {
+        contador+= rgba[i];
+    }
+    return contador / rgba.length-1;
+}
+
+function filterSobel() {
+    comprobarFiltros();
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
+        for (let y = 0; y < image.height; y++) {
+            let a = promedio(getPixel(originalImage, x - 1, y - 1));
+            let b = promedio(getPixel(originalImage, x - 1, y));
+            let c = promedio(getPixel(originalImage, x - 1, y + 1));
+            let d = promedio(getPixel(originalImage, x + 1, y - 1));
+            let e = promedio(getPixel(originalImage, x + 1, y));
+            let f = promedio(getPixel(originalImage, x + 1, y + 1));
+            let g = promedio(getPixel(originalImage, x, y-1));
+            let h = promedio(getPixel(originalImage,x, y+1));
+            
+
+            let gx = ((-1 * a) + (1 * d))
+                + ((-2 * b) + (2 * e))
+                + ((-1 * c) + (1 * f));
+
+            let gy = ((-1 * a) + (-2 * g) + (-1 * d))
+                + ((1 * c) + (2 * h) + (1 * f));
+
+            let gval = Math.sqrt((gx * gx) + (gy * gy));
+            let p = comprobarValor(gval);
+            setPixel(image, x, y, p, p, p, 255);
+        }
+    }
+    ctx.putImageData(image, 0, 0) * 4;
+}
+
+function comprobarValor(val) {
+    if (val > 255) return 255;
+    else if (val < 0) return 0;
+    else return val;
 }
 
 //--------------- GET Y SET DE PIXEL --------------

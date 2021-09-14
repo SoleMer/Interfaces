@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Paint</title>
     <link rel="stylesheet" href="paint.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -13,11 +13,11 @@
 
 <body>
     <div class="container-fluid">
-        <div class="col-10 offset-1 height-80">
-            <div class="card mb-3 margin-top height-80">
+        <div class="col-9 offset-1 height-80">
+            <div class="card mb-3 margin-top height-80 offset-1">
                 <div class="row g-0 height-100">
                     <div class="col-md-4 ">
-                        <div class="menu height-100">
+                        <div class="menu ">
                             <div class="section draw">
                                 <h5>Herramientas</h5>
                                 <div>
@@ -41,10 +41,11 @@
                                 <button id="btn-baw" class="btn btn-primary">Blanco y negro</button>
                                 <button id="btn-neg" class="btn btn-primary">Negativo</button>
                                 <button id="btn-sepia" class="btn btn-primary">Sepia</button>
-                                <button id="btn-blur" class="btn btn-primary">Blur</button>
                                 <button id="btn-scr" class="btn btn-primary">Rescatar rojos</button>
                                 <button id="btn-scg" class="btn btn-primary">Rescatar verdes</button>
                                 <button id="btn-scb" class="btn btn-primary">Rescatar azules</button>
+                                <button id="btn-blur" class="btn btn-primary">Blur</button>
+                                <button id="btn-sobel" class="btn btn-primary">Sobel</button>
                             </div>
                             <div class="section clean">
                                 <h5>Limpiar</h5>
@@ -53,9 +54,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7 offset-1">
-                        <div class="card-body height-100">
-                            <canvas id="canvas" width="600" height="600" class="canvas"></canvas>
+                    <div class="col-md-8 background-white">
+                        <div class="card-body height-100 offset-1">
+                            <canvas id="canvas" width="600" height="600" class="canvas offset-1"></canvas>
                         </div>
                     </div>
                 </div>

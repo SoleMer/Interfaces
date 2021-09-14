@@ -1,8 +1,9 @@
-/*html, .container-fluid {
-    background-color: rgba(0, 0, 30, 3);
-}*/
+html, .container-fluid {
+    background-image:  url("img/background.jpg");
+    background-size: 100%;
+}
 .col-md-4 {
-    background-color: rgba(0, 200, 200, 255);
+    background-color: rgba(130, 170, 250, 0.5);
 }
 
 .height-80 {
@@ -42,4 +43,9 @@
 
 .card-body {
     display: inline-grid;
+    background: none;
+}
+
+.background-white {
+    background-color: white;
 }
