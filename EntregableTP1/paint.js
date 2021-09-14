@@ -4,16 +4,6 @@ let width = canvas.width;
 let height = canvas.height;
 let imageData = ctx.createImageData(width, height);
 let inputFile = document.getElementById('inputFile');
-let btnBaW = document.getElementById('btn-baw');
-let btnNeg = document.getElementById('btn-neg');
-let btnSepia = document.getElementById('btn-sepia');
-let btnCleanFilter = document.getElementById('btn-clean-filter');
-let btnCleanCanvas = document.getElementById('btn-clean-canvas');
-let btnBlur = document.getElementById('btn-blur');
-let btnSCR = document.getElementById('btn-scr');
-let btnSCG = document.getElementById('btn-scg');
-let btnSCB = document.getElementById('btn-scb');
-let btnSobel = document.getElementById('btn-sobel');
 
 /* ------------- DRAW ---------------*/
 let color = document.getElementById("color");
@@ -107,6 +97,18 @@ function draw(isPencil) {
 
 
 /*-------------- FILTROS ---------------------*/
+
+let btnBaW = document.getElementById('btn-baw');
+let btnNeg = document.getElementById('btn-neg');
+let btnSepia = document.getElementById('btn-sepia');
+let btnCleanFilter = document.getElementById('btn-clean-filter');
+let btnCleanCanvas = document.getElementById('btn-clean-canvas');
+let btnBlur = document.getElementById('btn-blur');
+let btnSCR = document.getElementById('btn-scr');
+let btnSCG = document.getElementById('btn-scg');
+let btnSCB = document.getElementById('btn-scb');
+let btnSobel = document.getElementById('btn-sobel');
+let btnSave = document.getElementById('btn-save');
 
 let aplicatedFilters = false;
 let originalImage = ctx.createImageData(width, height);
@@ -244,8 +246,9 @@ function filterSplashColorRed() {
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
             if (pixel[0] > pixel[1] && pixel[0] > pixel[2] && pixel[1] < 100) {
+                //si el color está dentro de la gama de los rojos, seteamos el pixel igual que en la imagen original
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
-            } else {
+            } else {    //sino, aplicamos blanco y negro
                 let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
                 //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
                 setPixel(image, x, y, prom, prom, prom, 255);
@@ -262,8 +265,9 @@ function filterSplashColorGreen() {
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
             if (pixel[1] > pixel[0] && pixel[1] > pixel[2]) {
+                //si el color está dentro de la gama de los verdes, seteamos el pixel igual que en la imagen original
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
-            } else {
+            } else {    //sino, aplicamos blanco y negro
                 let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
                 //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
                 setPixel(image, x, y, prom, prom, prom, 255);
@@ -280,8 +284,9 @@ function filterSplashColorBlue() {
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
             if (pixel[2] > pixel[0] && pixel[2] > pixel[1]) {
+                //si el color está dentro de la gama de los azules, seteamos el pixel igual que en la imagen original
                 setPixel(image, x, y, pixel[0], pixel[1], pixel[2], 255);
-            } else {
+            } else {    //sino, aplicamos blanco y negro
                 let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
                 //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
                 setPixel(image, x, y, prom, prom, prom, 255);
@@ -304,6 +309,7 @@ function filterBlur() {
                     let xy1 = getPixel(originalImage, x, y + 1);
                     let x1y = getPixel(originalImage, x + 1, y);
                     let x1y1 = getPixel(originalImage, x + 1, y + 1);
+                    //obtenemos el promedio de cada rojo, verde y azul entre los pixeles obtenidos
                     r = (xy1[0] + x1y[0] + x1y1[0]) / 3;
                     g = (xy1[1] + x1y[1] + x1y1[1]) / 3;
                     b = (xy1[2] + x1y[2] + x1y1[2]) / 3;
@@ -394,45 +400,49 @@ function filterBlur() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function promedio(rgba) {
-    let contador = 0;
-    for (let i = 0; i < rgba.length-1; i++) {
-        contador+= rgba[i];
-    }
-    return contador / rgba.length-1;
-}
-
 function filterSobel() {
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     let r = 0;
     let g = 0;
     let b = 0;
-    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel obteniendo los valores de alrededor
         for (let y = 0; y < image.height; y++) {
+            //obtenemos el promedio de cada pixel
             let a = promedio(getPixel(originalImage, x - 1, y - 1));
             let b = promedio(getPixel(originalImage, x - 1, y));
             let c = promedio(getPixel(originalImage, x - 1, y + 1));
             let d = promedio(getPixel(originalImage, x + 1, y - 1));
             let e = promedio(getPixel(originalImage, x + 1, y));
             let f = promedio(getPixel(originalImage, x + 1, y + 1));
-            let g = promedio(getPixel(originalImage, x, y-1));
-            let h = promedio(getPixel(originalImage,x, y+1));
-            
+            let g = promedio(getPixel(originalImage, x, y - 1));
+            let h = promedio(getPixel(originalImage, x, y + 1));
 
+            //generamos sobel Gx y sobel Gy a partir de los valores obtenidos
+            //obviamos los valores que se multiplicarían por 0
             let gx = ((-1 * a) + (1 * d))
                 + ((-2 * b) + (2 * e))
                 + ((-1 * c) + (1 * f));
 
             let gy = ((-1 * a) + (-2 * g) + (-1 * d))
                 + ((1 * c) + (2 * h) + (1 * f));
-
+            //aplicamos fórmula de sobel 
             let gval = Math.sqrt((gx * gx) + (gy * gy));
             let p = comprobarValor(gval);
             setPixel(image, x, y, p, p, p, 255);
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
+}
+
+//--------------- FUNCIONES AUXILIARES --------------
+
+function promedio(rgba) {
+    let contador = 0;
+    for (let i = 0; i < rgba.length - 1; i++) {
+        contador += rgba[i];
+    }
+    return contador / rgba.length - 1;
 }
 
 function comprobarValor(val) {
@@ -504,4 +514,15 @@ function cleanCanvas() {
     originalImage = ctx.createImageData(width, height);
 }
 
+/**
+ * ---------------- GUARDAR ---------------------
+ */
+btnSave.addEventListener("click", e => {
+    download();
+});
 
+function download() {
+    var data = canvas.toDataURL();
+    var prev = window.location.href;
+    window.location.href = data.replace("image/png", "image/octet-stream");
+}
