@@ -93,80 +93,87 @@ function draw() {
     }
 }
 
-
-
 /*-------------- IMAGEN ---------------------*/
 
-let btnBaW = document.getElementById('btn-baw');
-let btnNeg = document.getElementById('btn-neg');
-let btnSepia = document.getElementById('btn-sepia');
-let btnCleanFilter = document.getElementById('btn-clean-filter');
-let btnCleanCanvas = document.getElementById('btn-clean-canvas');
-let btnBlur = document.getElementById('btn-blur');
-let btnSCR = document.getElementById('btn-scr');
-let btnSCG = document.getElementById('btn-scg');
-let btnSCB = document.getElementById('btn-scb');
-let btnSobel = document.getElementById('btn-sobel');
-let btnSave = document.getElementById('btn-save');
-let btnClose = document.getElementById('btn-close');
-let btnDelete = document.getElementById('btn-delete');
-
 let aplicatedFilters = false;
-let originalImage = ctx.createImageData(width, height);
-let cantImg = 0;
+let history = [];
+cantImg = 0;
 
 inputFile.addEventListener('change', e => {
     showImage();
 });
 
+let btnBaW = document.getElementById('btn-baw');
 btnBaW.addEventListener('click', e => {
     filterBaW();
 })
 
+let btnNeg = document.getElementById('btn-neg');
 btnNeg.addEventListener('click', e => {
     filterNegative();
 })
 
+let btnSepia = document.getElementById('btn-sepia');
 btnSepia.addEventListener('click', e => {
     filterSepia();
 })
 
+let btnSCR = document.getElementById('btn-scr');
 btnSCR.addEventListener('click', e => {
     filterSplashColorRed();
 })
 
+let btnSCG = document.getElementById('btn-scg');
 btnSCG.addEventListener('click', e => {
     filterSplashColorGreen();
 })
 
+let btnSCB = document.getElementById('btn-scb');
 btnSCB.addEventListener('click', e => {
     filterSplashColorBlue();
 })
 
+let btnBlur = document.getElementById('btn-blur');
 btnBlur.addEventListener('click', e => {
     filterBlur();
 })
 
+let btnSobel = document.getElementById('btn-sobel');
 btnSobel.addEventListener('click', e => {
     filterSobel();
 })
 
+let btnCleanFilter = document.getElementById('btn-clean-filter');
 btnCleanFilter.addEventListener('click', e => {
     cleanFilter();
 })
 
+let btnCleanCanvas = document.getElementById('btn-clean-canvas');
 btnCleanCanvas.addEventListener('click', e => {
     if (!saved) showPupUp();
     else cleanCanvas();
 })
 
+let btnClose = document.getElementById('btn-close');
 btnClose.addEventListener('click', e => {
     closePopUp();
 })
 
+let btnDelete = document.getElementById('btn-delete');
 btnDelete.addEventListener('click', e => {
     cleanCanvas();
 })
+
+let btnSave = document.getElementById('btn-save');
+btnSave.addEventListener("click", e => {
+    download();
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'z') {
+        backToPreviousState();
+    }
+});
 
 /*-------------- CARGA DE IMAGEN ---------------------*/
 
@@ -212,7 +219,7 @@ function loadPicture(source) {
 /*-------------- FILTROS ---------------------*/
 
 function filterBaW() {  //BLANCO Y NEGRO
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -226,7 +233,7 @@ function filterBaW() {  //BLANCO Y NEGRO
 }
 
 function filterNegative() {    //NEGATIVO
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -241,7 +248,7 @@ function filterNegative() {    //NEGATIVO
 }
 
 function filterSepia() {    //SEPIA
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -256,7 +263,7 @@ function filterSepia() {    //SEPIA
 }
 
 function filterSplashColorRed() {   //SPLASH ROJO (aplica blanco y negro, pero deja los rojos)
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -275,7 +282,7 @@ function filterSplashColorRed() {   //SPLASH ROJO (aplica blanco y negro, pero d
 }
 
 function filterSplashColorGreen() {     //SPLASH VERDE (aplica blanco y negro, pero deja los verdes)
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -294,7 +301,7 @@ function filterSplashColorGreen() {     //SPLASH VERDE (aplica blanco y negro, p
 }
 
 function filterSplashColorBlue() {     //SPLASH AZUL (aplica blanco y negro, pero deja los azules)
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
@@ -313,111 +320,31 @@ function filterSplashColorBlue() {     //SPLASH AZUL (aplica blanco y negro, per
 }
 
 function filterBlur() {     //BLUR
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    let r = 0;
-    let g = 0;
-    let b = 0;
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
-        if (x === 0) {      //limitamos la cantidad de comprobaciones que se debe hacer en cada caso
-            for (let y = 0; y < image.height; y++) {
-                if (y === 0) {    //en cada caso particular, obtenemos el promedio de los valores vecinos a la posición actual
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
-                    //obtenemos el promedio de cada rojo, verde y azul entre los pixeles obtenidos
-                    r = (xy1[0] + x1y[0] + x1y1[0]) / 3;
-                    g = (xy1[1] + x1y[1] + x1y1[1]) / 3;
-                    b = (xy1[2] + x1y[2] + x1y1[2]) / 3;
-                } else if (y === image.height - 1) {
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
-                    r = (xy0[0] + x1y[0] + x1y0[0]) / 3;
-                    g = (xy0[1] + x1y[1] + x1y0[1]) / 3;
-                    b = (xy0[2] + x1y[2] + x1y0[2]) / 3;
-                } else {
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    r = (xy0[0] + x1y0[0] + x1y[0] + x1y1[0] + xy1[0]) / 5;
-                    g = (xy0[1] + x1y0[1] + x1y[1] + x1y1[1] + xy1[1]) / 5;
-                    b = (xy0[2] + x1y0[2] + x1y[2] + x1y1[2] + xy1[2]) / 5;
-                }
-                setPixel(image, x, y, r, g, b, 255);
-            }
-        } else if (x === image.width - 1) {
-            for (let y = 0; y < image.height; y++) {
-                if (y === 0) {
-                    let x0y = getPixel(originalImage, x - 1, y);
-                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    r = (x0y[0] + x0y1[0] + xy1[0]) / 3;
-                    g = (x0y[1] + x0y1[1] + xy1[1]) / 3;
-                    b = (x0y[2] + x0y1[2] + xy1[2]) / 3;
-                } else if (y === image.height - 1) {
-                    let x0y = getPixel(originalImage, x - 1, y);
-                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    r = (x0y[0] + x0y0[0] + xy0[0]) / 3;
-                    g = (x0y[1] + x0y0[1] + xy0[1]) / 3;
-                    b = (x0y[2] + x0y0[2] + xy0[2]) / 3;
-                } else {
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
-                    let x0y = getPixel(originalImage, x - 1, y);
-                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    r = (xy0[0] + x0y0[0] + x0y[0] + x0y1[0] + xy1[0]) / 5;
-                    g = (xy0[1] + x0y0[1] + x0y[1] + x0y1[1] + xy1[1]) / 5;
-                    b = (xy0[2] + x0y0[2] + x0y[2] + x0y1[2] + xy1[2]) / 5;
-                }
-                setPixel(image, x, y, r, g, b, 255);
-            }
-        } else {
-            for (let y = 0; y < image.height; y++) {
-                if (y === 0) {
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    r = (xy0[0] + x1y1[0] + x1y[0] + x0y1[0] + xy1[0]) / 5;
-                    g = (xy0[1] + x1y1[1] + x1y[1] + x0y1[1] + xy1[1]) / 5;
-                    b = (xy0[2] + x1y1[2] + x1y[3] + x0y1[2] + xy1[2]) / 5;
-                } else if (y === image.height - 1) {
-                    let x0y = getPixel(originalImage, x - 1, y);
-                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0]) / 5;
-                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1]) / 5;
-                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2]) / 5;
-                } else {
-                    let x0y0 = getPixel(originalImage, x - 1, y - 1);
-                    let xy0 = getPixel(originalImage, x, y - 1);
-                    let x1y0 = getPixel(originalImage, x + 1, y - 1);
-                    let x1y = getPixel(originalImage, x + 1, y);
-                    let x1y1 = getPixel(originalImage, x + 1, y + 1);
-                    let xy1 = getPixel(originalImage, x, y + 1);
-                    let x0y1 = getPixel(originalImage, x - 1, y + 1);
-                    let x0y = getPixel(originalImage, x - 1, y);
-                    r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) / 8;
-                    g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) / 8;
-                    b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2]) / 8;
-                }
-                setPixel(image, x, y, r, g, b, 255);
-            }
+        for (let y = 0; y < image.height; y++) {
+            //obtenemos el promedio de los valores vecinos a la posición actual
+            let x0y0 = getPixel(history[history.length - 1], x - 1, y - 1);
+            let xy0 = getPixel(history[history.length - 1], x, y - 1);
+            let x1y0 = getPixel(history[history.length - 1], x + 1, y - 1);
+            let x1y = getPixel(history[history.length - 1], x + 1, y);
+            let x1y1 = getPixel(history[history.length - 1], x + 1, y + 1);
+            let xy1 = getPixel(history[history.length - 1], x, y + 1);
+            let x0y1 = getPixel(history[history.length - 1], x - 1, y + 1);
+            let x0y = getPixel(history[history.length - 1], x - 1, y);
+            //obtenemos el promedio de cada rojo, verde y azul entre los pixeles obtenidos
+            let r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) / 8;
+            let g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) / 8;
+            let b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2]) / 8;
+            setPixel(image, x, y, r, g, b, 255);
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
 }
 
 function filterSobel() {    //SOBEL
-    comprobarFiltros();
+    saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     let r = 0;
     let g = 0;
@@ -425,14 +352,14 @@ function filterSobel() {    //SOBEL
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel obteniendo los valores de alrededor
         for (let y = 0; y < image.height; y++) {
             //obtenemos el promedio de cada pixel
-            let a = promedio(getPixel(originalImage, x - 1, y - 1));
-            let b = promedio(getPixel(originalImage, x - 1, y));
-            let c = promedio(getPixel(originalImage, x - 1, y + 1));
-            let d = promedio(getPixel(originalImage, x + 1, y - 1));
-            let e = promedio(getPixel(originalImage, x + 1, y));
-            let f = promedio(getPixel(originalImage, x + 1, y + 1));
-            let g = promedio(getPixel(originalImage, x, y - 1));
-            let h = promedio(getPixel(originalImage, x, y + 1));
+            let a = promedio(getPixel(history[history.length - 1], x - 1, y - 1));
+            let b = promedio(getPixel(history[history.length - 1], x - 1, y));
+            let c = promedio(getPixel(history[history.length - 1], x - 1, y + 1));
+            let d = promedio(getPixel(history[history.length - 1], x + 1, y - 1));
+            let e = promedio(getPixel(history[history.length - 1], x + 1, y));
+            let f = promedio(getPixel(history[history.length - 1], x + 1, y + 1));
+            let g = promedio(getPixel(history[history.length - 1], x, y - 1));
+            let h = promedio(getPixel(history[history.length - 1], x, y + 1));
 
             //generamos sobel Gx y sobel Gy a partir de los valores obtenidos
             //obviamos los valores que se multiplicarían por 0
@@ -491,28 +418,48 @@ function setPixel(imageData, x, y, r, g, b, a) {
  */
 
 //al aplicarse el primer filtro a una imagen, se señala que tiene filtros aplicados y se guarda la imagen original (sin filtros)
-function comprobarFiltros() {
+function saveChanges() {
+    saveLastChangeImage();
     if (!aplicatedFilters) {
-        saveOriginalImage();
         aplicatedFilters = true;
         saved = false;
     }
+
 }
 
 //guarda la imagen original
 function saveOriginalImage() {
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    originalImage = image;
+    history[0] = image;
+}
+
+//guarda la imagen como estaba hasta el último cambio
+function saveLastChangeImage() {
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    history[history.length] = image;
+}
+
+function backToPreviousState() {
+    if (history.length > 0) {
+        if (history.length == 1) {
+            cleanFilter();
+        } else {
+            let image = history[history.length - 1];
+            history.pop();
+            ctx.putImageData(image, 0, 0) * 4;
+        }
+    }
 }
 
 //si la imagen tiene filtros aplicados, los borra y vuelve a mostrar la imagen como fue cargada originalmente
 function cleanFilter() {
     if (aplicatedFilters) {
         let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-        image = originalImage;  //la convertimos en la imagen original
+        image = history[0];  //la convertimos en la imagen original
         ctx.putImageData(image, 0, 0) * 4;
         aplicatedFilters = false;
-        originalImage = ctx.createImageData(width, height);
+        history = [];
+        //history[0] = ctx.createImageData(width, height);
     }
 }
 
@@ -528,18 +475,16 @@ function cleanCanvas() {
     }
     ctx.putImageData(image, 0, 0) * 4;
     aplicatedFilters = false;
-    originalImage = ctx.createImageData(width, height);
+    history[0] = ctx.createImageData(width, height);
     if (!saved) {
         closePopUp();
     }
 }
 
+
 /**
  * ---------------- GUARDAR -------------------//
  */
-btnSave.addEventListener("click", e => {
-    download();
-});
 
 function download() {
     var data = canvas.toDataURL();
