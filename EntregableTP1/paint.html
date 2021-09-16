@@ -25,48 +25,70 @@
                                     <input type="range" class="custom-range" min="1" max="20" id="rangePencil">
                                     <input type="color" id="color">
                                 </div>
-                                
+
                                 <div>
 
-                                    <button id="btn-rubber" class="btn btn-primary">Goma</button>
+                                    <button id="btn-rubber" class="btn btn-primary small">Goma</button>
                                     <input type="range" class="custom-range" min="1" max="50" id="rangeRubber">
                                 </div>
                             </div>
                             <div class="section imageLoad">
                                 <h5>Cargar imagen</h5>
-                                <input type="file" class="btn btn-outline-primary" id="inputFile">
+                                <input type="file" class="btn btn-outline-primary small" id="inputFile">
                             </div>
-                            <div class="section filtros">
+                            <div class="section filtros center">
                                 <h5>Filtros</h5>
-                                <button id="btn-baw" class="btn btn-primary">Blanco y negro</button>
-                                <button id="btn-neg" class="btn btn-primary">Negativo</button>
-                                <button id="btn-sepia" class="btn btn-primary">Sepia</button>
-                                <button id="btn-scr" class="btn btn-primary">Rescatar rojos</button>
-                                <button id="btn-scg" class="btn btn-primary">Rescatar verdes</button>
-                                <button id="btn-scb" class="btn btn-primary">Rescatar azules</button>
-                                <button id="btn-blur" class="btn btn-primary">Blur</button>
-                                <button id="btn-sobel" class="btn btn-primary">Sobel</button>
+                                <button id="btn-baw" class="btn btn-primary small">Blanco y negro</button>
+                                <button id="btn-neg" class="btn btn-primary small">Negativo</button>
+                                <button id="btn-sepia" class="btn btn-primary small">Sepia</button>
+                                <button id="btn-scr" class="btn btn-primary small">Splash rojo</button>
+                                <button id="btn-scg" class="btn btn-primary small">Splash verde</button>
+                                <button id="btn-scb" class="btn btn-primary small">Splash azul</button>
+                                <button id="btn-blur" class="btn btn-primary small">Blur</button>
+                                <button id="btn-sobel" class="btn btn-primary small">Sobel</button>
                             </div>
-                            <div class="section clean">
+                            <div class="section clean center">
                                 <h5>Limpiar</h5>
-                                <button id="btn-clean-filter" class="btn btn-primary">Limpiar filtros</button>
-                                <button id="btn-clean-canvas" class="btn btn-primary">Limpiar lienzo</button>
+                                <button id="btn-clean-filter" class="btn btn-primary small">Deshacer cambios</button>
+                                <button id="btn-clean-canvas" class="btn btn-primary small">Limpiar lienzo</button>
+                                <!--<a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>-->
                             </div>
-                            <div class="section clean">
+                            <div class="section save center">
                                 <h5>Guardar</h5>
-                                <button id="btn-save" class="btn btn-warning" download="image.jpg">Descargar</button>
+                                <button id="btn-save" class="btn btn-warning small" download="image.jpg"><img
+                                        src="./img/download.svg" class="icon"> Descargar</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8 background-white">
                         <div class="card-body height-100 offset-1">
-                            <canvas id="canvas" width="600" height="600" class="canvas offset-1"></canvas>
+                            <canvas id="canvas" width="600" height="600" class="canvas canvas-min margin-left"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="hide" id="pop-up">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tiene cambios sin guardar, seguro que desea continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-close" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button id="btn-delete" type="button" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="paint.js"></script>
 </body>

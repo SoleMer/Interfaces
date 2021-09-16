@@ -4,6 +4,8 @@ let width = canvas.width;
 let height = canvas.height;
 let imageData = ctx.createImageData(width, height);
 let inputFile = document.getElementById('inputFile');
+let popUp = document.getElementById('pop-up');
+let saved = false;
 
 /* ------------- DRAW ---------------*/
 let color = document.getElementById("color");
@@ -96,7 +98,7 @@ function draw(isPencil) {
 
 
 
-/*-------------- FILTROS ---------------------*/
+/*-------------- IMAGEN ---------------------*/
 
 let btnBaW = document.getElementById('btn-baw');
 let btnNeg = document.getElementById('btn-neg');
@@ -109,6 +111,8 @@ let btnSCG = document.getElementById('btn-scg');
 let btnSCB = document.getElementById('btn-scb');
 let btnSobel = document.getElementById('btn-sobel');
 let btnSave = document.getElementById('btn-save');
+let btnClose = document.getElementById('btn-close');
+let btnDelete = document.getElementById('btn-delete');
 
 let aplicatedFilters = false;
 let originalImage = ctx.createImageData(width, height);
@@ -155,9 +159,19 @@ btnCleanFilter.addEventListener('click', e => {
 })
 
 btnCleanCanvas.addEventListener('click', e => {
+    if (!saved) showPupUp();
+    else cleanCanvas();
+})
+
+btnClose.addEventListener('click', e => {
+    closePopUp();
+})
+
+btnDelete.addEventListener('click', e => {
     cleanCanvas();
 })
 
+/*-------------- CARGA DE IMAGEN ---------------------*/
 
 function showImage() {
     if (cantImg != 0) {
@@ -183,6 +197,10 @@ function loadPicture(source) {
             let scale = Math.min(canvas.width / image.width, canvas.height / image.height);
             let x = (canvas.width / 2) - (image.width / 2) * scale;
             let y = (canvas.height / 2) - (image.height / 2) * scale;
+            canvas.classList.remove("canvas-min");
+            if (screen.width <= 1280) {
+                canvas.classList.replace("margin-left", "margin-left-min");
+            }
             canvas.width = image.width * scale;
             canvas.height = image.height * scale;
             ctx.drawImage(image, 0, 0, image.width * scale, image.height * scale);
@@ -194,7 +212,9 @@ function loadPicture(source) {
 
 };
 
-function filterBaW() {
+/*-------------- FILTROS ---------------------*/
+
+function filterBaW() {  //BLANCO Y NEGRO
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -203,13 +223,12 @@ function filterBaW() {
             let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
             //enviamos el promedio para setear los Bytes r, g y b con el promedio y el alpha en 255
             setPixel(image, x, y, prom, prom, prom, 255);
-
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterNegative() {
+function filterNegative() {    //NEGATIVO
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -224,7 +243,7 @@ function filterNegative() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterSepia() {
+function filterSepia() {    //SEPIA
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -239,7 +258,7 @@ function filterSepia() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterSplashColorRed() {
+function filterSplashColorRed() {   //SPLASH ROJO (aplica blanco y negro, pero deja los rojos)
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -258,7 +277,7 @@ function filterSplashColorRed() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterSplashColorGreen() {
+function filterSplashColorGreen() {     //SPLASH VERDE (aplica blanco y negro, pero deja los verdes)
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -277,7 +296,7 @@ function filterSplashColorGreen() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterSplashColorBlue() {
+function filterSplashColorBlue() {     //SPLASH AZUL (aplica blanco y negro, pero deja los azules)
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
@@ -296,7 +315,7 @@ function filterSplashColorBlue() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterBlur() {
+function filterBlur() {     //BLUR
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     let r = 0;
@@ -400,7 +419,7 @@ function filterBlur() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-function filterSobel() {
+function filterSobel() {    //SOBEL
     comprobarFiltros();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     let r = 0;
@@ -435,7 +454,7 @@ function filterSobel() {
     ctx.putImageData(image, 0, 0) * 4;
 }
 
-//--------------- FUNCIONES AUXILIARES --------------
+//--------------- FUNCIONES AUXILIARES ------------//
 
 function promedio(rgba) {
     let contador = 0;
@@ -451,7 +470,7 @@ function comprobarValor(val) {
     else return val;
 }
 
-//--------------- GET Y SET DE PIXEL --------------
+//--------------- GET Y SET DE PIXEL --------------//
 
 function getPixel(imageData, x, y) {
     let index = (x + y * imageData.height) * 4;
@@ -471,7 +490,7 @@ function setPixel(imageData, x, y, r, g, b, a) {
 }
 
 /**
- * ---------------- LIMPIAR FILTROS Y LIENZO ---------------------
+ * ---------------- LIMPIAR FILTROS Y LIENZO -----------------//
  */
 
 //al aplicarse el primer filtro a una imagen, se señala que tiene filtros aplicados y se guarda la imagen original (sin filtros)
@@ -479,10 +498,11 @@ function comprobarFiltros() {
     if (!aplicatedFilters) {
         saveOriginalImage();
         aplicatedFilters = true;
+        saved = false;
     }
 }
 
-//función que guarda la imagen original
+//guarda la imagen original
 function saveOriginalImage() {
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
     originalImage = image;
@@ -512,10 +532,13 @@ function cleanCanvas() {
     ctx.putImageData(image, 0, 0) * 4;
     aplicatedFilters = false;
     originalImage = ctx.createImageData(width, height);
+    if (!saved) {
+        closePopUp();
+    }
 }
 
 /**
- * ---------------- GUARDAR ---------------------
+ * ---------------- GUARDAR -------------------//
  */
 btnSave.addEventListener("click", e => {
     download();
@@ -525,4 +548,18 @@ function download() {
     var data = canvas.toDataURL();
     var prev = window.location.href;
     window.location.href = data.replace("image/png", "image/octet-stream");
+    saved = true;
 }
+
+/**
+ * ---------------- POP UP -------------------//
+ */
+
+function showPupUp() {
+    popUp.classList.replace('hide', 'clear');
+}
+
+function closePopUp() {
+    popUp.classList.replace('clear', 'hide');
+}
+
