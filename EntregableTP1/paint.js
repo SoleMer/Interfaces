@@ -24,10 +24,8 @@ rubber.addEventListener("click", e => {
     draw(isPencil);
 });
 
-
-
 function draw() {
-
+    saveChanges();
     let isDrawing = false;
     let x = 0;
     let y = 0;
@@ -39,8 +37,7 @@ function draw() {
     canvas.addEventListener('mouseleave', mouseLeave);
 
     function mouseLeave(e) {
-        x = 0;
-        y = 0;
+        isDrawing = false;
     }
 
     function mouseEnter(e) {
@@ -73,7 +70,7 @@ function draw() {
         }
     }
     function drawLine(x1, y1, x2, y2) {
-
+        
         ctx.beginPath();
         ctx.lineCap = "round";
         if (isPencil) {
@@ -488,7 +485,6 @@ function cleanCanvas() {
 
 function download() {
     var data = canvas.toDataURL();
-    var prev = window.location.href;
     window.location.href = data.replace("image/png", "image/octet-stream");
     saved = true;
 }
