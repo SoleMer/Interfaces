@@ -95,6 +95,7 @@ function draw() {
 let aplicatedFilters = false;
 let historical = [];
 cantImg = 0;
+let lienzoBlanco = true;
 
 inputFile.addEventListener('change', e => {
     showImage();
@@ -159,7 +160,10 @@ btnCleanFilter.addEventListener('click', e => {
 let btnCleanCanvas = document.getElementById('btn-clean-canvas');
 btnCleanCanvas.addEventListener('click', e => {
     if (!saved) showPupUp();
-    else cleanCanvas();
+    else {
+        inputFile.value = '';
+        cleanCanvas();
+    }
 })
 
 let btnClose = document.getElementById('btn-close');
@@ -169,6 +173,7 @@ btnClose.addEventListener('click', e => {
 
 let btnDelete = document.getElementById('btn-delete');
 btnDelete.addEventListener('click', e => {
+    inputFile.value = '';
     cleanCanvas();
 })
 
@@ -184,22 +189,6 @@ document.addEventListener('keydown', function (event) {
 });
 
 /*-------------- CARGA DE IMAGEN ---------------------*/
-function brightness() {
-    let coeficiente = 1.3;
-    saveChanges();
-    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
-        for (let y = 0; y < image.height; y++) {
-            let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel 
-            let red = Math.floor(pixel[0]*coeficiente); // aumentamos el valor de RGB en la misma proporcion
-            let green = Math.floor(pixel[1]*coeficiente);
-            let blue =  Math.floor(pixel[2]*coeficiente);
-            //enviamos RGB para setear los Bytes  y el alpha en 255
-            setPixel(image, x, y, red, green, blue, 255);
-        }
-    }
-    ctx.putImageData(image, 0, 0) * 4;
-}
 
 function showImage() {
     if (cantImg != 0) {
@@ -235,6 +224,7 @@ function loadPicture(source) {
             imageData = ctx.getImageData(0, 0, image.width, image.height);
             ctx.putImageData(imageData, 0, 0);
             cantImg++;
+            lienzoBlanco = false;
         }
     }
 
@@ -478,7 +468,9 @@ function setPixel(imageData, x, y, r, g, b, a) {
 
 //al aplicarse el primer filtro a una imagen, se señala que tiene filtros aplicados y se guarda la imagen original (sin filtros)
 function saveChanges() {
-    saveLastChangeImage();
+    if (!lienzoBlanco) {
+        saveLastChangeImage();
+    }
     if (!aplicatedFilters) {
         aplicatedFilters = true;
         saved = false;
@@ -533,12 +525,12 @@ function cleanCanvas() {
     }
     ctx.putImageData(image, 0, 0) * 4;
     aplicatedFilters = false;
-    historical[0] = ctx.createImageData(width, height);
+    lienzoBlanco = true;
+    historical = [];
     if (!saved) {
         closePopUp();
     }
     cantImg = 0;
-    inputFile.value = '';
 }
 
 
