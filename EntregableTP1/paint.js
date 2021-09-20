@@ -93,7 +93,7 @@ function draw() {
 /*-------------- IMAGEN ---------------------*/
 
 let aplicatedFilters = false;
-let history = [];
+let historical = [];
 cantImg = 0;
 
 inputFile.addEventListener('change', e => {
@@ -115,6 +115,11 @@ btnSepia.addEventListener('click', e => {
     filterSepia();
 })
 
+let btnBinary = document.getElementById('btn-binary');
+btnBinary.addEventListener('click', e => {
+    filterBinary();
+})
+
 let btnSCR = document.getElementById('btn-scr');
 btnSCR.addEventListener('click', e => {
     filterSplashColorRed();
@@ -129,6 +134,7 @@ let btnSCB = document.getElementById('btn-scb');
 btnSCB.addEventListener('click', e => {
     filterSplashColorBlue();
 })
+
 
 let btnBlur = document.getElementById('btn-blur');
 btnBlur.addEventListener('click', e => {
@@ -169,7 +175,7 @@ btnSave.addEventListener("click", e => {
 document.addEventListener('keydown', function (event) {
     if (event.ctrlKey && event.key === 'z') {
         backToPreviousState();
-    }
+    } 
 });
 
 /*-------------- CARGA DE IMAGEN ---------------------*/
@@ -259,6 +265,26 @@ function filterSepia() {    //SEPIA
     ctx.putImageData(image, 0, 0) * 4;
 }
 
+function filterBinary() {
+    saveChanges();
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
+        for (let y = 0; y < image.height; y++) {
+            let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel y calculamos el promedio
+            let prom = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3)
+            let b = binarizar(prom); //binarizamos
+            //enviamos el valor binarizado para setear los Bytes r, g y b
+            setPixel(image, x, y, b, b, b, 255);
+        }
+    }
+    ctx.putImageData(image, 0, 0) * 4;
+}
+
+function binarizar(value) {
+    if (value <= 127) return 0;
+    else return 255;
+}
+
 function filterSplashColorRed() {   //SPLASH ROJO (aplica blanco y negro, pero deja los rojos)
     saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
@@ -322,14 +348,14 @@ function filterBlur() {     //BLUR
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
         for (let y = 0; y < image.height; y++) {
             //obtenemos el promedio de los valores vecinos a la posición actual
-            let x0y0 = getPixel(history[history.length - 1], x - 1, y - 1);
-            let xy0 = getPixel(history[history.length - 1], x, y - 1);
-            let x1y0 = getPixel(history[history.length - 1], x + 1, y - 1);
-            let x1y = getPixel(history[history.length - 1], x + 1, y);
-            let x1y1 = getPixel(history[history.length - 1], x + 1, y + 1);
-            let xy1 = getPixel(history[history.length - 1], x, y + 1);
-            let x0y1 = getPixel(history[history.length - 1], x - 1, y + 1);
-            let x0y = getPixel(history[history.length - 1], x - 1, y);
+            let x0y0 = getPixel(historical[historical.length - 1], x - 1, y - 1);
+            let xy0 = getPixel(historical[historical.length - 1], x, y - 1);
+            let x1y0 = getPixel(historical[historical.length - 1], x + 1, y - 1);
+            let x1y = getPixel(historical[historical.length - 1], x + 1, y);
+            let x1y1 = getPixel(historical[historical.length - 1], x + 1, y + 1);
+            let xy1 = getPixel(historical[historical.length - 1], x, y + 1);
+            let x0y1 = getPixel(historical[historical.length - 1], x - 1, y + 1);
+            let x0y = getPixel(historical[historical.length - 1], x - 1, y);
             //obtenemos el promedio de cada rojo, verde y azul entre los pixeles obtenidos
             let r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) / 8;
             let g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) / 8;
@@ -349,14 +375,14 @@ function filterSobel() {    //SOBEL
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel obteniendo los valores de alrededor
         for (let y = 0; y < image.height; y++) {
             //obtenemos el promedio de cada pixel
-            let a = promedio(getPixel(history[history.length - 1], x - 1, y - 1));
-            let b = promedio(getPixel(history[history.length - 1], x - 1, y));
-            let c = promedio(getPixel(history[history.length - 1], x - 1, y + 1));
-            let d = promedio(getPixel(history[history.length - 1], x + 1, y - 1));
-            let e = promedio(getPixel(history[history.length - 1], x + 1, y));
-            let f = promedio(getPixel(history[history.length - 1], x + 1, y + 1));
-            let g = promedio(getPixel(history[history.length - 1], x, y - 1));
-            let h = promedio(getPixel(history[history.length - 1], x, y + 1));
+            let a = promedio(getPixel(historical[historical.length - 1], x - 1, y - 1));
+            let b = promedio(getPixel(historical[historical.length - 1], x - 1, y));
+            let c = promedio(getPixel(historical[historical.length - 1], x - 1, y + 1));
+            let d = promedio(getPixel(historical[historical.length - 1], x + 1, y - 1));
+            let e = promedio(getPixel(historical[historical.length - 1], x + 1, y));
+            let f = promedio(getPixel(historical[historical.length - 1], x + 1, y + 1));
+            let g = promedio(getPixel(historical[historical.length - 1], x, y - 1));
+            let h = promedio(getPixel(historical[historical.length - 1], x, y + 1));
 
             //generamos sobel Gx y sobel Gy a partir de los valores obtenidos
             //obviamos los valores que se multiplicarían por 0
@@ -427,22 +453,22 @@ function saveChanges() {
 //guarda la imagen original
 function saveOriginalImage() {
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    history[0] = image;
+    historical[0] = image;
 }
 
 //guarda la imagen como estaba hasta el último cambio
 function saveLastChangeImage() {
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    history[history.length] = image;
+    historical[historical.length] = image;
 }
 
 function backToPreviousState() {
-    if (history.length > 0) {
-        if (history.length == 1) {
+    if (historical.length > 0) {
+        if (historical.length == 1) {
             cleanFilter();
         } else {
-            let image = history[history.length - 1];
-            history.pop();
+            let image = historical[historical.length - 1];
+            historical.pop();
             ctx.putImageData(image, 0, 0) * 4;
         }
     }
@@ -452,11 +478,10 @@ function backToPreviousState() {
 function cleanFilter() {
     if (aplicatedFilters) {
         let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-        image = history[0];  //la convertimos en la imagen original
+        image = historical[0];  //la convertimos en la imagen original
         ctx.putImageData(image, 0, 0) * 4;
         aplicatedFilters = false;
-        history = [];
-        //history[0] = ctx.createImageData(width, height);
+        historical = [];
     }
 }
 
@@ -472,10 +497,12 @@ function cleanCanvas() {
     }
     ctx.putImageData(image, 0, 0) * 4;
     aplicatedFilters = false;
-    history[0] = ctx.createImageData(width, height);
+    historical[0] = ctx.createImageData(width, height);
     if (!saved) {
         closePopUp();
     }
+    cantImg = 0;
+    inputFile.value = '';
 }
 
 
