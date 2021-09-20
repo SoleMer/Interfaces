@@ -70,7 +70,7 @@ function draw() {
         }
     }
     function drawLine(x1, y1, x2, y2) {
-        
+
         ctx.beginPath();
         ctx.lineCap = "round";
         if (isPencil) {
@@ -96,6 +96,8 @@ let aplicatedFilters = false;
 let historical = [];
 cantImg = 0;
 let lienzoBlanco = true;
+let imageWidth;
+let imageHeigth;
 
 inputFile.addEventListener('change', e => {
     showImage();
@@ -185,7 +187,7 @@ btnSave.addEventListener("click", e => {
 document.addEventListener('keydown', function (event) {
     if (event.ctrlKey && event.key === 'z') {
         backToPreviousState();
-    } 
+    }
 });
 
 /*-------------- CARGA DE IMAGEN ---------------------*/
@@ -238,9 +240,9 @@ function brightness() { //BRILLO
     for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
         for (let y = 0; y < image.height; y++) {
             let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel 
-            let red = Math.floor(pixel[0]*coeficiente); // aumentamos el valor de RGB en la misma proporcion
-            let green = Math.floor(pixel[1]*coeficiente);
-            let blue =  Math.floor(pixel[2]*coeficiente);
+            let red = Math.floor(pixel[0] * coeficiente); // aumentamos el valor de RGB en la misma proporcion
+            let green = Math.floor(pixel[1] * coeficiente);
+            let blue = Math.floor(pixel[2] * coeficiente);
             //enviamos RGB para setear los Bytes  y el alpha en 255
             setPixel(image, x, y, red, green, blue, 255);
         }
@@ -370,9 +372,10 @@ function filterSplashColorBlue() {     //SPLASH AZUL (aplica blanco y negro, per
 
 function filterBlur() {     //BLUR
     saveChanges();
-    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
-    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
-        for (let y = 0; y < image.height; y++) {
+    let image = ctx.getImageData(0, 0, canvas.width, canvas.height);  //obtenemos la imagen
+    console.log(canvas.height);
+    for (let x = 1; x < image.width-1; x++) {    //la recorremos pixel a pixel contemplando las posibilidades
+        for (let y = 1; y < image.height-1; y++) {
             //obtenemos el promedio de los valores vecinos a la posición actual
             let x0y0 = getPixel(historical[historical.length - 1], x - 1, y - 1);
             let xy0 = getPixel(historical[historical.length - 1], x, y - 1);
@@ -382,11 +385,14 @@ function filterBlur() {     //BLUR
             let xy1 = getPixel(historical[historical.length - 1], x, y + 1);
             let x0y1 = getPixel(historical[historical.length - 1], x - 1, y + 1);
             let x0y = getPixel(historical[historical.length - 1], x - 1, y);
+            let current = getPixel(historical[historical.length - 1], x, y);
             //obtenemos el promedio de cada rojo, verde y azul entre los pixeles obtenidos
-            let r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0]) / 8;
-            let g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1]) / 8;
-            let b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2]) / 8;
-            setPixel(image, x, y, r, g, b, 255);
+            let r = (xy0[0] + x0y[0] + x1y[0] + x0y0[0] + x1y0[0] + x1y1[0] + xy1[0] + x0y1[0] + current[0]) / 9;
+            let g = (xy0[1] + x0y[1] + x1y[1] + x0y0[1] + x1y0[1] + x1y1[1] + xy1[1] + x0y1[1] + current[1]) / 9;
+            let b = (xy0[2] + x0y[2] + x1y[2] + x0y0[2] + x1y0[2] + x1y1[2] + xy1[2] + x0y1[2] + current[2]) / 9;
+            
+
+                setPixel(image, x, y, r, g, b, 255);
         }
     }
     ctx.putImageData(image, 0, 0) * 4;
@@ -446,7 +452,7 @@ function comprobarValor(val) {
 //--------------- GET Y SET DE PIXEL --------------//
 
 function getPixel(imageData, x, y) {
-    let index = (x + y * imageData.height) * 4;
+    let index = (x + y * imageData.width) * 4;
     let r = imageData.data[index + 0];
     let g = imageData.data[index + 1];
     let b = imageData.data[index + 2];
@@ -455,7 +461,7 @@ function getPixel(imageData, x, y) {
 }
 
 function setPixel(imageData, x, y, r, g, b, a) {
-    let index = (x + y * imageData.height) * 4;
+    let index = (x + y * imageData.width) * 4;
     imageData.data[index + 0] = r;
     imageData.data[index + 1] = g;
     imageData.data[index + 2] = b;
