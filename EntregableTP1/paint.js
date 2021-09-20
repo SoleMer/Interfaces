@@ -141,6 +141,11 @@ btnBlur.addEventListener('click', e => {
     filterBlur();
 })
 
+let btnBrightness = document.getElementById('btn-brightness');
+btnBrightness.addEventListener('click', e => {
+    brightness();
+})
+
 let btnSobel = document.getElementById('btn-sobel');
 btnSobel.addEventListener('click', e => {
     filterSobel();
@@ -179,6 +184,22 @@ document.addEventListener('keydown', function (event) {
 });
 
 /*-------------- CARGA DE IMAGEN ---------------------*/
+function brightness() {
+    let coeficiente = 1.3;
+    saveChanges();
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
+        for (let y = 0; y < image.height; y++) {
+            let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel 
+            let red = Math.floor(pixel[0]*coeficiente); // aumentamos el valor de RGB en la misma proporcion
+            let green = Math.floor(pixel[1]*coeficiente);
+            let blue =  Math.floor(pixel[2]*coeficiente);
+            //enviamos RGB para setear los Bytes  y el alpha en 255
+            setPixel(image, x, y, red, green, blue, 255);
+        }
+    }
+    ctx.putImageData(image, 0, 0) * 4;
+}
 
 function showImage() {
     if (cantImg != 0) {
@@ -220,7 +241,22 @@ function loadPicture(source) {
 };
 
 /*-------------- FILTROS ---------------------*/
-
+function brightness() { //BRILLO
+    let coeficiente = 1.3;
+    saveChanges();
+    let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
+    for (let x = 0; x <= image.width; x++) {    //la recorremos pixel a pixel
+        for (let y = 0; y < image.height; y++) {
+            let pixel = getPixel(image, x, y);  //obtenemos los valores de cada pixel 
+            let red = Math.floor(pixel[0]*coeficiente); // aumentamos el valor de RGB en la misma proporcion
+            let green = Math.floor(pixel[1]*coeficiente);
+            let blue =  Math.floor(pixel[2]*coeficiente);
+            //enviamos RGB para setear los Bytes  y el alpha en 255
+            setPixel(image, x, y, red, green, blue, 255);
+        }
+    }
+    ctx.putImageData(image, 0, 0) * 4;
+}
 function filterBaW() {  //BLANCO Y NEGRO
     saveChanges();
     let image = ctx.getImageData(0, 0, width, height);  //obtenemos la imagen
