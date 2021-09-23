@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paint</title>
-    <link rel="stylesheet" href="paint.css">
+    <title>PYC</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon-16x16.png">
+    <link rel="stylesheet" href="css/pyc.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <body>
+    <img src="img/PYC.png" alt="" class="logo">
     <div class="container-fluid">
         <div class="col-9 offset-1 height-80">
             <div class="card mb-3 margin-top offset-1" id="card">
@@ -21,7 +23,7 @@
                             <div class="section draw">
                                 <h5>Herramientas</h5>
                                 <div>
-                                    <button id="btn-pencil" class="btn btn-primary">Lapiz</button>
+                                    <button id="btn-pencil" class="btn btn-primary small">Lapiz</button>
                                     <input type="range" class="custom-range" min="1" max="20" id="rangePencil">
                                     <input type="color" id="color">
                                 </div>
@@ -43,9 +45,9 @@
                                 <button id="btn-neg" class="btn btn-primary small">Negativo</button>
                                 <button id="btn-sepia" class="btn btn-primary small">Sepia</button>
                                 <button id="btn-binary" class="btn btn-primary small">Binarización</button>
-                                <button id="btn-scr" class="btn btn-primary small">Splash rojo</button>
-                                <button id="btn-scg" class="btn btn-primary small">Splash verde</button>
-                                <button id="btn-scb" class="btn btn-primary small">Splash azul</button>
+                                <button id="btn-scr" class="btn btn-primary small">Salpicado rojo</button>
+                                <button id="btn-scg" class="btn btn-primary small">Salpicado verde</button>
+                                <button id="btn-scb" class="btn btn-primary small">Salpicado azul</button>
                                 <button id="btn-blur" class="btn btn-primary small">Blur</button>
                                 <button id="btn-sobel" class="btn btn-primary small">Detección de bordes</button>
                             </div>
@@ -91,9 +93,28 @@
         </div>
     </div>
 
+    <div class="footer-container" fxLayout="row" fxLayoutAlign="space-between">
+        <div class="desarrolladores-container">
+            <h5>Desarrollado por</h5><br>
+            <a href="https://github.com/juliovdv" class="no-decoration" target="blank">Julio Van Der Vluet</a> y
+            <a href="https://github.com/SoleMer" class="no-decoration" target="blank">Soledad Merino</a>
+            <div class="icon-github">
+                <a href="https://github.com/SoleMer/Interfaces" target="blank"><img src="img/git.svg" alt="" class="icon-link"></a>
+            </div>
+        </div>
+        <div class="catedra">
+            <h6>Interfaces de Usuario e Interacción</h6>
+        </div>
+        <div class="logo-container-right" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+            <a href="https://exa.unicen.edu.ar/" target="_blank" class="" fxLayout="column"
+                fxLayoutAlign="center center">
+                <img class="logo-exactas" src="img/LogoExactas.png">
+            </a>
+        </div>
+    </div>
 
 
-    <script src="paint.js"></script>
+    <script src="js/pyc.js"></script>
 </body>
 
 </html>
