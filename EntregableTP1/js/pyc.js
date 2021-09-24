@@ -24,7 +24,7 @@ rubber.addEventListener("click", e => {
     draw(isPencil);
 });
 
-function draw() {
+function draw() { // es invocada cuando se hace click en el lapiz o la goma para agregar los eventos necesarios para dibujar/borrar
     saveChanges();
     let isDrawing = false;
     let x = 0;
@@ -33,21 +33,13 @@ function draw() {
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mouseup', mouseUp);
-    canvas.addEventListener('mouseenter', mouseEnter);
     canvas.addEventListener('mouseleave', mouseLeave);
 
-    function mouseLeave(e) {
+    function mouseLeave(e) { // vuelve isDrawing = FALSE para que deje de pintar/borrar cuando se sale del canvas
         isDrawing = false;
     }
 
-    function mouseEnter(e) {
-        if (isDrawing === true) {
-            x = e.offsetX;
-            y = e.offsetY;
-        }
-    }
-
-    function mouseUp(e) {
+    function mouseUp(e) {   // vuelve isDrawing = FALSE para que deje de pintar/borrar cuando se suelta el click del mouse, si isDrawing = TRUE
         if (isDrawing === true) {
             drawLine(x, y, e.offsetX, e.offsetY);
             x = 0;
@@ -56,24 +48,25 @@ function draw() {
         }
 
     }
-    function mouseDown(e) {
+    function mouseDown(e) { // le da valores a X e Y y isDrawing = TRUE para que empieze a trazar una linea
         x = e.offsetX;
         y = e.offsetY;
         isDrawing = true;
     }
 
-    function mouseMove(e) {
+    function mouseMove(e) { // llama a drawLine con los valores X e Y  y los valores hacia donde el mouse sea llevado y actualiza los valores de X e Y
         if (isDrawing === true) {
             drawLine(x, y, e.offsetX, e.offsetY);
             x = e.offsetX;
             y = e.offsetY;
         }
     }
-    function drawLine(x1, y1, x2, y2) {
+    function drawLine(x1, y1, x2, y2) { // traza una linea de X1 e Y1 a X2 e Y2  
+                                        
 
         ctx.beginPath();
         ctx.lineCap = "round";
-        if (isPencil) {
+        if (isPencil) {  //si isPencil con el color y el rango del lapiz sino blanco y con el rango de la goma
             ctx.strokeStyle = color.value;
             ctx.lineWidth = rangePencil.value;
 
