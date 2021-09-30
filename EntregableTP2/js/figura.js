@@ -29,4 +29,8 @@ class Figura {
     draw() {
         this.ctx.fillStyle = this.fill;
     }
+
+    clickAdentro(x, y){
+
+    }
 }

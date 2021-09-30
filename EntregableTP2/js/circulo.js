@@ -11,4 +11,17 @@ class Circulo extends Figura {
         this.ctx.fill();
         this.ctx.closePath();
     }
+
+    setX(x){
+        this.posX = x;
+    }
+    setX(y){
+        this.posY = y;
+    }
+    clickAdentro(x, y) {
+        let _x = this.posX - x;
+        let _y = this.posY - y;
+        return Math.sqrt(_x * _x + _y * _y) < this.radio;
+
+    }
 }
