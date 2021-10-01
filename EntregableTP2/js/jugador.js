@@ -1,5 +1,6 @@
 class Jugador {
-    constructor(fichas) {
+    constructor(nombre, fichas) {
+        this.Nombre = nombre;
         this.fichas = fichas;
     }
 }

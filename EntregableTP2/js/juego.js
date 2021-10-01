@@ -4,4 +4,5 @@ class Juego {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
     }
+    
 }

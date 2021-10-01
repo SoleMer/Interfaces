@@ -5,6 +5,7 @@ class Figura {
         this.posY = posY;
         this.ctx = ctx;
         this.fill = fill;
+        this.click = false;
     }
 
     getPosition() {

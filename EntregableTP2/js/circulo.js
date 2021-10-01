@@ -9,6 +9,11 @@ class Circulo extends Figura {
         this.ctx.beginPath();
         this.ctx.arc(this.posX, this.posY, this.radio, 0, 2 * Math.PI);
         this.ctx.fill();
+        if (this.click) {
+            this.strokeStyle = "#FFF000";
+            this.lineWidth = 5;
+            this.stroke();
+        }
         this.ctx.closePath();
     }
 
