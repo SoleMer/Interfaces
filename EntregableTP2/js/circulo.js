@@ -5,28 +5,51 @@ class Circulo extends Figura {
     }
 
     draw() {
-        super.draw();
+        /*       super.draw();
+               this.ctx.save();
+               this.ctx.beginPath();
+               this.ctx.arc(this.posX, this.posY, this.radio, 0, 2 * Math.PI);
+               //this.ctx.closePath();
+               this.ctx.clip();
+               this.ctx.drawImage(this.fill, this.posX - this.radio, this.posY - this.radio, this.radio * 2, this.radio * 2);
+               this.ctx.beginPath();
+               this.ctx.clip();
+               this.ctx.fill();
+               this.ctx.closePath();
+               //this.ctx.restore();
+       */
+        this.ctx.fillStyle = this.fill;
+        this.ctx.save();
         this.ctx.beginPath();
         this.ctx.arc(this.posX, this.posY, this.radio, 0, 2 * Math.PI);
-        this.ctx.fill();
-        if (this.click) {
-            this.strokeStyle = "#FFF000";
-            this.lineWidth = 5;
-            this.stroke();
-        }
         this.ctx.closePath();
+        this.ctx.clip();
+        this.ctx.beginPath();
+        this.ctx.drawImage(this.fill, this.posX - this.radio, this.posY - this.radio, this.radio * 2, this.radio * 2);
+        this.ctx.fill();
+        this.ctx.closePath();
+        this.ctx.restore();
     }
 
-    setX(x){
+    setX(x) {
         this.posX = x;
     }
-    setX(y){
+    setX(y) {
         this.posY = y;
     }
+
+    isPointInside(x, y) {
+        let _x = this.posX - x;
+        let _y = this.posY - y;
+        return Math.sqrt(_x * _x + _y * _y) < this.radio;
+    }
+
     clickAdentro(x, y) {
         let _x = this.posX - x;
         let _y = this.posY - y;
         return Math.sqrt(_x * _x + _y * _y) < this.radio;
 
     }
+
+
 }

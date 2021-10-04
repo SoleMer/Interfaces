@@ -4,7 +4,8 @@ class Figura {
         this.posX = posX;
         this.posY = posY;
         this.ctx = ctx;
-        this.fill = fill;
+        this.fill = new Image();
+        this.fill.src = fill;
         this.click = false;
     }
 
@@ -25,6 +26,11 @@ class Figura {
 
     getFill() {
         return this.fill;
+    }
+
+    setFill(fill) {
+        this.fill = new Image();
+        this.fill.src = fill;
     }
 
     draw() {

@@ -4,5 +4,10 @@ class Juego {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
     }
+
+    mostrarJuego() {
+        this.tablero.construirMatriz();
+        this.tablero.draw();
+    }
     
 }
