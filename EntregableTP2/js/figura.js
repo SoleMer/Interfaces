@@ -40,4 +40,9 @@ class Figura {
     clickAdentro(x, y){
 
     }
+
+    setXsetY(x, y) {
+        this.posX = x;
+        this.posY = y;
+    }
 }

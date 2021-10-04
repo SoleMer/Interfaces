@@ -21,7 +21,11 @@ class Ficha {
         this.forma.draw();
     }
 
-    isPointInside(x, y) {
-        return this.forma.isPointInside(x, y);
+    clickAdentro(x, y) {
+        return this.forma.clickAdentro(x, y);
+    }
+
+    getFigura() {
+        return this.forma;
     }
 }

@@ -38,12 +38,6 @@ class Circulo extends Figura {
         this.posY = y;
     }
 
-    isPointInside(x, y) {
-        let _x = this.posX - x;
-        let _y = this.posY - y;
-        return Math.sqrt(_x * _x + _y * _y) < this.radio;
-    }
-
     clickAdentro(x, y) {
         let _x = this.posX - x;
         let _y = this.posY - y;
