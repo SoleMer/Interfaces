@@ -17,11 +17,28 @@ section {
 }
 
 .pokemon {
-    background-image: url('../img/Pokemon/img_29200_b81eddeeca20e7729d14395e10f71557_1.jpg');
+    background-image: url('../img/Pokemon/fondoPokemon.png');
+    
     background-size: 100%;
 }
 
+canvas {
+    filter: grayscale(none);
+}
+
 .among-us {
-    background-image: url('../img/AmongUs/popelin-caricatura-among-us.jpg');
+    background-image: url('../img/AmongUs/fondoAmongUs.png');
     background-size: 100%;
+}
+
+.settings {
+    position: absolute;
+    z-index: 9999 !important;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(2, 12, 32);
+}
+
+.hide {
+    display: none;
 }

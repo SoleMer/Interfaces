@@ -10,7 +10,8 @@ class Cuadrado extends Figura {
         super.draw();
         this.ctx.fillRect(this.posX, this.posY, this.ladoA, this.ladoB);
         this.ctx.closePath();
-
+        this.ctx.drawImage(this.fill, this.posX, this.posY, this.lado);
+        this.ctx.closePath();
     }
 
     setX(x){

@@ -1,10 +1,10 @@
 class Tablero {
-    constructor(alto, ancho, ctx) {
+    constructor(alto, ancho, ctx, imagen) {
         this.alto = alto;
         this.ancho = ancho;
         this.ctx = ctx;
         this.image = new Image();
-        this.image.src = "img/Pokemon/patronAmarillo100.png";
+        this.image.src = imagen;
         this.construirMatriz();
     }
 
@@ -13,6 +13,10 @@ class Tablero {
         this.image.onload = function () {
             t.draw();
         };
+    }
+
+    setFill(imageSrc) {
+        this.image.src = imageSrc;
     }
 
 
