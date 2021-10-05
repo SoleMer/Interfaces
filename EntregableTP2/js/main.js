@@ -54,7 +54,10 @@ window.onload = function () {
         let x = event.layerX;
         let y = event.layerY;
         fichaClickeada = findClickedFigure(x, y);
-        canvas.addEventListener('mousemove', mouseMove);
+        if (fichaClickeada.jugada == false)
+            canvas.addEventListener('mousemove', mouseMove);
+        else
+            fichaClickeada = null;
     }
 
     canvas.onmouseup = function (event) {
