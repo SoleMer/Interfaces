@@ -5,6 +5,7 @@ class Ficha {
         this.imagen = new Image();
         this.imagen.src = imagen;
         let f = this;
+        this.jugada = false;
         this.imagen.onload = function () {
             f.draw();
         };

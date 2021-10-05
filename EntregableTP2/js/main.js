@@ -69,14 +69,35 @@ window.onload = function () {
         let x = event.layerX;
         let y = event.layerY;
         fichaClickeada = findClickedFigure(x, y);
-        canvas.addEventListener('mousemove', mouseMove);
+        if (fichaClickeada.jugada == false)
+            canvas.addEventListener('mousemove', mouseMove);
+        else
+            fichaClickeada = null;
     }
 
     canvas.onmouseup = function (event) {
+        if (fichaClickeada) {
+            let x = event.offsetX;
+            let y = event.offsetY;
+            let columnaValida = 0;
+            columnaValida = tablero.esValida(x, y);
+            if (columnaValida > -1 && columnaValida < tablero.getNroCol()) {
+                let filaValida = tablero.meterFicha(fichaClickeada, columnaValida);
+                if (filaValida > -1){
+                    tablero.fijarFicha(fichaClickeada, columnaValida, filaValida);
+                    fichaClickeada.jugada = true;
+                    clearCanvas();
+            tablero.draw();
+            mostrarFichas();
+                }
+                else {
+                //dibujar la ficha en donde corresponde   
+            }
+        }
         fichaClickeada = null;
+        }
     }
-
-    canvas.leave = function (event) {
+    canvas.onmouseleave =  function(event) {
         fichaClickeada = null;
     }
 
@@ -100,7 +121,6 @@ window.onload = function () {
 
     function mostrarFichas() {
         for (let i = 0; i < fichas.length; i++) {
-            console.log(fichas[i]);
             fichas[i].draw();
         }
     }
