@@ -64,9 +64,13 @@ window.onload = function () {
             let columnaValida = 0;
             columnaValida = tablero.esValida(x, y);
             if (columnaValida > -1 && columnaValida < tablero.getNroCol()) {
-                let fichaMetida = tablero.meterFicha(fichaClickeada, columnaValida);
-                if (fichaMetida){
-                fichaClickeada.jugada = true;
+                let filaValida = tablero.meterFicha(fichaClickeada, columnaValida);
+                if (filaValida > -1){
+                    tablero.fijarFicha(fichaClickeada, columnaValida, filaValida);
+                    fichaClickeada.jugada = true;
+                    clearCanvas();
+            tablero.draw();
+            mostrarFichas();
                 }
                 else {
                 //dibujar la ficha en donde corresponde   

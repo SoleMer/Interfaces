@@ -68,12 +68,17 @@ class Tablero {
         while (i >= 0) {
             if (this.matriz[i][nroCol] == null) {
                 this.matriz[i][nroCol] = ficha;
-                console.log(this.matriz);
-                return true;
+                return i;
             }
             i--;
         }
-        return false;
+        return i;
+    }
+    fijarFicha(ficha, fila, columna){
+        let x = 400 + fila*100 + 50;
+        let y = 200 + columna*100 +50;
+        ficha.getFigura().setXsetY(x,y); 
+        console.log(fila,columna);
     }
 }
 
