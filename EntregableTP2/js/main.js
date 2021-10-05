@@ -57,11 +57,25 @@ window.onload = function () {
         canvas.addEventListener('mousemove', mouseMove);
     }
 
-    canvas.onmouseup =  function(event) {
+    canvas.onmouseup = function (event) {
+        if (fichaClickeada) {
+            let x = event.offsetX;
+            let y = event.offsetY;
+            let columnaValida = 0;
+            columnaValida = tablero.esValida(x, y);
+            if (columnaValida > -1 && columnaValida < tablero.getNroCol()) {
+                let fichaMetida = tablero.meterFicha(fichaClickeada, columnaValida);
+                if (fichaMetida){
+                fichaClickeada.jugada = true;
+                }
+                else {
+                //dibujar la ficha en donde corresponde   
+            }
+        }
         fichaClickeada = null;
+        }
     }
-
-    canvas.leave =  function(event) {
+    canvas.onmouseleave =  function(event) {
         fichaClickeada = null;
     }
 
@@ -85,7 +99,6 @@ window.onload = function () {
 
     function mostrarFichas() {
         for (let i = 0; i < fichas.length; i++) {
-            console.log(fichas[i]);
             fichas[i].draw();
         }
     }

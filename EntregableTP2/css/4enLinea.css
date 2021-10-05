@@ -25,3 +25,7 @@ section {
     background-image: url('../img/AmongUs/popelin-caricatura-among-us.jpg');
     background-size: 100%;
 }
+
+img{
+    filter: grayscale(100%);
+}
