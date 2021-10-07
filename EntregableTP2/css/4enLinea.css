@@ -1,3 +1,7 @@
+body {
+    background-image: url('../img/Pikachu-png.png');
+    background-size: 100%;
+}
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -18,7 +22,6 @@ section {
 
 .pokemon {
     background-image: url('../img/Pokemon/fondoPokemon.png');
-    
     background-size: 100%;
 }
 
@@ -34,11 +37,34 @@ canvas {
 .settings {
     position: absolute;
     z-index: 9999 !important;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(2, 12, 32);
+    width: 99%;
+    height: 99%;
+    background-image: url('../img/Pokemon/img_29200_b81eddeeca20e7729d14395e10f71557_1.jpg');
+    background-size: 100%;
+    display: flex;
+}
+
+.card-config {
+    position: sticky;
+    background-image: url('../img/Pikachu-png.png');
+    background-size: 100%;
+    border: solid, 2px;
+    text-align: center;
+    align-content: center;
+    flex-basis: 20rem;
+    flex-grow: 30rem;
+    max-height: 35vh;
+    align-self: center;
+    left: 40vw;
 }
 
 .hide {
     display: none;
+}
+
+img {
+    max-width: 400px;
+    height: auto;
+    position: absolute;
+    bottom: 5px;
 }

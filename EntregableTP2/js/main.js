@@ -10,55 +10,30 @@ let arr2 = [];
 //canvas.addEventListener("click", );
 window.onload = function () {
     let mod = document.getElementById('modalidad');
-    mod.addEventListener('click', cambiarModalidad);
-    let fondo = document.getElementById('fondo');
+    //mod.addEventListener('click', cambiarModalidad);
     let settings = document.getElementById('settings');
-    let modalidad;
-    let btnPok = document.getElementById('pokemon');
-    btnPok.addEventListener('click', function() {
-        this.modalidad = 0;
-    })
-    let btnAmU = document.getElementById('among-us');
-    btnAmU.addEventListener('click', function() {
-        console.log("among us")
-        this.modalidad = 1;
-        console.log(modalidad)
-    })
     let btnJugar = document.getElementById('play');
     btnJugar.addEventListener('click', cargarJuego);
     let fichas = [];
+    this.imagenesFichas = ["img/Pokemon/pokebolaRoja.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaAmarilla.jpg"];
+    let tablero;
+    let juego;
 
     function cargarJuego() {
         settings.classList.replace('settings', 'hide');
-        let tablero = new Tablero(6, 7, ctx, "");
-        console.log(modalidad);
-        if (modalidad === 0) {
-            tablero.setFill("img/Pokemon/patronAmarillo100.png")
-            tablero.crearTablero();
-            crearFichas("img/Pokemon/pokebolaRoja.jpg", "img/Pokemon/pokebolaAzul.jpg");
-        } else {
-            tablero.setFill('img/AmongUs/patronTableroAmongUs.png')
-            tablero.crearTablero();
-            crearFichas('img/AmongUs/redAmong.jpeg', 'img/AmongUs/blueAmong.png');
-        }
+        tablero = new Tablero(6, 7, ctx, "img/Pokemon/patronTablero.png");
+        juego = new Juego(tablero, "", "");
     }
 
     function crearFichas(f1, f2) {
         for (let i = 0; i < 20; i++) {
-            let figura = null;
-            if (modalidad === 0) {
-                figura = new Circulo(100 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f1, 50);
-            } else {
-                figura = new Cuadrado(100 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f1, 60);
-            }
+               let figura = new Circulo(100 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f1, 50);
+            
             let ficha = new Ficha(figura, f1);
             fichas.push(ficha);
             let figura2 = null;
-            if (modalidad === 0) {
                 figura2 = new Circulo(1200 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f2, 50);
-            } else {
-                figura2 = new Cuadrado(1200 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f2, 60);
-            }
+            
             let ficha2 = new Ficha(figura2, f2);
             fichas.push(ficha2);
         }
@@ -110,7 +85,7 @@ window.onload = function () {
         }
     }
 
-    function mouseMove(e) { // llama a drawLine con los valores X e Y  y los valores hacia donde el mouse sea llevado y actualiza los valores de X e Y
+    function mouseMove(e) { 
         if (fichaClickeada) {
             fichaClickeada.getFigura().setXsetY(e.offsetX, e.offsetY);
             clearCanvas();
@@ -130,12 +105,12 @@ window.onload = function () {
         ctx.clearRect(0, 0, width, height);
     }
 
-    function cambiarModalidad() {
+   /* function cambiarModalidad() {
         fondo.classList.replace('pokemon', 'among-us');
         tablero.setFill('img/AmongUs/patronTableroAmongUs.png');
         clearCanvas();
         tablero.draw();
         crearFichas('img/AmongUs/redAmong.jpeg', 'img/AmongUs/blueAmong.png');
         mostrarFichas()
-    }
+    }*/
 }

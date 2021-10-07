@@ -4,7 +4,7 @@ class Tablero {
         this.ancho = ancho;
         this.ctx = ctx;
         this.image = new Image();
-        this.image.src = "img/Pokemon/patronAmarillo100.png";
+        this.image.src = imagen;
         this.matriz = this.construirMatriz();
         this.arregloColumnas = [];
         this.arregloColumnas = this.crearArregloColumnas();
