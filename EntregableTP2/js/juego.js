@@ -7,6 +7,7 @@ class Juego {
         this.fichasJ2 = [];
         this.crearFichas(fichaJ1, fichaJ2);
         this.mostrarTablero();
+        this.jugadorEnTurno = 1;
     }
 
     mostrarTablero() {
@@ -20,8 +21,64 @@ class Juego {
             this.fichasJ1.push(ficha);
             let figura2 = new Circulo(1200 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, fichaJ2, 50);
             let ficha2 = new Ficha(figura2, fichaJ2);
-            this.fichaJ2.push(ficha2);
+            this.fichasJ2.push(ficha2);
         }
+    }
+
+    mostrarFichas() {
+        for (let i = 0; i < this.fichasJ1.length; i++) {
+            this.fichasJ1[i].draw();
+            this.fichasJ2[i].draw();
+        }
+    }
+
+    // ---- ARRASTRAR FICHA ---- //
+
+    findClickedFigure(x, y) {
+        let fichas = [];
+        if (this.jugadorEnTurno === 1) {
+            fichas = this.fichasJ1;
+        } else {
+            fichas = this.fichasJ2;
+        }
+        for (let i = 0; i < fichas.length; i++) {
+            const ficha = fichas[i];
+            if (ficha.getFigura().clickAdentro(x, y)) {
+                console.log(true);
+                return ficha;
+            }
+        }
+    }
+
+    ubicarFicha(x, y, fichaClickeada) {
+        let columnaValida = 0;
+        columnaValida = this.tablero.esValida(x, y);
+        if (columnaValida > -1 && columnaValida < this.tablero.getNroCol()) {
+            let filaValida = this.tablero.meterFicha(fichaClickeada, columnaValida);
+            if (filaValida > -1) {
+                this.tablero.fijarFicha(fichaClickeada, columnaValida, filaValida);
+                fichaClickeada.jugada = true;
+                this.clearCanvas();
+                this.tablero.draw();
+                this.mostrarFichas();
+                this.cambiarTurnoJugador();
+            }
+            else {
+                //dibujar la ficha en donde corresponde   
+            }
+        }
+    }
+
+    cambiarTurnoJugador() {
+        if (this.jugadorEnTurno === 1) {
+            this.jugadorEnTurno++;
+        } else {
+            this.jugadorEnTurno--;
+        }
+    }
+
+    clearCanvas() {
+        ctx.clearRect(0, 0, width, height);
     }
 
 }

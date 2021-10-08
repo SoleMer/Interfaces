@@ -78,7 +78,6 @@ class Tablero {
         let x = 400 + fila*100 + 50;
         let y = 200 + columna*100 +50;
         ficha.getFigura().setXsetY(x,y); 
-        console.log(fila,columna);
     }
 }
 

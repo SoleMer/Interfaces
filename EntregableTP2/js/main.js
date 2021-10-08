@@ -9,41 +9,87 @@ let arr2 = [];
 //window.fichas();
 //canvas.addEventListener("click", );
 window.onload = function () {
-    let mod = document.getElementById('modalidad');
-    //mod.addEventListener('click', cambiarModalidad);
-    let settings = document.getElementById('settings');
-    let btnJugar = document.getElementById('play');
-    btnJugar.addEventListener('click', cargarJuego);
     let fichas = [];
-    this.imagenesFichas = ["img/Pokemon/pokebolaRoja.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaAmarilla.jpg"];
+    let imagenesFichasPokebolas = ["img/Pokemon/pokebolaRoja.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaVerde.jpg", "img/Pokemon/pokebolaAmarilla.jpg"];
+    let imagenesFichasPokemons = ["img/Pokemon/charmander.png", "img/Pokemon/squirtle.jpg", "img/Pokemon/bulbasaur.jpg", "img/Pokemon/pikachu.jpg"];
+    let tipoFichas = 0;
+    let jugador = 0;
+    let fichaElegida = -1;
+    let fichaBloqueada = -1;
+    let nombreJugador1 = '';
+    let nombreJugador2 = '';
+    let fichaJ1 = '';
+    let fichaJ2 = '';
+    // ---- SECCIONES DE COFIGURACION ---- //
+    let mod = document.getElementById('mod');
+    let colores = document.getElementById('colores');
+    let tamTablero = document.getElementById('tamTablero');
+    let btnJugar = document.getElementById('play');
+    // ---- BOTONES DE MODALIDAD ---- //
+    let modPokebola = document.getElementById('modPokebola');
+    modPokebola.addEventListener('click', function () {
+        cambiarModalidad(0)
+    });
+    let modPokemon = document.getElementById('modPokemon');
+    modPokemon.addEventListener('click', function () {
+        cambiarModalidad(1)
+    });
+    let okModalidad = document.getElementById('okModalidad');
+    okModalidad.addEventListener('click', function () {
+        mod.classList.replace('card', 'hide');
+        colores.classList.replace('hide', 'card');
+        mostrarFichasParaElegir();
+    });
+    // ---- BOTONES DE FICHAS ---- //
+    let ficha0 = document.getElementById('ficha0');
+    ficha0.addEventListener('click', function () {
+        seleccionarFicha(0);
+    })
+    let ficha1 = document.getElementById('ficha1');
+    ficha1.addEventListener('click', function () {
+        seleccionarFicha(1);
+    })
+    let ficha2 = document.getElementById('ficha2');
+    ficha2.addEventListener('click', function () {
+        seleccionarFicha(2);
+    })
+    let ficha3 = document.getElementById('ficha3');
+    ficha3.addEventListener('click', function () {
+        seleccionarFicha(3);
+    })
+    let okJugador = document.getElementById('okJugador');
+    okJugador.addEventListener('click', function () {
+        if (jugador === 0) {
+            fichaBloqueada = fichaElegida;
+            fichaJ1 = fichas[fichaElegida];
+            nombreJugador1 = document.getElementById('nombreJugador').value;
+            seleccionarJugador2();
+        } else {
+            fichaJ2 = fichas[fichaElegida];
+            nombreJugador2 = document.getElementById('nombreJugador').value;
+            colores.classList.replace('card', 'hide');
+            tamTablero.classList.replace('hide', 'card');
+        }
+    })
+
+    btnJugar.addEventListener('click', cargarJuego);
+
+    let settings = document.getElementById('settings');
+
     let tablero;
     let juego;
 
     function cargarJuego() {
         settings.classList.replace('settings', 'hide');
         tablero = new Tablero(6, 7, ctx, "img/Pokemon/patronTablero.png");
-        juego = new Juego(tablero, "", "");
+        juego = new Juego(tablero, fichaJ1, fichaJ2);
     }
 
-    function crearFichas(f1, f2) {
-        for (let i = 0; i < 20; i++) {
-               let figura = new Circulo(100 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f1, 50);
-            
-            let ficha = new Ficha(figura, f1);
-            fichas.push(ficha);
-            let figura2 = null;
-                figura2 = new Circulo(1200 + (i * (Math.random() * 10) + 1), 700 - (i * 4), ctx, f2, 50);
-            
-            let ficha2 = new Ficha(figura2, f2);
-            fichas.push(ficha2);
-        }
-    }
-    
     let fichaClickeada;
     canvas.onmousedown = function (event) {
         let x = event.layerX;
         let y = event.layerY;
-        fichaClickeada = findClickedFigure(x, y);
+        fichaClickeada = juego.findClickedFigure(x, y);
         if (fichaClickeada.jugada == false)
             canvas.addEventListener('mousemove', mouseMove);
         else
@@ -54,63 +100,87 @@ window.onload = function () {
         if (fichaClickeada) {
             let x = event.offsetX;
             let y = event.offsetY;
-            let columnaValida = 0;
-            columnaValida = tablero.esValida(x, y);
-            if (columnaValida > -1 && columnaValida < tablero.getNroCol()) {
-                let filaValida = tablero.meterFicha(fichaClickeada, columnaValida);
-                if (filaValida > -1){
-                    tablero.fijarFicha(fichaClickeada, columnaValida, filaValida);
-                    fichaClickeada.jugada = true;
-                    clearCanvas();
-            tablero.draw();
-            mostrarFichas();
-                }
-                else {
-                //dibujar la ficha en donde corresponde   
-            }
-        }
-        fichaClickeada = null;
+            juego.ubicarFicha(x, y, fichaClickeada);
+            fichaClickeada = null;
         }
     }
-    canvas.onmouseleave =  function(event) {
+    
+    canvas.onmouseleave = function (event) {
         fichaClickeada = null;
     }
 
-    function findClickedFigure(x, y) {
-        for (let i = 0; i < fichas.length; i++) {
-            const ficha = fichas[i];
-            if (ficha.clickAdentro(x, y)) {
-                return ficha;
-            }
-        }
-    }
-
-    function mouseMove(e) { 
+    function mouseMove(e) {
         if (fichaClickeada) {
             fichaClickeada.getFigura().setXsetY(e.offsetX, e.offsetY);
             clearCanvas();
             tablero.draw();
-            mostrarFichas();
+            juego.mostrarFichas();
         }
     }
-
-    function mostrarFichas() {
-        for (let i = 0; i < fichas.length; i++) {
-            fichas[i].draw();
-        }
-    }
-
 
     function clearCanvas() {
         ctx.clearRect(0, 0, width, height);
     }
 
-   /* function cambiarModalidad() {
-        fondo.classList.replace('pokemon', 'among-us');
-        tablero.setFill('img/AmongUs/patronTableroAmongUs.png');
-        clearCanvas();
-        tablero.draw();
-        crearFichas('img/AmongUs/redAmong.jpeg', 'img/AmongUs/blueAmong.png');
-        mostrarFichas()
-    }*/
+    function cambiarModalidad(mod) {
+        tipoFichas = mod;
+        if (mod == 0) {
+            modPokebola.classList.add('selected');
+            modPokemon.classList.remove('selected');
+            fichas = imagenesFichasPokebolas;
+        } else {
+            modPokemon.classList.add('selected');
+            modPokebola.classList.remove('selected');
+            fichas = imagenesFichasPokemons;
+        }
+    }
+
+    function mostrarFichasParaElegir() {
+        ficha0.src = fichas[0];
+        ficha1.src = fichas[1];
+        ficha2.src = fichas[2];
+        ficha3.src = fichas[3];
+    }
+
+    function seleccionarFicha(numFicha) {
+        if (fichaBloqueada != numFicha) {
+            fichaElegida = numFicha;
+            if (numFicha === 0) {
+                ficha0.classList.add('selected');
+                ficha1.classList.remove('selected');
+                ficha2.classList.remove('selected');
+                ficha3.classList.remove('selected');
+            } else if (numFicha === 1) {
+                ficha1.classList.add('selected');
+                ficha0.classList.remove('selected');
+                ficha2.classList.remove('selected');
+                ficha3.classList.remove('selected');
+            } else if (numFicha === 2) {
+                ficha2.classList.add('selected');
+                ficha0.classList.remove('selected');
+                ficha1.classList.remove('selected');
+                ficha3.classList.remove('selected');
+            } else {
+                ficha3.classList.add('selected');
+                ficha0.classList.remove('selected');
+                ficha1.classList.remove('selected');
+                ficha2.classList.remove('selected');
+            }
+        }
+    }
+
+    function seleccionarJugador2() {
+        jugador++;
+        document.getElementById('nombreJugador').value = '';
+        document.getElementById('jugador').innerHTML = "Jugador 2";
+        if (fichaElegida === 0) {
+            ficha0.classList.replace('selected', 'disabled');
+        } else if (fichaElegida === 1) {
+            ficha1.classList.replace('selected', 'disabled');
+        } else if (fichaElegida === 2) {
+            ficha2.classList.replace('selected', 'disabled');
+        } else {
+            ficha3.classList.replace('selected', 'disabled');
+        }
+    }
 }

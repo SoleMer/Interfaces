@@ -56,10 +56,66 @@ canvas {
     max-height: 35vh;
     align-self: center;
     left: 40vw;
+    font-family: monospace;
+    font-size: large;
 }
-
 .hide {
     display: none;
+}
+
+.card {
+    display: inline;
+    text-align: -webkit-center;
+}
+
+.mod {
+    border: solid 1px;
+    padding: 2%;
+    margin: 1%;
+}
+
+.selected {
+    border: solid 3px red;
+}
+
+.fichas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(65px, auto);
+    background-color: white;
+    width: 40%;
+}
+
+.ficha {
+    position: relative;
+}
+
+.ficha1 {
+    grid-column: 1;
+}
+
+.ficha2 {
+    grid-column: 2;
+}
+
+.ficha3 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.ficha4 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.imgFicha {
+    width: 50px;
+    height: auto;
+    left: 5px;
 }
 
 img {
