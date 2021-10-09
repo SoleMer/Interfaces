@@ -2,12 +2,17 @@ class Tablero {
     constructor(alto, ancho, ctx, imagen) {
         this.alto = alto;
         this.ancho = ancho;
+        this.comienzoX = 400;
+        this.comienzoY = 200;
+        this.ladoImagen = 100;
         this.ctx = ctx;
         this.image = new Image();
         this.image.src = imagen;
         this.matriz = this.construirMatriz();
+
         this.arregloColumnas = [];
         this.arregloColumnas = this.crearArregloColumnas();
+       
     }
 
     crearTablero() {
@@ -19,14 +24,15 @@ class Tablero {
 
     crearArregloColumnas(){
         let arregloColumnas = [];
-        arregloColumnas[0]= 400 + 100;
+        arregloColumnas[0]= this.comienzoX + 100;
         for (let i = 1; i < this.ancho; i++){
-            arregloColumnas[i] = (arregloColumnas[i-1] + 100); 
+            arregloColumnas[i] = (arregloColumnas[i-1] + this.ladoImagen); 
         }
         return arregloColumnas;
     }
 
     esValida(x, y){
+        
         let col = -1;
         if (y > 90 && y < 150) {
            let i = 0;
@@ -37,6 +43,7 @@ class Tablero {
                }
                i++;}
            }
+           
         return col;
     }
 
@@ -54,7 +61,7 @@ class Tablero {
     draw() {
         let miPatron = this.ctx.createPattern(this.image, "repeat");
         this.ctx.fillStyle = miPatron;
-        this.ctx.fillRect( 400, 200, (this.image.width * this.ancho),(this.image.height * this.alto));
+        this.ctx.fillRect( this.comienzoX, this.comienzoY, (this.image.width * this.ancho),(this.image.height * this.alto));
 
     }
 
@@ -75,9 +82,10 @@ class Tablero {
         return i;
     }
     fijarFicha(ficha, fila, columna){
-        let x = 400 + fila*100 + 50;
-        let y = 200 + columna*100 +50;
+        let x = this.comienzoX + fila*this.ladoImagen + this.ladoImagen/2;
+        let y = this.comienzoY + columna*this.ladoImagen + this.ladoImagen/2;
         ficha.getFigura().setXsetY(x,y); 
+
     }
 }
 
