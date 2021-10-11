@@ -52,7 +52,7 @@ class Tablero {
         for (let i = 0; i < this.alto; i++) {
             matriz[i] = [];
             for (let j = 0; j < this.ancho; j++) {
-                matriz[i][j] = null;
+                matriz[i][j] = 0;
             }
         }
         return matriz;
@@ -69,16 +69,18 @@ class Tablero {
         return this.ancho;
     }
 
-    meterFicha(ficha, nroCol) {
+    meterFicha(ficha, nroCol, jugador) {
         let i = this.alto-1;
 
         while (i >= 0) {
-            if (this.matriz[i][nroCol] == null) {
-                this.matriz[i][nroCol] = ficha;
+            if (this.matriz[i][nroCol] == 0) {
+                this.matriz[i][nroCol] = jugador;
+
                 return i;
             }
             i--;
         }
+        
         return i;
     }
     fijarFicha(ficha, fila, columna){
@@ -86,6 +88,116 @@ class Tablero {
         let y = this.comienzoY + columna*this.ladoImagen + this.ladoImagen/2;
         ficha.getFigura().setXsetY(x,y); 
 
+    }
+
+    horizontal(xLinea, posFicha, jugador) {
+        let contador = 0;
+        let puntero = 0;
+        while (puntero < this.ancho && contador < xLinea) {
+            if (contador < xLinea) {
+                if (this.matriz[posFicha][puntero] == jugador) {
+                    contador++;
+                }
+                else {
+                    contador = 0;
+                }
+                puntero++;
+            }
+
+        }
+        if (contador == xLinea)
+            return true;
+        else
+            return false;
+    }
+
+    vertical(xLinea, posFicha, jugador) {
+        let contador = 0;
+        let puntero = this.alto - 1;
+        while (puntero >= 0 && contador < xLinea) {
+            if (contador < xLinea) {
+                if (this.matriz[puntero][posFicha] == jugador) {
+                    contador++;
+
+                }
+                else {
+                    contador = 0;
+                }
+                puntero--;
+            }
+        }
+        if (contador == xLinea)
+            return true;
+        else
+            return false;
+    }
+    diagonalAscendente(xLinea, posX, posY, jugador) {
+        let punteroX = posX;
+        let punteroY = posY;
+        let contador = 0;
+        while (punteroY < 5 && punteroX > 0) {
+            punteroX--;
+            punteroY++;
+        }
+
+        while (contador < xLinea && punteroY >= 0 && punteroX < this.ancho) {
+            if (contador < xLinea) {
+                if (this.matriz[punteroY][punteroX] == jugador) {
+                    contador++;
+
+                }
+                else {
+                    contador = 0;
+                }
+                punteroX++;
+                punteroY--;
+            }
+
+        }
+        if (contador == xLinea)
+            return true;
+        else
+            return false;
+
+    }
+
+    diagonalDescendente(xLinea, posX, posY, jugador) {
+        let punteroX = posX;
+        let punteroY = posY;
+        let contador = 0;
+        while (punteroX > 0 && punteroY > 0) {
+            punteroX--;
+            punteroY--;
+        }
+        while (contador < xLinea && punteroY < this.alto && punteroX < this.ancho) {
+            if (contador < xLinea) {
+                if (this.matriz[punteroY][punteroX] == jugador) {
+                    contador++;
+
+                }
+                else {
+                    contador = 0;
+                }
+                punteroX++;
+                punteroY++;
+            }
+        }
+        if (contador == xLinea)
+            return true;
+        else
+            return false;
+    }
+
+    victoria(xLinea, posX, posY, jugador) {
+        let victoria = false;
+        victoria = this.horizontal(xLinea, posY, jugador);
+        if (!victoria)
+            victoria = this.vertical(xLinea, posX, jugador);
+        if (!victoria)
+            victoria = this.diagonalAscendente(xLinea, posX, posY, jugador);
+        if (!victoria)
+            victoria = this.diagonalDescendente(xLinea, posX, posY, jugador);
+        return victoria;
     }
 }
 

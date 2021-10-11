@@ -44,7 +44,6 @@ class Juego {
         for (let i = 0; i < fichas.length; i++) {
             const ficha = fichas[i];
             if (ficha.getFigura().clickAdentro(x, y)) {
-                console.log(true);
                 return ficha;
             }
         }
@@ -54,14 +53,18 @@ class Juego {
         let columnaValida = 0;
         columnaValida = this.tablero.esValida(x, y);
         if (columnaValida > -1 && columnaValida < this.tablero.getNroCol()) {
-            let filaValida = this.tablero.meterFicha(fichaClickeada, columnaValida);
+            let filaValida = this.tablero.meterFicha(fichaClickeada, columnaValida, this.jugadorEnTurno);
             if (filaValida > -1) {
                 this.tablero.fijarFicha(fichaClickeada, columnaValida, filaValida);
                 fichaClickeada.jugada = true;
                 this.clearCanvas();
                 this.tablero.draw();
                 this.mostrarFichas();
+                //console.log(this.tablero.horizontal(4 , filaValida, this.jugadorEnTurno));
+                //console.log(this.tablero.vertical(4 , columnaValida, this.jugadorEnTurno));
+                console.log(this.tablero.victoria(4 , columnaValida, filaValida, this.jugadorEnTurno));
                 this.cambiarTurnoJugador();
+                
             }
             else {
                 //dibujar la ficha en donde corresponde   
