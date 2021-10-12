@@ -1,9 +1,18 @@
 class Tablero {
-    constructor(alto, ancho, ctx, imagen) {
-        this.alto = alto;
-        this.ancho = ancho;
-        this.comienzoX = 400;
-        this.comienzoY = 200;
+    constructor(ctx, imagen, xEnLinea) {
+        this.alto = xEnLinea * 1 + 2;
+        this.ancho = xEnLinea * 1 + 3;
+        this.xEnLinea = xEnLinea;
+        if (this.xEnLinea == 4) {
+            this.comienzoX = 400;
+        } else {
+            this.comienzoX = 300;
+        }
+        if (this.xEnLinea == 6) {
+            this.comienzoY = 100;
+        } else {
+            this.comienzoY = 200;
+        }
         this.ladoImagen = 100;
         this.ctx = ctx;
         this.image = new Image();
@@ -12,7 +21,7 @@ class Tablero {
 
         this.arregloColumnas = [];
         this.arregloColumnas = this.crearArregloColumnas();
-       
+
     }
 
     crearTablero() {
@@ -22,28 +31,28 @@ class Tablero {
         };
     }
 
-    crearArregloColumnas(){
+    crearArregloColumnas() {
         let arregloColumnas = [];
-        arregloColumnas[0]= this.comienzoX + 100;
-        for (let i = 1; i < this.ancho; i++){
-            arregloColumnas[i] = (arregloColumnas[i-1] + this.ladoImagen); 
+        arregloColumnas[0] = this.comienzoX + this.ladoImagen;
+        for (let i = 1; i < this.ancho; i++) {
+            arregloColumnas[i] = (arregloColumnas[i - 1] + this.ladoImagen);
         }
         return arregloColumnas;
     }
 
-    esValida(x, y){
-        
+    esValida(x, y) {
         let col = -1;
-        if (y > 90 && y < 150) {
-           let i = 0;
-           while (i < this.ancho){
-               if (x < this.arregloColumnas[i]){
-                   col = i;
-                   return col;
-               }
-               i++;}
-           }
-           
+        if (y > 40 && y < 150) {
+            let i = 0;
+            while (i < this.ancho) {
+                if (x < this.arregloColumnas[i]) {
+                    col = i;
+                    return col;
+                }
+                i++;
+            }
+        }
+
         return col;
     }
 
@@ -61,7 +70,7 @@ class Tablero {
     draw() {
         let miPatron = this.ctx.createPattern(this.image, "repeat");
         this.ctx.fillStyle = miPatron;
-        this.ctx.fillRect( this.comienzoX, this.comienzoY, (this.image.width * this.ancho),(this.image.height * this.alto));
+        this.ctx.fillRect(this.comienzoX, this.comienzoY, (this.image.width * this.ancho), (this.image.height * this.alto));
 
     }
 
@@ -70,7 +79,7 @@ class Tablero {
     }
 
     meterFicha(ficha, nroCol, jugador) {
-        let i = this.alto-1;
+        let i = this.alto - 1;
 
         while (i >= 0) {
             if (this.matriz[i][nroCol] == 0) {
@@ -80,21 +89,21 @@ class Tablero {
             }
             i--;
         }
-        
+
         return i;
     }
-    fijarFicha(ficha, fila, columna){
-        let x = this.comienzoX + fila*this.ladoImagen + this.ladoImagen/2;
-        let y = this.comienzoY + columna*this.ladoImagen + this.ladoImagen/2;
-        ficha.getFigura().setXsetY(x,y); 
+    fijarFicha(ficha, fila, columna) {
+        let x = this.comienzoX + fila * this.ladoImagen + this.ladoImagen / 2;
+        let y = this.comienzoY + columna * this.ladoImagen + this.ladoImagen / 2;
+        ficha.getFigura().setXsetY(x, y);
 
     }
 
-    horizontal(xLinea, posFicha, jugador) {
+    horizontal(posFicha, jugador) {
         let contador = 0;
         let puntero = 0;
-        while (puntero < this.ancho && contador < xLinea) {
-            if (contador < xLinea) {
+        while (puntero < this.ancho && contador < this.xEnLinea) {
+            if (contador < this.xEnLinea) {
                 if (this.matriz[posFicha][puntero] == jugador) {
                     contador++;
                 }
@@ -105,17 +114,17 @@ class Tablero {
             }
 
         }
-        if (contador == xLinea)
+        if (contador == this.xEnLinea)
             return true;
         else
             return false;
     }
 
-    vertical(xLinea, posFicha, jugador) {
+    vertical(posFicha, jugador) {
         let contador = 0;
         let puntero = this.alto - 1;
-        while (puntero >= 0 && contador < xLinea) {
-            if (contador < xLinea) {
+        while (puntero >= 0 && contador < this.xEnLinea) {
+            if (contador < this.xEnLinea) {
                 if (this.matriz[puntero][posFicha] == jugador) {
                     contador++;
 
@@ -126,12 +135,12 @@ class Tablero {
                 puntero--;
             }
         }
-        if (contador == xLinea)
+        if (contador == this.xEnLinea)
             return true;
         else
             return false;
     }
-    diagonalAscendente(xLinea, posX, posY, jugador) {
+    diagonalAscendente(posX, posY, jugador) {
         let punteroX = posX;
         let punteroY = posY;
         let contador = 0;
@@ -140,8 +149,8 @@ class Tablero {
             punteroY++;
         }
 
-        while (contador < xLinea && punteroY >= 0 && punteroX < this.ancho) {
-            if (contador < xLinea) {
+        while (contador < this.xEnLinea && punteroY >= 0 && punteroX < this.ancho) {
+            if (contador < this.xEnLinea) {
                 if (this.matriz[punteroY][punteroX] == jugador) {
                     contador++;
 
@@ -154,14 +163,14 @@ class Tablero {
             }
 
         }
-        if (contador == xLinea)
+        if (contador == this.xEnLinea)
             return true;
         else
             return false;
 
     }
 
-    diagonalDescendente(xLinea, posX, posY, jugador) {
+    diagonalDescendente(posX, posY, jugador) {
         let punteroX = posX;
         let punteroY = posY;
         let contador = 0;
@@ -169,8 +178,8 @@ class Tablero {
             punteroX--;
             punteroY--;
         }
-        while (contador < xLinea && punteroY < this.alto && punteroX < this.ancho) {
-            if (contador < xLinea) {
+        while (contador < this.xEnLinea && punteroY < this.alto && punteroX < this.ancho) {
+            if (contador < this.xEnLinea) {
                 if (this.matriz[punteroY][punteroX] == jugador) {
                     contador++;
 
@@ -182,21 +191,21 @@ class Tablero {
                 punteroY++;
             }
         }
-        if (contador == xLinea)
+        if (contador == this.xEnLinea)
             return true;
         else
             return false;
     }
 
-    victoria(xLinea, posX, posY, jugador) {
+    victoria(posX, posY, jugador) {
         let victoria = false;
-        victoria = this.horizontal(xLinea, posY, jugador);
+        victoria = this.horizontal(posY, jugador);
         if (!victoria)
-            victoria = this.vertical(xLinea, posX, jugador);
+            victoria = this.vertical(posX, jugador);
         if (!victoria)
-            victoria = this.diagonalAscendente(xLinea, posX, posY, jugador);
+            victoria = this.diagonalAscendente(posX, posY, jugador);
         if (!victoria)
-            victoria = this.diagonalDescendente(xLinea, posX, posY, jugador);
+            victoria = this.diagonalDescendente(posX, posY, jugador);
         return victoria;
     }
 }

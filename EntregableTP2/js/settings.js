@@ -1,13 +1,5 @@
 "use strict";
 
-let canvas =  /** @type { HTMLcanvasElement} */ document.getElementById("canvas");
-let ctx = canvas.getContext('2d');
-let width = canvas.width;
-let height = canvas.height;
-let arr = [];
-let arr2 = [];
-//window.fichas();
-//canvas.addEventListener("click", );
 window.onload = function () {
     let fichas = [];
     let imagenesFichasPokebolas = ["img/Pokemon/pokebolaRoja.jpg", "img/Pokemon/pokebolaAzul.jpg", "img/Pokemon/pokebolaVerde.jpg", "img/Pokemon/pokebolaAmarilla.jpg"];
@@ -20,14 +12,12 @@ window.onload = function () {
     let nombreJugador2 = '';
     let fichaJ1 = '';
     let fichaJ2 = '';
-    let xEnLinea = 4;
     // ---- SECCIONES DE COFIGURACION ---- //
     let mod = document.getElementById('mod');
     let colores = document.getElementById('colores');
     let tamTablero = document.getElementById('tamTablero');
     let btnJugar = document.getElementById('play');
     // ---- BOTONES DE MODALIDAD ---- //
-    
     let modPokebola = document.getElementById('modPokebola');
     modPokebola.addEventListener('click', function () {
         cambiarModalidad(0)
@@ -73,61 +63,16 @@ window.onload = function () {
             tamTablero.classList.replace('hide', 'card');
         }
     })
-    // ---- TAMAÑO DE TABLERO ---- //
-    let selectEnLinea = document.getElementById('selectEnLinea');
-    selectEnLinea.addEventListener('change', function() {
-        xEnLinea = selectEnLinea.value;
-    })
 
-    
-
-   btnJugar.addEventListener('click', cargarJuego);
-   let settings = document.getElementById('settings');
+    btnJugar.addEventListener('click', cargarJuego);
 
     let tablero;
     let juego;
 
     function cargarJuego() {
-        settings.classList.replace('settings', 'hide');
-        tablero = new Tablero(ctx, "img/Pokemon/patronTablero.png", xEnLinea);
-        juego = new Juego(tablero, fichaJ1, fichaJ2, xEnLinea);
-    }
-
-    let fichaClickeada;
-    canvas.onmousedown = function (event) {
-        let x = event.layerX;
-        let y = event.layerY;
-        fichaClickeada = juego.findClickedFigure(x, y);
-        if (fichaClickeada.jugada == false)
-            canvas.addEventListener('mousemove', mouseMove);
-        else
-            fichaClickeada = null;
-    }
-
-    canvas.onmouseup = function (event) {
-        if (fichaClickeada) {
-            let x = event.offsetX;
-            let y = event.offsetY;
-            juego.ubicarFicha(x, y, fichaClickeada);
-            fichaClickeada = null;
-        }
-    }
-    
-    canvas.onmouseleave = function (event) {
-        fichaClickeada = null;
-    }
-
-    function mouseMove(e) {
-        if (fichaClickeada) {
-            fichaClickeada.getFigura().setXsetY(e.offsetX, e.offsetY);
-            clearCanvas();
-            tablero.draw();
-            juego.mostrarFichas();
-        }
-    }
-
-    function clearCanvas() {
-        ctx.clearRect(0, 0, width, height);
+        tablero = new Tablero(6, 7, ctx, "img/Pokemon/patronTablero.png");
+        juego = new Juego(tablero, fichaJ1, fichaJ2);
+        //new Settings(tablero, juego);
     }
 
     function cambiarModalidad(mod) {
@@ -190,5 +135,19 @@ window.onload = function () {
         } else {
             ficha3.classList.replace('selected', 'disabled');
         }
+    }
+}
+class Settings {
+    constructor(tablero, juego) {
+        this.tablero = tablero;
+        this.juego = juego;
+    }
+
+    getTablero() {
+        return this.tablero;
+    }
+
+    getJuego() {
+        return this.juego;
     }
 }

@@ -1,11 +1,12 @@
 class Juego {
-    constructor(tablero, fichaJ1, fichaJ2) {
+    constructor(tablero, fichaJ1, fichaJ2, xEnLinea) {
         this.tablero = tablero;
         //this.jugador1 = jugador1;
         //this.jugador2 = jugador2;
         this.fichasJ1 = [];
         this.fichasJ2 = [];
         this.crearFichas(fichaJ1, fichaJ2);
+        this.xEnLinea = xEnLinea;
         this.mostrarTablero();
         this.jugadorEnTurno = 1;
     }
@@ -60,9 +61,7 @@ class Juego {
                 this.clearCanvas();
                 this.tablero.draw();
                 this.mostrarFichas();
-                //console.log(this.tablero.horizontal(4 , filaValida, this.jugadorEnTurno));
-                //console.log(this.tablero.vertical(4 , columnaValida, this.jugadorEnTurno));
-                console.log(this.tablero.victoria(4 , columnaValida, filaValida, this.jugadorEnTurno));
+                console.log(this.tablero.victoria(columnaValida, filaValida, this.jugadorEnTurno));
                 this.cambiarTurnoJugador();
                 
             }
