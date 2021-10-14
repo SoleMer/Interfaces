@@ -59,12 +59,10 @@ class Tablero {
 
     construirMatriz() {     /**Construye la matriz que lleva el control logico del juego */
         let matriz = [this.alto];
-        let contador = 3;
         for (let i = 0; i < this.alto; i++) {
             matriz[i] = [];
             for (let j = 0; j < this.ancho; j++) {
-                matriz[i][j] = contador;
-                contador++;
+                matriz[i][j] = 0;
             }
         }
         return matriz;
@@ -86,7 +84,7 @@ class Tablero {
         let i = this.alto - 1;
 
         while (i >= 0) {
-            if (this.matriz[i][nroCol] > 2) {
+            if (this.matriz[i][nroCol] == 0) {
                 this.matriz[i][nroCol] = jugador;
                 
                 return i;

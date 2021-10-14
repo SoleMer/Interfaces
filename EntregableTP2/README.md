@@ -15,14 +15,7 @@ Los usuarios podrán elejir si desean que las fichas sean pokebolas o pokemons, 
 
 ### Tamaño del tablero y cantidad de fichas en líneas
 
-Se podrá optar por jugar el clásico 4 en línea, con un tablero de 6 filas y 7 columnas, o elegir las variantes de 6 en línea u 8 en línea en donde el tablero también incrementará su tamaño en base a la cantidad de fichas en líneas que se haya elegido.
+Se podrá optar por jugar el clásico 4 en línea, con un tablero de 6 filas y 7 columnas, o elegir las variantes de 6 en línea o 6 en línea en donde el tablero también incrementará su tamaño en base a la cantidad de fichas en líneas que se haya elegido.
 
-# TODO
-
-*(borrar a medida que se vayan completando las tareas)*
-
--Si tiene un tiempito de sobra:
-    Chequear comentarios :)
--Capaz que 15 minutos es mucho para un 4 en linea, verlo!
 
 

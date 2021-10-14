@@ -1,7 +1,7 @@
 class Cronometro {
     constructor() {
         this.segundos = 0;
-        this.minutos = 15;
+        this.minutos = 8;
     }
 
     /**
