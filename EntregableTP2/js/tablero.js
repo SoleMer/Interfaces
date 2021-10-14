@@ -24,14 +24,14 @@ class Tablero {
 
     }
 
-    crearTablero() {
+    crearTablero() { /**Cuando la imagen esta cargada llama a dibujar tablero */
         let t = this;
         this.image.onload = function () {
             t.draw();
         };
     }
 
-    crearArregloColumnas() {
+    crearArregloColumnas() { /**Crea el arreglo columnas cargado con hasta que pixel le corresponde a cada colomna */
         let arregloColumnas = [];
         arregloColumnas[0] = this.comienzoX + this.ladoImagen;
         for (let i = 1; i < this.ancho; i++) {
@@ -40,9 +40,10 @@ class Tablero {
         return arregloColumnas;
     }
 
-    esValida(x, y) {
+    esValida(x, y) { /**Comprueba si la posicion en que es soltada una ficha corresponde a la parte superior del tablero
+                        y s a una columna si es asi devuelve a que columna corresponde */
         let col = -1;
-        if (y > 40 && y < 150) {
+        if (y > this.comienzoY-100 && y < this.comienzoY) {
             let i = 0;
             while (i < this.ancho) {
                 if (x < this.arregloColumnas[i]) {
@@ -56,7 +57,7 @@ class Tablero {
         return col;
     }
 
-    construirMatriz() {
+    construirMatriz() {     /**Construye la matriz que lleva el control logico del juego */
         let matriz = [this.alto];
         let contador = 3;
         for (let i = 0; i < this.alto; i++) {
@@ -69,18 +70,19 @@ class Tablero {
         return matriz;
     }
 
-    draw() {
+    draw() { /**Dibuja el tablero */
         let miPatron = this.ctx.createPattern(this.image, "repeat");
         this.ctx.fillStyle = miPatron;
         this.ctx.fillRect(this.comienzoX, this.comienzoY, (this.image.width * this.ancho), (this.image.height * this.alto));
 
     }
 
-    getNroCol() {
+    getNroCol() { /**Devuelve el ancho del tablero */
         return this.ancho;
     }
 
-    meterFicha(ficha, nroCol, jugador) {
+    meterFicha(ficha, nroCol, jugador) { /** Pasado el nro de columna comprueba si hay lugar para poner una ficha si es asi 
+        devuelve la fila donde tiene que ir */
         let i = this.alto - 1;
 
         while (i >= 0) {
@@ -94,13 +96,13 @@ class Tablero {
         return i;
     }
 
-    fijarFicha(ficha, fila, columna) {
+    fijarFicha(ficha, fila, columna) { /** Dibuja la ficha en la posicion que corresponde a la columna y fila pasada por parametro */
         let x = this.comienzoX + fila * this.ladoImagen + this.ladoImagen / 2;
         let y = this.comienzoY + columna * this.ladoImagen + this.ladoImagen / 2;
         ficha.getFigura().setXsetY(x, y);
     }
 
-    horizontal(posFicha, jugador) {
+    horizontal(posFicha, jugador) { /**Controla si hubo victoria horizontal */
         let contador = 0;
         let puntero = 0;
         while (puntero < this.ancho && contador < this.xEnLinea) {
@@ -121,7 +123,7 @@ class Tablero {
             return false;
     }
 
-    vertical(posFicha, jugador) {
+    vertical(posFicha, jugador) { /**Controla si hubo victoria vertical */
         let contador = 0;
         let puntero = this.alto - 1;
         while (puntero >= 0 && contador < this.xEnLinea) {
@@ -141,7 +143,7 @@ class Tablero {
         else
             return false;
     }
-    diagonalAscendente(posX, posY, jugador) {
+    diagonalAscendente(posX, posY, jugador) { /**Controla si hubo victoria en diagonal ascendente */
         let punteroX = posX;
         let punteroY = posY;
         let contador = 0;
@@ -171,7 +173,7 @@ class Tablero {
 
     }
 
-    diagonalDescendente(posX, posY, jugador) {
+    diagonalDescendente(posX, posY, jugador) { /**Controla si hubo victoria en diagonal descendente */
         let punteroX = posX;
         let punteroY = posY;
         let contador = 0;
@@ -198,7 +200,7 @@ class Tablero {
             return false;
     }
 
-    victoria(posX, posY, jugador) {
+    victoria(posX, posY, jugador) { /**Controla si hubo victoria */
         let victoria = false;
         victoria = this.horizontal(posY, jugador);
         if (!victoria)

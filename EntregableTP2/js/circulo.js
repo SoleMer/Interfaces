@@ -18,14 +18,14 @@ class Circulo extends Figura {
         this.ctx.restore();
     }
 
-    setX(x) {
+    setX(x) { /**Setea posicion en X */
         this.posX = x;
     }
-    setX(y) {
+    setX(y) { /**Setea posicion e Y */
         this.posY = y;
     }
 
-    clickAdentro(x, y) {
+    clickAdentro(x, y) { /**Devuelve TRUE/FALSE si se hizo click en el circulo */
         let _x = this.posX - x;
         let _y = this.posY - y;
         return Math.sqrt(_x * _x + _y * _y) < this.radio;

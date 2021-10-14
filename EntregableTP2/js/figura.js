@@ -9,31 +9,31 @@ class Figura {
         this.click = false;
     }
 
-    getPosition() {
+    getPosition() { /** Devuelve la posicion de figura */
         return {
             x: this.posX,
             y: this.posY,
         };
     }
 
-    getX() {
+    getX() { /**Devuelve la posicion en X de figura */
         return this.posX;
     }
 
-    getY() {
+    getY() { /**Devuelve la posicion en Y de figura */
         return this.posY;
     }
 
-    getFill() {
+    getFill() { /** Devuelve fill*/
         return this.fill;
     }
 
-    setFill(fill) {
+    setFill(fill) { /** Setea fill*/
         this.fill = new Image();
         this.fill.src = fill;
     }
 
-    draw() {
+    draw() { /**Dibuja una figura */
         this.ctx.fillStyle = this.fill;
     }
 
@@ -41,7 +41,7 @@ class Figura {
 
     }
 
-    setXsetY(x, y) {
+    setXsetY(x, y) { /**Setea nueva posicion en X e Y para figura */
         this.posX = x;
         this.posY = y;
     }

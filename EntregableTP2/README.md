@@ -20,8 +20,9 @@ Se podrá optar por jugar el clásico 4 en línea, con un tablero de 6 filas y 7
 # TODO
 
 *(borrar a medida que se vayan completando las tareas)*
-Comentar: 
-- Clase tablero
-- Clase ficha
-- Clase figura
-- Clase circulo
+
+-Si tiene un tiempito de sobra:
+    Chequear comentarios :)
+-Capaz que 15 minutos es mucho para un 4 en linea, verlo!
+
+

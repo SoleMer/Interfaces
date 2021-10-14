@@ -11,30 +11,30 @@ class Ficha {
         };
     }
 
-    crearFicha() {
+    crearFicha() { /**Dibuja la ficha cuando la imagen esta cargada */
         let f = this;
         this.imagen.onload = function () {
             f.draw();
         };
     }
 
-    draw() {
+    draw() { /**Dibuja la ficha llamando al metodo draw() de la forma de la ficha */
         this.forma.draw();
     }
 
-    clickAdentro(x, y) {
+    clickAdentro(x, y) { /**  */
         return this.forma.clickAdentro(x, y);
     }
 
-    getFigura() {
+    getFigura() { /**Retorna la forma de la ficha */
         return this.forma;
     }
 
-    estaJugada() {
+    estaJugada() { /**Retorna si la ficha fue jugada */
         return this.jugada;
     }
 
-    setJugada(bool) {
+    setJugada(bool) { /**Setea la ficha como jugada */
         this.jugada = bool;
     }
 }
