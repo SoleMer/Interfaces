@@ -45,4 +45,5 @@ class Figura {
         this.posX = x;
         this.posY = y;
     }
+
 }

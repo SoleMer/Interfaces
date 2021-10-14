@@ -11,8 +11,6 @@
 
 <body>
     <div class="settings" id="settings">
-        <!--<iframe src="settings.html" frameborder="0"></iframe>
-        -->
         <div class="card-config">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,7 +21,7 @@
                         <h2>Modalidad</h2>
                         <div class="mod" id="modPokebola">Pokebolas</div>
                         <div class="mod" id="modPokemon">Pokemons</div>
-                        <button id="okModalidad">Siguiente</button>
+                        <button id="okModalidad" class="btn" disabled>Siguiente</button>
                     </div>
                     <div class="hide" id="colores">
                         <h2 id="jugador">Jugador 1</h2>
@@ -39,7 +37,7 @@
                             <div class="ficha ficha4"><img src="img/Pokemon/pokebolaAmarilla.jpg" id="ficha3" alt=""
                                     class="imgFicha"></div>
                         </div>
-                        <button id="okJugador">Siguiente</button>
+                        <button id="okJugador" class="btn" disabled>Siguiente</button>
                     </div>
                     <div class="hide" id="tamTablero">
                         <h2>Tablero</h2>
@@ -50,50 +48,28 @@
                         </select>
                         <div class="modal-footer">
                         </div>
-                        <button id="play" type="button" class="btn btn-primary"
-                            data-bs-dismiss="modal">Jugar!</button>
-                    
+                        <button id="play" type="button" class="btn">Jugar!</button>
+
                     </div>
                 </div>
-                
+
             </div>
         </div>
-    
+
     </div>
     <div class="container">
         <div class="menu">
-            <!--<iframe src="settings.html" frameborder="0"></iframe>-->
-            <h2>Modalidad</h2>
-            <div class="mod" id="modPokebola">Pokebolas</div>
-            <div class="mod" id="modPokemon">Pokemons</div>
-            <button id="okModalidad">Siguiente</button>
-
-            <h2 id="jugador">Jugador 1</h2>
-            <input type="text" id="nombreJugador" placeholder="nombre jugador"><br>
-            <label for="fichas">Fichas:</label>
-            <div class="fichas" id="fichas">
-                <div class="ficha ficha1"><img src="img/Pokemon/pokebolaRoja.jpg" id="ficha0" alt="" class="imgFicha">
-                </div>
-                <div class="ficha ficha2"><img src="img/Pokemon/pokebolaAzul.jpg" id="ficha1" alt="" class="imgFicha">
-                </div>
-                <div class="ficha ficha3"><img src="img/Pokemon/pokebolaVerde.jpg" id="ficha2" alt="" class="imgFicha">
-                </div>
-                <div class="ficha ficha4"><img src="img/Pokemon/pokebolaAmarilla.jpg" id="ficha3" alt=""
-                        class="imgFicha"></div>
+            <h2>Jugador en turno:</h2>
+            <div class="data">
+                <h2 id="jugadorEnTurno" class="jTurno"></h2>
             </div>
-            <button id="okJugador">Siguiente</button>
-
-            <h2>Tablero</h2>
-            <select name="" id="selectEnLinea">
-                <option value="4">4 en línea</option>
-                <option value="5">5 en línea</option>
-                <option value="6">6 en línea</option>
-            </select>
-            <div class="modal-footer">
-                <button id="play" type="button" class="btn btn-primary" data-bs-dismiss="modal">Jugar!</button>
+            <h2>Tiempo:</h2>
+            <div class="data">
+                <h2 id="cronometro"></h2>
             </div>
-
+            <div class="mod text-center" id="reiniciar">Reiniciar</div>
         </div>
+        <div class="hide" id="cuadroGanador"></div>
         <img src="img/Pokemon/Pikachu-png.png" alt="">
         <section id="fondo" class="pokemon">
             <canvas id="canvas" class="canvas" width="1450" height="950"></canvas>
@@ -105,7 +81,7 @@
     <script src="js/tablero.js"></script>
     <script src="js/juego.js"></script>
     <script src="js/ficha.js"></script>
-    <script src="js/jugador.js"></script>
+    <script src="js/cronometro.js"></script>
 
 
     <script src="js/main.js"></script>

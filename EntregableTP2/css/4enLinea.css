@@ -74,6 +74,14 @@ canvas {
     margin: 1%;
 }
 
+.btn {
+    background-image: url('../img/Pikachu-png.png');
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: large;
+    font-family: monospace;
+}
+
 .selected {
     border: solid 3px red;
 }
@@ -123,4 +131,52 @@ img {
     height: auto;
     position: absolute;
     bottom: 5px;
+}
+
+.menu {
+    font-family: monospace;
+    font-size: large;
+}
+
+.jTurno {
+    color: red;
+}
+
+.dialogo {
+    color: red;
+    background-color: white;
+    padding: 60px;
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 45%;
+    position: fixed;
+    bottom: 36%;
+    font-family: monospace;
+    font-size: x-large;
+    font-weight: 800;
+}
+
+.dialogo::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 22px;
+    border-bottom: 33px solid transparent;
+    border-right: 50px solid #fff;
+    bottom: -30px;
+    right: 100px;
+}
+
+.tiempo {
+    display: flex;
+}
+.data {
+    font-size: xx-large;
+    text-align: center;
+    color: red;
+}
+
+.text-center {
+    text-align: center;
 }

@@ -29,4 +29,12 @@ class Ficha {
     getFigura() {
         return this.forma;
     }
+
+    estaJugada() {
+        return this.jugada;
+    }
+
+    setJugada(bool) {
+        this.jugada = bool;
+    }
 }

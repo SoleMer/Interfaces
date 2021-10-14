@@ -5,19 +5,6 @@ class Circulo extends Figura {
     }
 
     draw() {
-        /*       super.draw();
-               this.ctx.save();
-               this.ctx.beginPath();
-               this.ctx.arc(this.posX, this.posY, this.radio, 0, 2 * Math.PI);
-               //this.ctx.closePath();
-               this.ctx.clip();
-               this.ctx.drawImage(this.fill, this.posX - this.radio, this.posY - this.radio, this.radio * 2, this.radio * 2);
-               this.ctx.beginPath();
-               this.ctx.clip();
-               this.ctx.fill();
-               this.ctx.closePath();
-               //this.ctx.restore();
-       */
         this.ctx.fillStyle = this.fill;
         this.ctx.save();
         this.ctx.beginPath();

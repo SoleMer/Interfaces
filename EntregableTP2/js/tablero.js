@@ -58,10 +58,12 @@ class Tablero {
 
     construirMatriz() {
         let matriz = [this.alto];
+        let contador = 3;
         for (let i = 0; i < this.alto; i++) {
             matriz[i] = [];
             for (let j = 0; j < this.ancho; j++) {
-                matriz[i][j] = 0;
+                matriz[i][j] = contador;
+                contador++;
             }
         }
         return matriz;
@@ -82,21 +84,20 @@ class Tablero {
         let i = this.alto - 1;
 
         while (i >= 0) {
-            if (this.matriz[i][nroCol] == 0) {
+            if (this.matriz[i][nroCol] > 2) {
                 this.matriz[i][nroCol] = jugador;
-
+                
                 return i;
             }
             i--;
         }
-
         return i;
     }
+
     fijarFicha(ficha, fila, columna) {
         let x = this.comienzoX + fila * this.ladoImagen + this.ladoImagen / 2;
         let y = this.comienzoY + columna * this.ladoImagen + this.ladoImagen / 2;
         ficha.getFigura().setXsetY(x, y);
-
     }
 
     horizontal(posFicha, jugador) {
@@ -144,7 +145,7 @@ class Tablero {
         let punteroX = posX;
         let punteroY = posY;
         let contador = 0;
-        while (punteroY < 5 && punteroX > 0) {
+        while (punteroY < this.alto-1 && punteroX > 0) {
             punteroX--;
             punteroY++;
         }
