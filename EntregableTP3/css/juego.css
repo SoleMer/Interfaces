@@ -1,0 +1,33 @@
+.fondo {
+    background:url(../img/paralax/capa1.png) repeat-x;
+    animation: movebg 6s linear infinite;
+    position:relative;
+    top:145px;
+  }
+  
+  /* Animación para mover cielo y mar */
+  @keyframes movebg {
+    0% { background-position:550px } 
+    100% { background-position:0 }
+  }
+
+  /* Animación del personaje */
+.avatar {
+    /* Tamaño de la viñeta individual */
+    width:100px;
+    height:156px;
+    margin:auto;  
+    background:url(../img/personaje/run.png) repeat-x;
+    animation:walk 0.8s steps(10) infinite;
+    position:relative;
+    bottom:34px;
+  }
+  
+  /* Animación de personaje caminando: Simplemente mueve el sprite sheet hacia la izquierda, realizando el movimiento. */
+  @keyframes walk {
+    /* Partimos de la primera viñeta del sprite sheet */
+    0% { background-position:0 }
+    /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
+    100% { background-position:-1020px }
+  }
+  
