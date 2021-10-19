@@ -1,27 +1,28 @@
 .fondo {
     background:url(../img/paralax/capa1.png) repeat-x ;
-    animation: movebg 4s linear infinite;
+    animation: movebg 3s linear infinite;
     position:relative;
-    top: 45px;
-    height: 82px;
-
+    /*top: 45px;
+    height: 82px;*/
+    top: 20px;
+    height: 200px;
   }
 
   .capa2 {
     background:url(../img/paralax/capa2.png) repeat-x ;
-    animation: movebg 6s linear infinite;
+    animation: movebg 10s linear infinite;
     position:relative;
-    height: 127px;
-    top: 190px;
-  
-
-
+    /*height: 127px;
+    top: 190px;*/
+    height: 200px;
+    top: 189px;
   }
 
   .capa3 {
     background:url(../img/paralax/capa3.png) repeat-x ;
-    animation: movebg 8s linear infinite;
-    height: 307px;
+    animation: movebg 16s linear infinite;
+    /*height: 307px;*/
+    height: 360px;
     position:relative;
     top: 0px;
   }
@@ -35,14 +36,14 @@
   /* Animación del personaje */
 .avatar {
     /* Tamaño de la viñeta individual */
-
     width:100px;
     height: 156px;
-    margin:auto;  
+    margin-left: 20vw;
     background:url(../img/personaje/run.png) repeat-x;
     animation:walk 0.8s steps(10) infinite;
     position:relative;
-    bottom: 70px;
+    /*bottom: 70px;*/
+    bottom: 5px;
 
   }
   
@@ -57,11 +58,11 @@
   .saltando {
     width:100px;
     height:156px;
-    margin:auto;  
+    margin-left: 20vw;
     background:url(../img/personaje/jump.png) repeat-x;
-    animation:jump 0.8s steps(10) infinite;
+    animation:jump 1.0s steps(10) infinite;
     position:relative;
-    bottom:70px;
+    bottom:5px;
   }
 
   @keyframes jump {
@@ -69,27 +70,24 @@
     0% { background-position:0 }
     /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
     100% { background-position:-1020px }
-    0% { bottom: 70px}
-    50% {bottom: 120px}
-    100% {bottom: 70px}
+    0% { bottom: 5px}
+    50% {bottom: 100px}
+    100% {bottom: 5px}
   }
   
   .deslizando {
-    width:134px;
+    width:100px;
     height:156px;
-    margin:auto;  
+    margin-left: 20vw;  
     background:url(../img/personaje/slide.png) repeat-x;
-    animation:jump 0.8s steps(10) infinite;
+    animation:slide 0.8s steps(10) infinite;
     position:relative;
-    bottom:70px;
+    bottom:2px;
   }
 
   @keyframes slide {
     /* Partimos de la primera viñeta del sprite sheet */
     0% { background-position:0 }
     /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
-    100% { background-position:-1360px }
-    0% { bottom: 70px}
-    50% {bottom: 40px}
-    100% {bottom: 70px}
+    100% { background-position:-1020px }
   }
