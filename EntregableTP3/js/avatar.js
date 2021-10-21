@@ -1,7 +1,8 @@
 class Avatar {
-    constructor() {
+    constructor(avatarCont) {
         this.muerto = false;
-        this.avatar = document.getElementById('avatar');
+        this.avatar = avatarCont;
+        console.log("creado");
     }
 
     estaMuerto() {
@@ -18,10 +19,12 @@ class Avatar {
     }
 
     colision(obstaculo) {
-        if (this.getRight() == obstaculo.getLeft()
-        || this.getTop == obstaculo.getBottom()
-        || this.getBottom == obstaculo.getTop()) {
-            return true;
+        if (this.getBottom() >= obstaculo.getTop())
+            if (this.getRight()>obstaculo.getLeft() && this.getRight()<obstaculo.getRight()){
+        //if (this.getRight() == obstaculo.getLeft()
+        //|| this.getTop() == obstaculo.getBottom()
+        //|| this.getBottom() == obstaculo.getTop()) {
+                return true;
         }
 
         return false;

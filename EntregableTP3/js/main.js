@@ -1,10 +1,11 @@
 "use strict";
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    const avatar = new Avatar(); //Instancio el avatar
-    const obstaculo = new Obstaculo('obstaculo');//Instancio los obtaculos
-    const juego = new Juego(avatar, obstaculo);
-    juego.loop();
+    //const avatar = new Avatar(); //Instancio el avatar
+    //const obstaculo = new Obstaculo('obstaculo');//Instancio los obtaculos
+    const avatarCont = document.getElementById('avatar');
+    const juego = new Juego(avatarCont);
+    
 
     window.onkeyup = function (event) {
         let avatar = document.getElementById('avatar');
@@ -26,6 +27,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-   
+   juego.play();
 
 });
