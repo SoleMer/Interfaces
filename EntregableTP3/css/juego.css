@@ -5,7 +5,7 @@
 /* PARALAX */
 
 .capa1 {
-    background: url(../img/paralax/capa1.png) repeat-x;
+
     position: relative;
     top: 90px;
     height: 200px;
@@ -15,8 +15,29 @@
     animation: movebg 3s linear infinite;
 }
 
+
+.desierto-capa-1{
+    background: url(../img/paralax/desierto/capa1.png) repeat-x;
+}
+.desierto-capa-2{
+    background: url(../img/paralax/desierto/capa2.png) repeat-x;
+}
+.desierto-capa-3{
+    background: url(../img/paralax/desierto/capa3.png) repeat-x;
+}
+
+.nieve-capa-1{
+    background: url(../img/paralax/nieve/capa1.png) repeat-x;
+}
+.nieve-capa-2{
+    background: url(../img/paralax/nieve/capa2.png) repeat-x;
+}
+.nieve-capa-3{
+    background: url(../img/paralax/nieve/capa3.png) repeat-x;
+}
+
 .capa2 {
-    background: url(../img/paralax/capa2.png) repeat-x;
+
     position: relative;
     height: 250px;
     top: 385px;
@@ -27,8 +48,8 @@
 }
 
 .capa3 {
-    background: url(../img/paralax/capa3.png) repeat-x;
-    height: 600px;
+
+    height: 800px;
     position: relative;
     top: 0px;
 }

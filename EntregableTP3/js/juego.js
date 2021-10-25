@@ -1,9 +1,9 @@
 class Juego {
-    constructor(avatarCont) {
+    constructor(avatarCont, escenario, personaje) {
         this.avatarObj = new Avatar(avatarCont);
         this.obstaculos = [];
         this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4'];
-        this.escenario = new Escenario();
+        this.escenario = new Escenario(escenario);
     }
     
     play() {
@@ -21,7 +21,7 @@ class Juego {
                     this.obstaculos[0].eliminar();
                 }
                 this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 1400));
-                this.obstaculos[this.obstaculos.length - 1].elegirObstaculo();
+                //this.obstaculos[this.obstaculos.length - 1].elegirObstaculo();
             }
         }, 2500);
 
@@ -32,6 +32,7 @@ class Juego {
                         a.morir();
                         detenerObstaculos(o);
                         e.detener();
+                        clearInterval(intervalId);
                     }
                 });
             }

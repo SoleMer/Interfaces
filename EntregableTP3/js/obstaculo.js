@@ -3,6 +3,7 @@ class Obstaculo extends Personaje {
         super(personaje)
         this.init();
         this.tiempoEspera = tiempo;
+        this.elegirObstaculo();
     }
 
     elegirObstaculo() {

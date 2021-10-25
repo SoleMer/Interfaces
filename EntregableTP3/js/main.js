@@ -4,8 +4,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //const avatar = new Avatar(); //Instancio el avatar
     //const obstaculo = new Obstaculo('obstaculo');//Instancio los obtaculos
     const avatarCont = document.getElementById('avatar');
-    const juego = new Juego(avatarCont);
     const settings = document.getElementById('settings');
+    const escenario = document.getElementById('selectEscenario').value;
+    const personaje = document.getElementById('selectPersonaje').value;
+    const juego = new Juego(avatarCont, escenario, personaje);
     const play = document.getElementById('play');
     play.addEventListener('click', function() {
         jugar()
@@ -33,6 +35,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function jugar () {
+        console.log(escenario);
+        console.log(personaje);
         settings.classList.replace('settings', 'hide');
         juego.play();
     }
