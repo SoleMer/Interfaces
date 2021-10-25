@@ -1,8 +1,8 @@
-class Avatar {
+class Avatar extends Personaje{
     constructor(avatarCont) {
+        super('avatar');
         this.muerto = false;
         this.avatar = avatarCont;
-        console.log("creado");
     }
 
     estaMuerto() {
@@ -15,15 +15,19 @@ class Avatar {
 
     morir() {
         this.muerto = true;
-        alert('muerto');
+        this.div.classList.remove('caminando');
+        this.div.classList.remove('saltando');
+        this.div.classList.remove('deslizando');
+        this.div.classList.add('muriendo');
+        let interval = setInterval(() => {
+            this.div.classList.replace('muriendo', 'muerto');
+            clearInterval(interval);
+        }, 800);
     }
 
     colision(obstaculo) {
         if (this.getBottom() >= obstaculo.getTop())
             if (this.getRight()>obstaculo.getLeft() && this.getRight()<obstaculo.getRight()){
-        //if (this.getRight() == obstaculo.getLeft()
-        //|| this.getTop() == obstaculo.getBottom()
-        //|| this.getBottom() == obstaculo.getTop()) {
                 return true;
         }
 
