@@ -20,17 +20,19 @@ class Juego {
                 if (i < 3) i++;
                 else {
                     i = 0;
+                }
+                if (this.obstaculos.length > 5) {
                     this.obstaculos[0].eliminar();
                     this.obstaculos.splice(0,1);
                 }
                 this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 2000));
             }
-        }, 2500);
+        }, 3000);
 
         function loop(a, o, e) {
             if (!a.estaMuerto() && !a.gano()) {
                 o.forEach(obst => {
-                    if (a.colision(obst) || a.getSinTiempo()){
+                    if (obst.colision(a) || a.getSinTiempo()){
                         a.morir();
                         detenerObstaculos(o);
                         e.detener();

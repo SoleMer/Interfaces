@@ -65,28 +65,20 @@ class Obstaculo extends Personaje {
 
     colision(avatar) {
         if (this.tipoObstaculo == 1) {
-            //if (this.colisionDeFrente(avatar)) return true;
-            //if (this.colisionArriba(avatar)) return true;
-            if (this.colisionAbajoDerecha(avatar)) return true;
-            if (this.colisionAbajoIzquierda(avatar)) return true;
-        } else {
-           /* if (this.getBottom() >= avatar.getTop()) {
-                if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
-                    return true;
-                }
-            }
-            if (this.colisionAbajo(avatar)) {
-                return true;
-            }*/
             if (this.colisionArribaDerecha(avatar)) return true;
             if (this.colisionArribaIzquierda(avatar)) return true;
+        } else {
+            
+            if (this.colisionAbajoDerecha(avatar)) return true;
+            if (this.colisionAbajoIzquierda(avatar)) return true;
         }
         return false;
     }
 
     colisionAbajoDerecha(avatar) {
         if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
-            if (avatar.getBottom() >= this.getTop()) {
+            if (avatar.getTop() <= this.getBottom()+117) {
+                console.log(avatar.getTop(), this.getBottom());
                 return true;
             }
         }
@@ -96,7 +88,8 @@ class Obstaculo extends Personaje {
     colisionAbajoIzquierda(avatar) {
         if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
             console.log(avatar.getBottom(), this.getTop())
-            if (avatar.getBottom() >= this.getTop()) {
+            if (avatar.getTop() <= this.getBottom()-117) {
+                console.log("izquierda");
                 return true;
             }
         }
@@ -105,7 +98,7 @@ class Obstaculo extends Personaje {
     
     colisionArribaDerecha(avatar) {
         if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
-            if (avatar.getTop() <= this.getBottom()) {
+            if (avatar.getTop() >= this.getBottom()) {
                 return true;
             }
         }
@@ -114,34 +107,11 @@ class Obstaculo extends Personaje {
 
     colisionArribaIzquierda(avatar) {
         if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
-            if (avatar.getBottom() <= this.getTop()) {
+            if (avatar.getBottom() >= this.getTop()) {
                 return true;
             }
         }
         return false;
-    }
-
-    colisionDeFrente(avatar) {
-        if (this.getLeft() <= avatar.getRight() && this.getRight() > avatar.getRight()) {
-            if (this.getTop() >= avatar.getBottom())
-                return true;
-        }
-    }
-
-    colisionArriba(avatar) {
-        if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
-            if (this.getTop() <= avatar.getBottom())
-                return true;
-        }
-    }
-
-    colisionAbajo(avatar) {
-        if (this.getBottom() >= avatar.getTop())
-        if ((this.getRight() > avatar.getLeft())
-            || (this.getLeft() <= avatar.getRight() && this.getRight() > avatar.getRight())) {
-                return true;
-                
-        }
     }
 
     getLeft() {
