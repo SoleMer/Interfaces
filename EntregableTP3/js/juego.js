@@ -1,12 +1,14 @@
 class Juego {
-    constructor(avatarCont, escenario, personaje) {
-        this.avatarObj = new Avatar(avatarCont);
+    constructor(avatarCont, escenario, personaje, cronometro) {
+        this.avatarObj = new Avatar(avatarCont, personaje);
         this.obstaculos = [];
         this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4'];
         this.escenario = new Escenario(escenario);
+        this.cuadroCronometro = cronometro;
     }
     
     play() {
+        iniciarCronometro(this.cuadroCronometro,this.avatarObj);
         let stop = false;
         let intervalId = setInterval(loop, 10, this.avatarObj, this.obstaculos, this.escenario);
         let i = -1;
@@ -28,11 +30,12 @@ class Juego {
         function loop(a, o, e) {
             if (!a.estaMuerto() && !a.gano()) {
                 o.forEach(obst => {
-                    if (obst.colision(a)) {
+                    if (a.colision(obst) || a.getSinTiempo()){
                         a.morir();
                         detenerObstaculos(o);
                         e.detener();
                         clearInterval(intervalId);
+                        showPupUp(a);
                     }
                 });
             }
@@ -46,13 +49,37 @@ class Juego {
             //showPupUp()
         }
 
-        function showPupUp() {
+
+        function showPupUp(avatar) {
             let popUp = document.getElementById('pop-up');
+            let muerto = document.getElementById('muerto');
+            if (avatar.getNroPersonaje() == 1)
+                muerto.classList.add('muerto-aventurero');
+            else
+                muerto.classList.add('muerto-noel');
+            
             popUp.classList.replace('hide', 'game-over');
+            
             setTimeout(() => {
                 let escenario = document.getElementById('capa3');
                 escenario.classList.replace('capa3', 'hide');
+
             }, 800); 
+        }
+
+        function iniciarCronometro(c,a) {
+            let espera;
+            let cronometro = new Cronometro();
+           c.innerHTML = cronometro.getTiempo();
+            espera = setInterval(() => {
+                cronometro.descontar();
+                let tiempo = cronometro.getTiempo();
+                if (tiempo == "0:00") {
+                    clearInterval(espera);
+                    a.setSinTiempo();
+                } 
+                c.innerHTML = tiempo;
+            }, 1000);
         }
     }
 

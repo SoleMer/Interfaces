@@ -41,6 +41,15 @@
     </div>
 
     <div class="capa3 move-c3" id="capa3">
+        <div class = "info">
+            <div >
+            <h1>Time: <span id="timer"></span> </h1>
+            </div>
+
+            <div >
+                <h1> Puntos: <span id="points"></span></h1>
+            </div>
+        </div>
         <div class="capa2 move-c2" id="capa2">
             <div class="capa1 move-c1" id="capa1">
                 <div class="avatar caminando" id="avatar"></div>
@@ -56,7 +65,7 @@
         <div class="card">
             <div class="content">
                 <div class="card-header">
-                    <div class="avatar muerto personaje"></div>
+                    <div id = "muerto" class="avatar muerto personaje"></div>
                     <h2>GAME OVER</h2>
                 </div>
                 <div class="card-body">
@@ -89,6 +98,8 @@
             </a>
         </div>
     </div>
+    <script src="js/cronometro.js"></script>
+
     <script src="js/escenario.js"></script>
     <script src="js/personaje.js"></script>
     <script src="js/avatar.js"></script>

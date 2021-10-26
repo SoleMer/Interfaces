@@ -67,8 +67,58 @@
     }
 }
 
+.info {
+    font-family: monospace;
+    padding: 5px;
+    color: beige;
+    background-color: grey;
+    opacity: 0.7;
+    width: 150px;
+    border-radius: 25%;
+    position: relative;
+}
+
 /* AVATAR */
 
+.caminando-noel {
+    background: url(../img/personaje/run2.png) repeat-x;
+}
+
+.saltando-noel {
+    background: url(../img/personaje/jump2.png) repeat-x;
+}
+
+.deslizando-noel {
+    background: url(../img/personaje/slide2.png) repeat-x;
+}
+
+.muriendo-noel {
+    background: url(../img/personaje/dead3.png) repeat-x;
+}
+
+.muerto-noel {
+    background: url(../img/personaje/dead3.png) repeat-x;
+}
+
+.caminando-aventurero {
+    background: url(../img/personaje/run.png) repeat-x;
+}
+
+.saltando-aventurero {
+    background: url(../img/personaje/jump.png) repeat-x;
+}
+
+.deslizando-aventurero {
+    background: url(../img/personaje/slide.png) repeat-x;
+}
+
+.muriendo-aventurero {
+    background: url(../img/personaje/dead.png) repeat-x;
+}
+
+.muerto-aventurero {
+    background: url(../img/personaje/dead.png) repeat-x;
+}
 .avatar {
     /* Tamaño de la viñeta individual */
     width: 100px;
@@ -81,7 +131,6 @@
 }
 
 .caminando {
-    background: url(../img/personaje/run.png) repeat-x;
     animation: walk 0.8s steps(10) infinite;
 }
 
@@ -98,7 +147,6 @@
 }
 
 .saltando {
-    background: url(../img/personaje/jump.png) repeat-x;
     animation: jump 0.9s steps(10) infinite;
 }
 
@@ -124,7 +172,6 @@
 
 .deslizando {
     height: 110px;
-    background: url(../img/personaje/slide.png) repeat-x;
     animation: slide 0.8s steps(10) infinite;
     position: absolute;
     bottom: 30px;
@@ -146,7 +193,6 @@
     /*TODO corregir tamaño*/
     width: 131px;
     height: 136px;
-    background: url(../img/personaje/dead.png) repeat-x;
     animation: dead 0.8s steps(10) infinite;
     bottom: 0;
     z-index: 999;
@@ -166,7 +212,6 @@
 .muerto {
     width: 131px;
     height: 136px;
-    background: url(../img/personaje/dead.png) repeat-x;
     background-position: -1200px;
     z-index: 999;
     position: absolute;
@@ -313,6 +358,20 @@
     color: white;
     font-family: monospace;
     align-content: center;
+    animation-name: opacidad;
+    animation-duration: 2s;
+}
+
+
+@keyframes opacidad {
+    0% {
+        opacity: .0;    }
+    50% {
+        opacity: .1;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .card {

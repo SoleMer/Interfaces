@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const escenario = document.getElementById('selectEscenario');
     const personaje = document.getElementById('selectPersonaje');
     let juego;
+    let divCronometro = document.getElementById('timer');
     const play = document.getElementById('play');
     play.addEventListener('click', function() {
         jugar()
@@ -15,27 +16,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     
 
     window.onkeyup = function (event) {
-        let avatar = document.getElementById('avatar');
-        let interval;
+       
         if (event.keyCode === 32 || event.keyCode === 38 || event.keyCode === 87) { // 32= barra espaciadora, 38 = up-arrow
-            avatar.classList.replace('caminando', 'saltando');
-            interval = setInterval(() => {
-                avatar.classList.replace('saltando', 'caminando');
-                clearInterval(interval);
-            }, 800);
-        } else if (event.keyCode === 40 || event.keyCode === 83) { // 40 = down-arrow
-            avatar.classList.replace('caminando', 'deslizando'); //arreglar deslizando
-            interval = setInterval(() => {
-                avatar.classList.replace('deslizando', 'caminando');
-                clearInterval(interval);
-            }, 800);
-        } else {
-            console.log(event.keyCode); //queda para poder probar las teclas que queramos hasta que estén todos lo9s eventos hechos
-        }
+            juego.avatarObj.saltar();
+         } else if (event.keyCode === 40 || event.keyCode === 83) { // 40 = down-arrow
+              juego.avatarObj.deslizarse();
+         } else {
+             console.log(event.keyCode); //queda para poder probar las teclas que queramos hasta que estén todos lo9s eventos hechos
+         }
     }
 
     function jugar () {
-        juego = new Juego(avatarCont, escenario.value, personaje.value);
+        juego = new Juego(avatarCont, escenario.value, personaje.value,divCronometro);
         settings.classList.replace('settings', 'hide');
         juego.play();
     }
