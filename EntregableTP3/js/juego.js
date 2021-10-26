@@ -8,7 +8,7 @@ class Juego {
     
     play() {
         let stop = false;
-        let intervalId = setInterval(loop, 100, this.avatarObj, this.obstaculos, this.escenario);
+        let intervalId = setInterval(loop, 10, this.avatarObj, this.obstaculos, this.escenario);
         let i = -1;
         let espera = setInterval(() => {
             console.log(stop);
@@ -19,16 +19,16 @@ class Juego {
                 else {
                     i = 0;
                     this.obstaculos[0].eliminar();
+                    this.obstaculos.splice(0,1);
                 }
-                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 1400));
-                //this.obstaculos[this.obstaculos.length - 1].elegirObstaculo();
+                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 2000));
             }
         }, 2500);
 
         function loop(a, o, e) {
             if (!a.estaMuerto() && !a.gano()) {
                 o.forEach(obst => {
-                    if (a.colision(obst)) {
+                    if (obst.colision(a)) {
                         a.morir();
                         detenerObstaculos(o);
                         e.detener();
@@ -40,10 +40,10 @@ class Juego {
         
         function detenerObstaculos(obstaculos) {
             obstaculos.forEach(o => {
-                o.eliminar();
+                o.stop();
             });
             stop = true;
-            showPupUp()
+            //showPupUp()
         }
 
         function showPupUp() {

@@ -4,6 +4,7 @@ class Obstaculo extends Personaje {
         this.init();
         this.tiempoEspera = tiempo;
         this.elegirObstaculo();
+        this.tipoObstaculo;
     }
 
     elegirObstaculo() {
@@ -18,32 +19,38 @@ class Obstaculo extends Personaje {
         this.div.classList.remove('objetoBajo');
         this.div.classList.remove('objetoAlto');
 
-            switch (random) {
-                case 7:
-                    this.div.classList.add('caja2');
-                    break;
-                case 6:
-                    this.div.classList.add('caja1');
-                    break;
-                case 5:
-                    this.div.classList.add('stone');
-                    break;
-                case 4:
-                    this.div.classList.add('skeleton');
-                    break;
-                case 3:
-                    this.div.classList.add('cactus3');
-                    break;
-                case 2:
-                    this.div.classList.add('cactus2');
-                    break;
-                default:
-                    this.div.classList.add('cactus1');
-                    break;
-            }
-            if (random < 6) this.div.classList.add('objetoBajo');
-            else this.div.classList.add('objetoAlto');    
-            
+        switch (random) {
+            case 7:
+                this.div.classList.add('caja2');
+                break;
+            case 6:
+                this.div.classList.add('caja1');
+                break;
+            case 5:
+                this.div.classList.add('stone');
+                break;
+            case 4:
+                this.div.classList.add('skeleton');
+                break;
+            case 3:
+                this.div.classList.add('cactus3');
+                break;
+            case 2:
+                this.div.classList.add('cactus2');
+                break;
+            default:
+                this.div.classList.add('cactus1');
+                break;
+        }
+        if (random < 6) {
+            this.div.classList.add('objetoBajo');
+            this.tipoObstaculo = 1;
+        }
+        else {
+            this.div.classList.add('objetoAlto');
+            this.tipoObstaculo = 2;
+        }
+
     }
 
     init() {
@@ -56,20 +63,101 @@ class Obstaculo extends Personaje {
         this.div.classList.replace('movilidad-obstaculo', 'stop');
     }
 
+    colision(avatar) {
+        if (this.tipoObstaculo == 1) {
+            //if (this.colisionDeFrente(avatar)) return true;
+            //if (this.colisionArriba(avatar)) return true;
+            if (this.colisionAbajoDerecha(avatar)) return true;
+            if (this.colisionAbajoIzquierda(avatar)) return true;
+        } else {
+           /* if (this.getBottom() >= avatar.getTop()) {
+                if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
+                    return true;
+                }
+            }
+            if (this.colisionAbajo(avatar)) {
+                return true;
+            }*/
+            if (this.colisionArribaDerecha(avatar)) return true;
+            if (this.colisionArribaIzquierda(avatar)) return true;
+        }
+        return false;
+    }
+
+    colisionAbajoDerecha(avatar) {
+        if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
+            if (avatar.getBottom() >= this.getTop()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    colisionAbajoIzquierda(avatar) {
+        if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
+            console.log(avatar.getBottom(), this.getTop())
+            if (avatar.getBottom() >= this.getTop()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    colisionArribaDerecha(avatar) {
+        if (this.getLeft() < avatar.getRight() && this.getRight() > avatar.getRight()) {
+            if (avatar.getTop() <= this.getBottom()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    colisionArribaIzquierda(avatar) {
+        if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
+            if (avatar.getBottom() <= this.getTop()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    colisionDeFrente(avatar) {
+        if (this.getLeft() <= avatar.getRight() && this.getRight() > avatar.getRight()) {
+            if (this.getTop() >= avatar.getBottom())
+                return true;
+        }
+    }
+
+    colisionArriba(avatar) {
+        if (this.getLeft() < avatar.getLeft() && this.getRight() > avatar.getLeft()) {
+            if (this.getTop() <= avatar.getBottom())
+                return true;
+        }
+    }
+
+    colisionAbajo(avatar) {
+        if (this.getBottom() >= avatar.getTop())
+        if ((this.getRight() > avatar.getLeft())
+            || (this.getLeft() <= avatar.getRight() && this.getRight() > avatar.getRight())) {
+                return true;
+                
+        }
+    }
+
     getLeft() {
-        return this.div.getBoundingClientRect().left;
+        return this.div.getBoundingClientRect().x;
     }
 
     getRight() {
-        return this.div.getBoundingClientRect().right;
+        return this.div.getBoundingClientRect().x + this.div.getBoundingClientRect().width;
     }
 
     getBottom() {
-        return this.div.getBoundingClientRect().bottom;
+        return this.div.getBoundingClientRect().y;
     }
 
     getTop() {
-        return this.div.getBoundingClientRect().top;
+        return this.div.getBoundingClientRect().y + this.div.getBoundingClientRect().height;
     }
 
     eliminar() {

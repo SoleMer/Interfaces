@@ -5,9 +5,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //const obstaculo = new Obstaculo('obstaculo');//Instancio los obtaculos
     const avatarCont = document.getElementById('avatar');
     const settings = document.getElementById('settings');
-    const escenario = document.getElementById('selectEscenario').value;
-    const personaje = document.getElementById('selectPersonaje').value;
-    const juego = new Juego(avatarCont, escenario, personaje);
+    const escenario = document.getElementById('selectEscenario');
+    const personaje = document.getElementById('selectPersonaje');
+    let juego;
     const play = document.getElementById('play');
     play.addEventListener('click', function() {
         jugar()
@@ -35,8 +35,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function jugar () {
-        console.log(escenario);
-        console.log(personaje);
+        juego = new Juego(avatarCont, escenario.value, personaje.value);
         settings.classList.replace('settings', 'hide');
         juego.play();
     }

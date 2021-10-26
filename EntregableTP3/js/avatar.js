@@ -26,23 +26,26 @@ class Avatar extends Personaje{
     }
 
     colision(obstaculo) {
-        if (this.getBottom() >= obstaculo.getTop())
-            if (this.getRight()>obstaculo.getLeft() && this.getRight()<obstaculo.getRight()){
-                return true;
-        }
-
-        return false;
+        return obstaculo.colision(this);
     }
 
     getRight() {
-        return this.avatar.getBoundingClientRect().right;
+        return this.avatar.getBoundingClientRect().x + this.div.getBoundingClientRect().width;
+    }
+
+    getLeft() {
+        return this.avatar.getBoundingClientRect().x;
     }
 
     getTop() {
-        return this.avatar.getBoundingClientRect().top;
+        return this.avatar.getBoundingClientRect().y + this.div.getBoundingClientRect().height;
     }
 
     getBottom() {
-        return this.avatar.getBoundingClientRect().bottom;
+        return this.avatar.getBoundingClientRect().y;
+    }
+
+    getWidht() {
+        return
     }
 }

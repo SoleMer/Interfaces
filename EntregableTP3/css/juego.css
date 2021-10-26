@@ -12,7 +12,7 @@
 }
 
 .move-c1 {
-    animation: movebg 3s linear infinite;
+    animation: movebg 4.1s linear infinite;
 }
 
 
@@ -72,11 +72,12 @@
 .avatar {
     /* Tamaño de la viñeta individual */
     width: 100px;
-    height: 156px;
+    height: 115px;
     margin-left: 20vw;
     position: relative;
     /*bottom: 70px;*/
-    bottom: 5px;
+    bottom: -25px;
+    border: solid 1px red;
 }
 
 .caminando {
@@ -125,7 +126,8 @@
     height: 110px;
     background: url(../img/personaje/slide.png) repeat-x;
     animation: slide 0.8s steps(10) infinite;
-    bottom: -10px;
+    position: absolute;
+    bottom: 30px;
     border: solid 1px red;
 }
 
@@ -179,6 +181,8 @@
     transform: scaleX(-1);
     position: absolute;
     right: -200px;
+
+    border: solid 1px red;
 }
 
 .obstaculo2 {
@@ -253,17 +257,17 @@
 }
 
 .objetoAlto {
-    bottom: 210px;
-    height: 100px;
+    bottom: 185px;
+    height: 130px;
 }
 
 .caja1 {
-    width: 100px;
+    width: 130px;
     background: url(../img/obstaculos/Crate.png) repeat-x;
 }
 
 .caja2 {
-    width: 100px;
+    width: 130px;
     background: url(../img/obstaculos/StoneBlock.png) repeat-x;
 }
 
