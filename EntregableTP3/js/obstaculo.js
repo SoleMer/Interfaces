@@ -1,9 +1,9 @@
 class Obstaculo extends Personaje {
     constructor(personaje, tiempo) {
         super(personaje)
-        this.init();
         this.tiempoEspera = tiempo;
         this.elegirObstaculo();
+        this.init();
         this.tipoObstaculo;
     }
 
@@ -55,6 +55,7 @@ class Obstaculo extends Personaje {
 
     init() {
         setTimeout(() => {
+            this.div.classList.remove('hide');
             this.div.classList.add('movilidad-obstaculo');
         }, this.tiempoEspera);  //Es el tiempo que tarda en salir a la pantalla
     }
@@ -131,7 +132,7 @@ class Obstaculo extends Personaje {
     }
 
     eliminar() {
-        this.div.classList.remove('obstaculo');
+        
         this.div.classList.remove('movilidad-obstaculo');
         this.div.classList.add('hide');
     }

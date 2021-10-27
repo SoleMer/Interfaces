@@ -2,7 +2,7 @@ class Juego {
     constructor(avatarCont, escenario, personaje, cronometro) {
         this.avatarObj = new Avatar(avatarCont, personaje);
         this.obstaculos = [];
-        this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4'];
+        this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4', 'obstaculo5'];
         this.escenario = new Escenario(escenario);
         this.cuadroCronometro = cronometro;
     }
@@ -17,7 +17,7 @@ class Juego {
             if (stop) {
                 clearInterval(espera);
             } else {
-                if (i < 3) i++;
+                if (i < 4) i++;
                 else {
                     i = 0;
                 }
@@ -25,9 +25,9 @@ class Juego {
                     this.obstaculos[0].eliminar();
                     this.obstaculos.splice(0,1);
                 }
-                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 2000));
+                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 3000));
             }
-        }, 3000);
+        }, 2000);
 
         function loop(a, o, e) {
             if (!a.estaMuerto() && !a.gano()) {

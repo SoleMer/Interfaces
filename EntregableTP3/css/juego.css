@@ -242,7 +242,7 @@
 }
 
 .movilidad-obstaculo {
-    animation: mover 4.1s steps(9) infinite;
+    animation: mover 4.1s steps(9) ;
 }
 
 @keyframes mover {
