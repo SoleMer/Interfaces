@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const personaje = document.getElementById('selectPersonaje');
     let juego;
     let divCronometro = document.getElementById('timer');
+    let divPuntos = document.getElementById('points');
     const play = document.getElementById('play');
     play.addEventListener('click', function() {
         jugar()
@@ -27,7 +28,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function jugar () {
-        juego = new Juego(avatarCont, escenario.value, personaje.value,divCronometro);
+        juego = new Juego(avatarCont, escenario.value, personaje.value,divCronometro,divPuntos);
         settings.classList.replace('settings', 'hide');
         juego.play();
     }

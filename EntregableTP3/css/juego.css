@@ -274,6 +274,27 @@
     bottom: 70px;
 }
 
+.regalos {
+    width: 70px;
+    height: 75px;
+    background: url(../img/obstaculos/regalo.png) repeat-x;
+}
+
+.stoneice {
+    width: 125px;
+    height: 70px;
+    background: url(../img/obstaculos/StoneHielo.png) repeat-x;
+}
+
+.snowman {
+    background: url(../img/obstaculos/SnowMan.png) repeat-x;
+}
+
+.icebox {
+    width: 130px;
+    height: 130px;
+    background: url(../img/obstaculos/IceBox.png) repeat-x;
+}
 .cactus1 {
     background: url(../img/obstaculos/Cactus1.png) repeat-x;
 }
@@ -304,6 +325,12 @@
 .objetoAlto {
     bottom: 160px;
     height: 130px;
+}
+
+.diamante {
+    width: 60px;
+    height:50px;
+    background: url(../img/obstaculos/diamante.png) repeat-x;
 }
 
 .caja1 {

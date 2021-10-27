@@ -1,7 +1,8 @@
 class Juego {
-    constructor(avatarCont, escenario, personaje, cronometro) {
-        this.avatarObj = new Avatar(avatarCont, personaje);
+    constructor(avatarCont, escenario, personaje, cronometro, puntos) {
+        this.avatarObj = new Avatar(avatarCont, personaje, puntos);
         this.obstaculos = [];
+        this.nroEscenario = escenario;
         this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4', 'obstaculo5'];
         this.escenario = new Escenario(escenario);
         this.cuadroCronometro = cronometro;
@@ -25,19 +26,19 @@ class Juego {
                     this.obstaculos[0].eliminar();
                     this.obstaculos.splice(0,1);
                 }
-                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 3000));
+                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 3000, this.nroEscenario));
             }
         }, 2000);
 
         function loop(a, o, e) {
             if (!a.estaMuerto() && !a.gano()) {
                 o.forEach(obst => {
-                    if (obst.colision(a) || a.getSinTiempo()){
-                        a.morir();
+                    if (a.colision(obst) || a.getSinTiempo()){
+                        let puntos = a.morir();
                         detenerObstaculos(o);
                         e.detener();
                         clearInterval(intervalId);
-                        showPupUp(a);
+                        showPupUp(a, puntos);
                     }
                 });
             }
@@ -52,7 +53,7 @@ class Juego {
         }
 
 
-        function showPupUp(avatar) {
+        function showPupUp(avatar, puntos) {
             let popUp = document.getElementById('pop-up');
             let muerto = document.getElementById('muerto');
             if (avatar.getNroPersonaje() == 1)
@@ -61,7 +62,7 @@ class Juego {
                 muerto.classList.add('muerto-noel');
             
             popUp.classList.replace('hide', 'game-over');
-            
+            document.getElementById('puntos-totales').innerHTML = puntos;
             setTimeout(() => {
                 let escenario = document.getElementById('capa3');
                 escenario.classList.replace('capa3', 'hide');

@@ -1,14 +1,65 @@
 class Obstaculo extends Personaje {
-    constructor(personaje, tiempo) {
+    constructor(personaje, tiempo, escenario) {
         super(personaje)
         this.tiempoEspera = tiempo;
-        this.elegirObstaculo();
+        if (escenario == 1)
+            this.elegirObstaculo();
+        else
+            this.elegirObstaculoHielo();
         this.init();
         this.tipoObstaculo;
+        this.esRecolectable;
     }
+    elegirObstaculoHielo(){
+        let random = Math.floor(Math.random() * 9 + 1);
+        this.div.classList.remove('regalos');
+        this.div.classList.remove('stoneice');
+        this.div.classList.remove('snowman');
+        this.div.classList.remove('icebox');
+        this.div.classList.remove('caja1');
+        this.div.classList.remove('objetoBajo');
+        this.div.classList.remove('objetoAlto');
 
+        switch (random) {
+            
+            
+            case 4:
+                this.div.classList.add('caja1');
+                break;
+            case 3:
+                this.div.classList.add('icebox');
+                break;
+            case 2:
+                this.div.classList.add('snowman');
+                break;
+            case 1:
+                this.div.classList.add('stoneice');
+                break;
+            default:
+                this.div.classList.add('regalos');
+                break;
+        }
+
+        if (random > 4) {
+            this.tipoObstaculo = 1;
+            this.div.classList.add('objetoBajo');
+            this.esRecolectable = true;}
+        else {
+            if (random < 3) {
+                this.div.classList.add('objetoBajo');
+                this.tipoObstaculo = 1;
+                this.esRecolectable = false;
+            }
+            else {
+                this.div.classList.add('objetoAlto');
+                this.tipoObstaculo = 2;
+                this.esRecolectable = false;
+            }
+        }
+
+    }
     elegirObstaculo() {
-        let random = Math.floor(Math.random() * 7 + 1);
+        let random = Math.floor(Math.random() * 12 + 1);
         this.div.classList.remove('cactus1');
         this.div.classList.remove('cactus2');
         this.div.classList.remove('cactus3');
@@ -16,10 +67,12 @@ class Obstaculo extends Personaje {
         this.div.classList.remove('stone');
         this.div.classList.remove('caja1');
         this.div.classList.remove('caja2');
+        this.div.classList.remove('diamante');
         this.div.classList.remove('objetoBajo');
         this.div.classList.remove('objetoAlto');
 
         switch (random) {
+            
             case 7:
                 this.div.classList.add('caja2');
                 break;
@@ -38,19 +91,30 @@ class Obstaculo extends Personaje {
             case 2:
                 this.div.classList.add('cactus2');
                 break;
-            default:
+            case 1:
                 this.div.classList.add('cactus1');
                 break;
-        }
-        if (random < 6) {
-            this.div.classList.add('objetoBajo');
-            this.tipoObstaculo = 1;
-        }
-        else {
-            this.div.classList.add('objetoAlto');
-            this.tipoObstaculo = 2;
+            default:
+                this.div.classList.add('diamante');
+                break;
         }
 
+        if (random > 7) {
+            this.tipoObstaculo = 1;
+            this.div.classList.add('objetoBajo');
+            this.esRecolectable = true;}
+        else {
+            if (random < 6) {
+                this.div.classList.add('objetoBajo');
+                this.tipoObstaculo = 1;
+                this.esRecolectable = false;
+            }
+            else {
+                this.div.classList.add('objetoAlto');
+                this.tipoObstaculo = 2;
+                this.esRecolectable = false;
+            }
+        }
     }
 
     init() {
@@ -135,5 +199,9 @@ class Obstaculo extends Personaje {
         
         this.div.classList.remove('movilidad-obstaculo');
         this.div.classList.add('hide');
+    }
+
+    getEsRecolectable() {
+        return this.esRecolectable;
     }
 }

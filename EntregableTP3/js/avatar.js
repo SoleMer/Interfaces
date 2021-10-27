@@ -1,9 +1,12 @@
 class Avatar extends Personaje{
-    constructor(avatarCont, nro) {
+    constructor(avatarCont, nro, divPuntos) {
         super('avatar');
         this.muerto = false;
         this.nroPersonaje = nro;
         this.avatar = avatarCont;
+        this.puntos = 0;
+        this.divPuntos = divPuntos;
+        this.divPuntos.innerHTML = this.puntos; 
         this.caminar();
 
     }
@@ -109,22 +112,18 @@ class Avatar extends Personaje{
                 clearInterval(interval);
             }, 800);
         }
+        return this.puntos;
     }
 
     colision(obstaculo) {
-
-        if (this.getBottom() >= obstaculo.getTop()){
-            if (this.getRight()>obstaculo.getLeft() && this.getRight()<obstaculo.getRight()){
-                console.log("muere por izquierda");
-                return true;
+        if (obstaculo.colision(this)) {
+            if (obstaculo.getEsRecolectable()) {
+                this.puntos++;
+                this.divPuntos.innerHTML = this.puntos; 
+                obstaculo.eliminar();
             }
-            if (this.getLeft() > obstaculo.getLeft() && this.getLeft() < obstaculo.getRight()){
-                console.log("muere por derecha");
-                return true;
-
-            }
+            else return true;
         }
-        return false;
     }
 
     getRight() {
