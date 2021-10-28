@@ -127,7 +127,6 @@
     position: relative;
     /*bottom: 70px;*/
     bottom: -25px;
-    border: solid 1px red;
 }
 
 .caminando {
@@ -175,7 +174,6 @@
     animation: slide 0.8s steps(10) infinite;
     position: absolute;
     bottom: 30px;
-    border: solid 1px red;
 }
 
 @keyframes slide {
@@ -226,8 +224,6 @@
     transform: scaleX(-1);
     position: absolute;
     right: -200px;
-
-    border: solid 1px red;
 }
 
 .obstaculo2 {
@@ -243,6 +239,10 @@
 
 .movilidad-obstaculo {
     animation: mover 4.1s steps(9) ;
+}
+
+.movilidad-diamante {
+    animation: mover 4.1s steps(9) infinite;
 }
 
 @keyframes mover {
@@ -359,6 +359,15 @@
     display: flex;
 }
 
+.icon {
+    width: 25px;
+    height: auto;
+}
+
+.big-icon {
+    width: 45px;
+}
+
 .card-config {
     position: sticky;
     background-color: white;
@@ -368,7 +377,7 @@
     align-content: center;
     flex-basis: 20rem;
     flex-grow: 30rem;
-    max-height: 35vh;
+    max-height: 55vh;
     align-self: center;
     left: 40vw;
     font-family: monospace;

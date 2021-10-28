@@ -31,7 +31,15 @@
                     </select>
 
                     <button id="play" type="button" class="btn">Jugar!</button>
-                    <p>Evita los obstaculos saltando con la barra espaciadora y recoje los cristales para sumar puntos antes de que se acabe el tiempo
+                    <p>Saltá o deslizate para evitar los obstaculos
+                        y recojé los cristales o regalos para sumar puntos antes de que se acabe el tiempo.
+                    </p>
+                    <p>Saltar: <img src="./img/iconos/space-bar-key.png" class="icon big-icon"> /
+                        <img src="./img/iconos/up-arrow-key.jpeg" class="icon"> /
+                        <img src="./img/iconos/w-key.png" class="icon">
+                    </p>
+                    <p>Deslizar: <img src="./img/iconos/down-arrow-key.jpeg" class="icon"> /
+                        <img src="./img/iconos/s-key.jpeg" class="icon">
                     </p>
 
                 </div>
@@ -41,12 +49,12 @@
     </div>
 
     <div class="capa3 move-c3" id="capa3">
-        <div class = "info">
-            <div >
-            <h1>Time: <span id="timer"></span> </h1>
+        <div class="info">
+            <div>
+                <h1>Time: <span id="timer"></span> </h1>
             </div>
 
-            <div >
+            <div>
                 <h1> Puntos: <span id="points"></span></h1>
             </div>
         </div>
@@ -58,6 +66,7 @@
                 <div class="obstaculo" id="obstaculo3"></div>
                 <div class="obstaculo" id="obstaculo4"></div>
                 <div class="obstaculo" id="obstaculo5"></div>
+                <div class="obstaculo" id="diamante"></div>
             </div>
         </div>
     </div>
@@ -66,14 +75,14 @@
         <div class="card">
             <div class="content">
                 <div class="card-header">
-                    <div id = "muerto" class="avatar muerto personaje"></div>
+                    <div id="muerto" class="avatar muerto personaje"></div>
                     <h2>GAME OVER</h2>
                 </div>
                 <div class="card-body">
-                    <p>Puntos: <span id = "puntos-totales" ></span></p>
+                    <p>Puntos: <span id="puntos-totales"></span></p>
                 </div>
                 <div class="card-footer">
-                    
+                    <button id="restart">Volver a jugar</button>
                 </div>
             </div>
         </div>

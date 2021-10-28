@@ -88,6 +88,8 @@ class Avatar extends Personaje{
             this.div.classList.remove('deslizando-aventurero');
             this.div.classList.add('muriendo');
             this.div.classList.add('muriendo-aventurero');
+            let audioMuerto = new Audio('./sound/death.mp3');
+            audioMuerto.play();
             let interval = setInterval(() => {
                 this.div.classList.replace('muriendo-aventurero', 'muerto-aventurero');
                 this.div.classList.replace('muriendo', 'muerto');
@@ -118,6 +120,8 @@ class Avatar extends Personaje{
     colision(obstaculo) {
         if (obstaculo.colision(this)) {
             if (obstaculo.getEsRecolectable()) {
+                let audioRecolectado = new Audio('./sound/collect.wav');
+                audioRecolectado.play();
                 this.puntos++;
                 this.divPuntos.innerHTML = this.puntos; 
                 obstaculo.eliminar();
@@ -151,6 +155,10 @@ class Avatar extends Personaje{
     }
 
     getSinTiempo() {
+        if (this.sinTiempo) {
+            let audioVictoria = new Audio('./sound/victory.mp3');
+            audioVictoria.play();
+        }
         return this.sinTiempo;
     }
 

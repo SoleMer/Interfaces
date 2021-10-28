@@ -7,6 +7,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const settings = document.getElementById('settings');
     const escenario = document.getElementById('selectEscenario');
     const personaje = document.getElementById('selectPersonaje');
+    const restart = document.getElementById('restart');
+    restart.addEventListener('click', function() {
+        location.reload();
+    })
     let juego;
     let divCronometro = document.getElementById('timer');
     let divPuntos = document.getElementById('points');
@@ -32,5 +36,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         settings.classList.replace('settings', 'hide');
         juego.play();
     }
+
 
 });

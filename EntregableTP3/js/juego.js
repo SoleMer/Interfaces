@@ -6,12 +6,13 @@ class Juego {
         this.divsObstaculos = ['obstaculo1', 'obstaculo2', 'obstaculo3', 'obstaculo4', 'obstaculo5'];
         this.escenario = new Escenario(escenario);
         this.cuadroCronometro = cronometro;
+        this.recolectable = new Obstaculo('diamante', 2000, this.nroEscenario, true);
     }
     
     play() {
         iniciarCronometro(this.cuadroCronometro,this.avatarObj);
         let stop = false;
-        let intervalId = setInterval(loop, 10, this.avatarObj, this.obstaculos, this.escenario);
+        let intervalId = setInterval(loop, 10, this.avatarObj, this.obstaculos, this.escenario, this.recolectable);
         let i = -1;
         let espera = setInterval(() => {
             console.log(stop);
@@ -26,20 +27,20 @@ class Juego {
                     this.obstaculos[0].eliminar();
                     this.obstaculos.splice(0,1);
                 }
-                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 3000, this.nroEscenario));
+                this.obstaculos.push(new Obstaculo(this.divsObstaculos[i], 3000, this.nroEscenario, false));
             }
         }, 2000);
 
-        function loop(a, o, e) {
+        function loop(a, o, e, r) {
             if (!a.estaMuerto() && !a.gano()) {
                 o.forEach(obst => {
-                    if (a.colision(obst) || a.getSinTiempo()){
+                    if (a.colision(obst) || a.colision(r) || a.getSinTiempo()){
                         let puntos = a.morir();
                         detenerObstaculos(o);
                         e.detener();
                         clearInterval(intervalId);
                         showPupUp(a, puntos);
-                    }
+                    } 
                 });
             }
         }
@@ -47,6 +48,7 @@ class Juego {
         function detenerObstaculos(obstaculos) {
             obstaculos.forEach(o => {
                 o.stop();
+                o.eliminar();
             });
             stop = true;
             //showPupUp()
