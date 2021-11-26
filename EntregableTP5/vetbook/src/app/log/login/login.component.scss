@@ -1,0 +1,47 @@
+$vetbook-dark-gray: #535353;
+$vetbook-section-background: #E5E5E5;
+
+.container {
+    text-align: center;
+    margin-top: 5%;
+}
+.logo {
+    height: 10vh;
+    width: auto;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+}
+.welcome {
+    flex-basis: 25rem;
+    margin-left: 15%;
+}
+.welcome h1 {
+    font-size: 4em;
+    line-height: 1em;
+    color: $vetbook-dark-gray;
+}
+.form-content {
+    background-color: $vetbook-section-background;
+    flex-basis: 17rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $vetbook-dark-gray;  
+    text-align: center;
+    margin-left: 30%;
+}
+mat-label {
+    color: $vetbook-dark-gray;
+}
+.mat-form-field-ripple {
+    background-color: $vetbook-dark-gray;
+}
+form {
+    margin: 2rem 0 2rem;
+}
+button {
+    width: 13rem;
+    margin-bottom: 5%;
+}
