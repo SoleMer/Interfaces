@@ -1,0 +1,33 @@
+$vetbook-dark-gray: #535353;
+
+mat-card {
+    margin-top: 3%;
+}
+
+.card {
+    margin: 2% 5%;
+    color: $vetbook-dark-gray;
+}
+
+mat-divider {
+    border-top-color: $vetbook-dark-gray;
+}
+
+.mat-card .mat-divider-horizontal {
+    width: 92%;
+    margin: 0 4%;
+}
+.title {
+    margin-bottom: 0;
+}
+.card-body p {
+    margin-top: 1.5em;
+}
+
+.reactions {
+    display: flex;
+    margin-top: 5%;
+}
+app-reaction {
+    margin-right: 5%;
+}

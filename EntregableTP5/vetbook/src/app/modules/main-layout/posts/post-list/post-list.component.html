@@ -1,0 +1,21 @@
+<mat-card *ngFor="let post of posts" class="vet-section">
+    <div class="card card-header">
+        <h3 class="title">{{post.userName}}</h3>
+        <span class="secondary-information">{{post.date}}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="card card-body">
+        <p *ngIf="post.text != null">{{post.text}}</p>
+        <div *ngIf="post.images.length > 0" class="images">
+            <img *ngFor="letimg of post.images" src="img" alt="">
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="card card-footer">
+        <div class="reactions">
+            <app-reaction [type]='like' [quantity]=post.usersIdLiked.length></app-reaction>
+            <app-reaction [type]='comment' [quantity]=post.commentsList.length></app-reaction>
+            <app-reaction [type]='share' [quantity]=post.usersIdShared.length></app-reaction>
+        </div>
+    </div>
+</mat-card>
