@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'vetbook';
+
+  ngOnInit() {
+    localStorage.setItem('userId', '0');
+  }
 }

@@ -8,6 +8,8 @@ import { VetComponent } from './vet/vet.component';
 import { NavComponent } from 'src/app/modules/main-layout/nav/nav.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { ReactionComponent } from './posts/reaction/reaction.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ReactionComponent } from './posts/reaction/reaction.component';
     VetComponent,
     NavComponent,
     PostListComponent,
-    ReactionComponent
+    ReactionComponent,
+    ProfileComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,

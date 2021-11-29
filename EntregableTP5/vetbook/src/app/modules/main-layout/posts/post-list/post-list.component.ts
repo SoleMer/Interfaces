@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
 
@@ -13,11 +13,16 @@ export class PostListComponent implements OnInit {
     like: String = "like";
     comment: String = "comment";
     share: String = "share";
+    @Input() currentUserId: number = 0;
 
     constructor(private postSvc: PostService) { }
 
     ngOnInit(): void {
-        this.posts = this.postSvc.getPosts();
+        if (this.currentUserId == 0) {
+            this.posts = this.postSvc.getPosts();
+        } else {
+            this.posts = this.postSvc.getPostsByUserId(this.currentUserId);
+        }
     }
 
 }

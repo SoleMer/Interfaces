@@ -18,8 +18,12 @@ export class LoginComponent implements OnInit {
     login() {
         localStorage.setItem('userId', '1');
         this.timer = setTimeout(() => {
-            this.redirect(`home`);
+            this.redirect(`vet`);
         }, 100);
+    }
+
+    singup() {
+        this.redirect(`singup`);
     }
 
     redirect(path: string) {
