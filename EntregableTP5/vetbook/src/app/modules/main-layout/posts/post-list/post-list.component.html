@@ -13,9 +13,9 @@
     <mat-divider></mat-divider>
     <div class="card card-footer">
         <div class="reactions">
-            <app-reaction [type]='like' [quantity]=post.usersIdLiked.length></app-reaction>
-            <app-reaction [type]='comment' [quantity]=post.commentsList.length></app-reaction>
-            <app-reaction [type]='share' [quantity]=post.usersIdShared.length></app-reaction>
+            <app-reaction [type]='like' [quantity]=post.usersIdLiked.length [postId]="post.id"></app-reaction>
+            <app-reaction [type]='comment' [quantity]=post.commentsList.length [postId]="post.id"></app-reaction>
+            <app-reaction [type]='share' [quantity]=post.usersIdShared.length [postId]="post.id"></app-reaction>
         </div>
     </div>
 </mat-card>
