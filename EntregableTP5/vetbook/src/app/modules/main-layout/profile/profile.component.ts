@@ -13,6 +13,10 @@ export class ProfileComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+        let userId = localStorage.getItem('userId');
+        if (userId != null) {
+            this.userId = parseInt(userId);
+        }
     }
 
 }

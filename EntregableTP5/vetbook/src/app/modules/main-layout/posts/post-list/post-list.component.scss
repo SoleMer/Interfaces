@@ -1,4 +1,4 @@
-$vetbook-dark-gray: #535353;
+
 
 mat-card {
     margin-top: 3%;
@@ -6,11 +6,11 @@ mat-card {
 
 .card {
     margin: 2% 5%;
-    color: $vetbook-dark-gray;
+    color: var(--vetbook-dark-gray);
 }
 
 mat-divider {
-    border-top-color: $vetbook-dark-gray;
+    border-top-color: var(--vetbook-dark-gray);
 }
 
 .mat-card .mat-divider-horizontal {

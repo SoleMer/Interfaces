@@ -1,9 +1,14 @@
+
 .navegation {
     position: relative;
     display: inline;
     float: right;
     top: 1rem;
-    right: 1rem;
+    right: -75rem;
+}
+
+.nav-icon {
+    margin-right: 2%;
 }
 
 .logo {
@@ -15,4 +20,38 @@
     height: 35px;
     width: auto;
     margin: 0 0.5rem;
+}
+nav {
+    display: flex;
+}
+form {
+    margin-top: 0.5%;
+}
+.hide {
+    display: none;
+}
+
+.search {
+    position: fixed;
+    background-color: white;
+    top: 3rem;
+    left: 13rem;
+    width: 12rem;
+}
+.search .user {
+    padding: 5%;
+}
+.user:hover {
+    background-color: var(--vetbook-light-primary);
+}
+.search p {
+    margin-bottom: 0;
+    font-size: large;
+}
+.search span {
+    font-size: smaller;
+}
+
+mat-divider {
+    border-top-color: var(--vetbook-dark-gray);
 }

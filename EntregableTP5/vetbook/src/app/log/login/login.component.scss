@@ -1,5 +1,3 @@
-$vetbook-dark-gray: #535353;
-$vetbook-section-background: #E5E5E5;
 
 .container {
     text-align: center;
@@ -21,22 +19,23 @@ $vetbook-section-background: #E5E5E5;
 .welcome h1 {
     font-size: 4em;
     line-height: 1em;
-    color: $vetbook-dark-gray;
+    color: var(--vetbook-dark-gray);
 }
 .form-content {
-    background-color: $vetbook-section-background;
+    background-color: var(--vetbook-section-background);
     flex-basis: 17rem;
     display: flex;
     flex-direction: column;
-    border: 1px solid $vetbook-dark-gray;  
+    border: 1px solid var(--vetbook-dark-gray);
     text-align: center;
     margin-left: 30%;
 }
 mat-label {
-    color: $vetbook-dark-gray;
+    color: var(--vetbook-dark-gray);
 }
-.mat-form-field-ripple {
-    background-color: $vetbook-dark-gray;
+
+.mat-form-field-underline {
+    border-bottom-color: var(--vetbook-dark-gray);
 }
 form {
     margin: 2rem 0 2rem;

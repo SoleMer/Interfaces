@@ -6,14 +6,26 @@ const POSTS: Post[] = [
         id: 1,
         date: new Date(), //arreglar formato de fecha
         userId: 1,
-        userName: "Nombre Usuario",
+        userName: "Juan Perez",
         text: "Hola mundo!",
         images: [],
         video: "",
         usersIdLiked: [],
         commentsList: [],
         usersIdShared: [],
-    } //agregar más posts
+    }, //agregar más posts
+    {
+        id: 2,
+        date: new Date(), //arreglar formato de fecha
+        userId: 2,
+        userName: "María García",
+        text: "Hola mundo!",
+        images: [],
+        video: "",
+        usersIdLiked: [],
+        commentsList: [],
+        usersIdShared: [],
+    }
 ]
 
 @Injectable({

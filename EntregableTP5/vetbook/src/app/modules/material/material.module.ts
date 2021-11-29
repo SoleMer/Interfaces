@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -19,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    ReactiveFormsModule,
   ],
   exports: [
       MatIconModule,
@@ -28,6 +29,7 @@ import { MatDividerModule } from '@angular/material/divider';
       MatButtonModule,
       MatCardModule,
       MatDividerModule,
+      ReactiveFormsModule,
   ]
 })
 export class MaterialModule { }

@@ -18,6 +18,7 @@ export class PostListComponent implements OnInit {
     constructor(private postSvc: PostService) { }
 
     ngOnInit(): void {
+        
         if (this.currentUserId == 0) {
             this.posts = this.postSvc.getPosts();
         } else {

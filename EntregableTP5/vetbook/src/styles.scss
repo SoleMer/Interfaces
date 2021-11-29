@@ -12,48 +12,50 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-
-$vetbook-primary: #651fff;
-$vetbook-accent: #52BF98;
-$vetbook-light-accent: #9EEBCF;
-$vetbook-warn: #ec407a;
-$vetbook-background: #E5E5E5;
-$vetbook-background-section: #F0F0F0;
-$vetbook-dark-gray: #535353;
+:root {
+--vetbook-primary: #651fff;
+--vetbook-light-primary: #DDC7FA;
+--vetbook-accent: #52BF98;
+--vetbook-light-accent: #9EEBCF;
+--vetbook-warn: #ec407a;
+--vetbook-background: #E5E5E5;
+--vetbook-background-section: #F0F0F0;
+--vetbook-dark-gray: #535353;
+}
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 //@include mat.all-component-themes($vetbook-theme);
 
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files*/
 
 html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: $vetbook-background;
+    background-color: var(--vetbook-background);
 }
 nav {
-    background-color: $vetbook-primary;
+    background-color: var(--vetbook-primary);
     width: 100%;
     height: 4rem;
 }
 .btn-done {
-    background-color: $vetbook-accent;
-    color: $vetbook-dark-gray;
+    background-color: var(--vetbook-accent);
+    color: var(--vetbook-dark-gray);
 }
 .btn-done:hover {
-    background-color: $vetbook-light-accent;
+    background-color: var(--vetbook-light-accent);
 }
 a {
-    color: $vetbook-primary;
+    color: var(--vetbook-primary);
 }
 a:hover {
     font-weight: bold;
     cursor: pointer;
 }
 .vet-section {
-    background-color: $vetbook-background-section;
+    background-color: var(--vetbook-background-section);
 }
 .title {
     font-weight: bold!important;
@@ -63,3 +65,4 @@ a:hover {
 .secondary-information {
     font-size: smaller;
 }
+
