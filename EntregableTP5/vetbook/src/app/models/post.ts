@@ -1,10 +1,10 @@
 import { NodeCompatibleEventEmitter } from "rxjs/internal/observable/fromEvent";
+import { User } from "./user";
 
 export interface Post {
     id: number;
     date: Date;
-    userId: number;
-    userName: String;
+    user: User;
     text: String;
     images: String[];
     video: String;

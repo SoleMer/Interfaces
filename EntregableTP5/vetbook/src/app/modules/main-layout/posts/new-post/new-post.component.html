@@ -1,8 +1,14 @@
 <mat-card class="vet-section">
-    <form>
+    <div class="card">
+        <img src="{{userProfilePicture}} " alt="" class="profile-pic-min">
+        <form>
 
-        <input type="text" placeholder="Escribe una publicación..." [class]="!writing ? 'initial-input' : 'hide'" class="input" matInput autocomplete="off" (click)="togglePosting()">
-        <textarea type="text" placeholder="¿Qué está pasando?" [class]="writing ? 'writing-input' : 'hide'" class="input" matInput autocomplete="off"></textarea>
-        <button mat-raised-button class="btn-done" [class]="writing ? '' : 'hide'" (click)="togglePosting()">Publicar</button>
-    </form>
+            <input type="text" placeholder="Escribe una publicación..." [class]="!writing ? 'initial-input' : 'hide'"
+                class="input" matInput autocomplete="off" (click)="togglePosting()">
+            <textarea type="text" placeholder="¿Qué está pasando?" [class]="writing ? 'writing-input' : 'hide'"
+                class="input" matInput autocomplete="off"></textarea>
+            <button mat-raised-button class="btn-done" [class]="writing ? '' : 'hide'"
+                (click)="togglePosting()">Publicar</button>
+        </form>
+    </div>
 </mat-card>

@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    userId = 0;
+    userId = 1;
 
     constructor() { }
 
     ngOnInit(): void {
-        let userId = localStorage.getItem('userId');
+        /*let userId = localStorage.getItem('userId');
         if (userId != null) {
             this.userId = parseInt(userId);
-        }
+        }*/
     }
 
 }

@@ -11,6 +11,7 @@ import { ReactionComponent } from './posts/reaction/reaction.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     ReactionComponent,
     ProfileComponent,
     ChatComponent,
-    NewPostComponent
+    NewPostComponent,
+    ProfileHeaderComponent
   ],
   imports: [
     CommonModule,

@@ -16,15 +16,15 @@ const USERS: User[] = [
         name: "Juan",
         lastname: "Perez",
         description: "Veterinario",
-        profilePicture: "",
-        coverPicture: "",
+        profilePicture: "../../assets/profiles-pictures/fotos/perfil.png",
+        coverPicture: "../../assets/profiles-pictures/fotos/back.png",
     },
     {
         id: 2,
         name: "María",
         lastname: "García",
         description: "Aficionada",
-        profilePicture: "",
+        profilePicture: "../../assets/profiles-pictures/perfil5.png",
         coverPicture: "",
     }
 ]; //agregar usuarios
@@ -33,11 +33,43 @@ const USERS: User[] = [
   providedIn: 'root'
 })
 export class UserService {
+   
     
     constructor() { }
     
     
     getUsers(): User[] {
         return USERS;
+    }
+   
+    getCurrentUserProfilePicture(): String {
+        let userId = localStorage.getItem('userId');
+        if (typeof(userId) === "string") {
+            let userIdInt = parseInt(userId);
+            let user = USERS.find(u => u.id === userIdInt);
+            if (user != null) {
+                return user.profilePicture;
+            }
+        }
+        return "";
+    }
+
+    getUser(userId: string | null): User {
+        let id = 1;
+        if (userId != null) {
+            id = parseInt(userId);
+        }
+        let user = USERS.find(u => u.id === id);
+        if (user!= null) {
+            return user;
+        }
+        return {
+            id: 0,
+            name: "",
+            lastname: "",
+            description: "",
+            profilePicture: "",
+            coverPicture: "",
+        }
     }
 }

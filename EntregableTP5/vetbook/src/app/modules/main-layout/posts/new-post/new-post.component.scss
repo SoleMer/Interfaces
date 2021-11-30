@@ -3,7 +3,8 @@ mat-card {
 }
 
 .card {
-    margin: 2% 5%;
+    display: flex;
+    margin: 2% 3.5%;
     color: var(--vetbook-dark-gray);
 }
 
@@ -12,7 +13,7 @@ mat-card {
 }
 
 .input {
-    width: 85%;
+    width: 27rem;
     background-color: white;
     border: solid 1px var(--vetbook-dark-gray);
     border-radius: 2px;
@@ -27,7 +28,7 @@ mat-card {
 }
 
 button {
-    left: 28rem;
+    left: 22rem;
     bottom: -0.5rem;
 }
 

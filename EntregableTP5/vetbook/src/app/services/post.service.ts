@@ -5,27 +5,39 @@ const POSTS: Post[] = [
     {
         id: 1,
         date: new Date(), //arreglar formato de fecha
-        userId: 1,
-        userName: "Juan Perez",
-        text: "Hola mundo!",
+        user: {
+            id: 1,
+            name: "Juan",
+            lastname: "Perez",
+            description: "Veterinario",
+            profilePicture: "../../assets/profiles-pictures/perfil6.png",
+            coverPicture: "",
+        },
+        text: "",
+        images: ["../..//assets/posts/images/img3.png"],
+        video: "",
+        usersIdLiked: [],
+        commentsList: [],
+        usersIdShared: [],
+    },
+    {
+        id: 2,
+        date: new Date(), //arreglar formato de fecha
+        user: {
+            id: 2,
+            name: "María",
+            lastname: "García",
+            description: "Aficionada",
+            profilePicture: "../../assets/profiles-pictures/perfil5.png",
+            coverPicture: "",
+        },
+        text: "Teo, te estamos buscando, te extrañamos! Por favor si alguien lo ha visto o lo tiene comunicarse al 333-3333 lo estamos esperando.",
         images: [],
         video: "",
         usersIdLiked: [],
         commentsList: [],
         usersIdShared: [],
     }, //agregar más posts
-    {
-        id: 2,
-        date: new Date(), //arreglar formato de fecha
-        userId: 2,
-        userName: "María García",
-        text: "Hola mundo!",
-        images: [],
-        video: "",
-        usersIdLiked: [],
-        commentsList: [],
-        usersIdShared: [],
-    }
 ]
 
 @Injectable({
@@ -42,7 +54,7 @@ export class PostService {
 
     //Devuelve los post de un solo usuario, se usa en el perfil
     getPostsByUserId(userId: number): Post[] {
-        return POSTS.filter(p => p.userId === userId);
+        return POSTS.filter(p => p.user.id === userId);
     }
 
     getPost(postId: number): Post {
@@ -53,8 +65,14 @@ export class PostService {
         return {
             id: 0,
             date: new Date(),
-            userId: 0,
-            userName: "",
+            user: {
+                id: 0,
+                name: "",
+                lastname: "",
+                description: "",
+                profilePicture: "",
+                coverPicture: "",
+            },
             text: "",
             images: [],
             video: "",

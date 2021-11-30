@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-new-post',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class NewPostComponent implements OnInit {
 
     writing: boolean = false;
+    userProfilePicture: String = "../../assets/profiles-pictures/perfil6.png";
 
-  constructor() { }
+  constructor(private userSvc: UserService) { }
 
   ngOnInit(): void {
+    //  this.userProfilePicture = this.userSvc.getCurrentUserProfilePicture();
   }
 
   togglePosting() {
