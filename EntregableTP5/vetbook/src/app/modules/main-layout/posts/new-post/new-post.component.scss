@@ -1,0 +1,36 @@
+mat-card {
+    margin-top: 3%;
+}
+
+.card {
+    margin: 2% 5%;
+    color: var(--vetbook-dark-gray);
+}
+
+::-webkit-input-placeholder {
+    color: var(--vetbook-light-primary);
+}
+
+.input {
+    width: 85%;
+    background-color: white;
+    border: solid 1px var(--vetbook-dark-gray);
+    border-radius: 2px;
+}
+
+.initial-input {
+    height: 40px;
+}
+
+.writing-input {
+    height: 100px;
+}
+
+button {
+    left: 28rem;
+    bottom: -0.5rem;
+}
+
+.hide {
+    display: none;
+}

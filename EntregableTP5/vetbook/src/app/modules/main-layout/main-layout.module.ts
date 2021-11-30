@@ -10,6 +10,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { ReactionComponent } from './posts/reaction/reaction.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
+import { NewPostComponent } from './posts/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ChatComponent } from './chat/chat.component';
     PostListComponent,
     ReactionComponent,
     ProfileComponent,
-    ChatComponent
+    ChatComponent,
+    NewPostComponent
   ],
   imports: [
     CommonModule,
