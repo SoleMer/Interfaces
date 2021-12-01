@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
     searchClass: String = "hide";
     filter!: FormGroup;
     dataSource: User[] = [];
+    profileOptionClass: String = "hide";
 
     constructor(private userSvc: UserService,
         private formBuilder: FormBuilder) { }
@@ -51,6 +52,14 @@ export class NavComponent implements OnInit {
             this.searchClass = "hide";
         } else {
             this.searchClass = "search";
+        }
+    }
+
+    toggleProfileOption() {
+        if (this.profileOptionClass == "view") {
+            this.profileOptionClass = "hide";
+        } else {
+            this.profileOptionClass = "view";
         }
     }
 

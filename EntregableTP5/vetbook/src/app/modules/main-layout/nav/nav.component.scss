@@ -13,7 +13,7 @@
 
 .logo {
     height: 50px;
-    margin: 0.5rem 1rem;
+    margin: 0.2rem 1rem;
 }
 
 .icon {
@@ -30,7 +30,35 @@ form {
 .hide {
     display: none;
 }
-
+.view {
+    position: fixed;
+    background-color: white;
+    top: 3rem;
+    right: 5.8rem;
+    width: 10rem;
+}
+.view .option {
+    display: flex;
+}
+.option:hover {
+    cursor: pointer;
+    background-color: var(--vetbook-light-primary);
+}
+.view .label {
+    margin-top: 5%;
+}
+.label-text {
+    color: var(--vetbook-dark-gray);
+    font-size: large;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+    font-weight: initial;
+}
 .search {
     position: fixed;
     background-color: white;
