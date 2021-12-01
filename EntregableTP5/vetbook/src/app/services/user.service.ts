@@ -33,7 +33,7 @@ const USERS: User[] = [
   providedIn: 'root'
 })
 export class UserService {
-   
+    
     
     constructor() { }
     
@@ -72,4 +72,13 @@ export class UserService {
             coverPicture: "",
         }
     }
+
+    getRecommendations(): User[] {
+        let recommendations : User[] = [];
+        for (let i = 1; i < 4; i++) {
+            recommendations.push(USERS[1]);
+        };
+        return recommendations;
+    }
+   
 }

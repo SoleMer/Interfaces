@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
     ProfileComponent,
     ChatComponent,
     NewPostComponent,
-    ProfileHeaderComponent
+    ProfileHeaderComponent,
+    RecommendationsComponent
   ],
   imports: [
     CommonModule,
