@@ -6,3 +6,12 @@ img {
     width: auto;
     margin-right: 20%;
 }
+img:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
+}
+
+span:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
+}

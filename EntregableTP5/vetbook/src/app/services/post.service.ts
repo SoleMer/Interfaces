@@ -40,10 +40,30 @@ const POSTS: Post[] = [
     }, //agregar más posts
 ]
 
+const AD: Post = {
+    id: 0,
+    date: new Date(), //arreglar formato de fecha
+    user: {
+        id: 0,
+        name: "Balanceados Exibal",
+        lastname: "",
+        description: "Publicidad",
+        profilePicture: "../../assets/profiles-pictures/exibal.svg",
+        coverPicture: "",
+    },
+    text: "",
+    images: ["../../../../assets/posts/images/pub.png"],
+    video: "",
+    usersIdLiked: [],
+    commentsList: [],
+    usersIdShared: [],
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class PostService {
+    
 
     constructor() { }
 
@@ -106,5 +126,9 @@ export class PostService {
             return post.usersIdLiked.includes(parseInt(userId))
         }
         return false;
+    }
+
+    getAd(): Post {
+        return AD;
     }
 }

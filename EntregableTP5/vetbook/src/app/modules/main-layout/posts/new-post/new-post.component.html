@@ -1,4 +1,8 @@
 <mat-card class="vet-section">
+    <div class="card-header">
+        <h2 [class]="writing ? 'create' : 'hide'">Crear publicación</h2>
+        <img src="../../../../../assets/posts/delete-x.svg" alt="cancelar" [class]="writing ? 'icon' : 'hide'" (click)="togglePosting()">
+    </div>
     <div class="card">
         <img src="{{userProfilePicture}} " alt="" class="profile-pic-min">
         <form>
@@ -7,8 +11,15 @@
                 class="input" matInput autocomplete="off" (click)="togglePosting()">
             <textarea type="text" placeholder="¿Qué está pasando?" [class]="writing ? 'writing-input' : 'hide'"
                 class="input" matInput autocomplete="off"></textarea>
-            <button mat-raised-button class="btn-done" [class]="writing ? '' : 'hide'"
-                (click)="togglePosting()">Publicar</button>
+            <div class="card-footer">
+                <div class="add-items">
+                    <img src="../../../../../assets/posts/add-video.svg" alt="agregar video" class="item video">
+                    <img src="../../../../../assets/posts/add-img.svg" alt="agregar imagen" class="item image">
+                    <img src="../../../../../assets/posts/add-link.svg" alt="agregar link" class="item link">
+                </div>
+                <button mat-raised-button class="btn-done" [class]="writing ? '' : 'hide'"
+                    (click)="togglePosting()">Publicar</button>
+            </div>
         </form>
     </div>
 </mat-card>

@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 export class RecommendationsComponent implements OnInit {
 
     users: User[] = [];
+    addImg: String ="../../../../assets/posts/add-green.svg";
+    deleteImg: String = "../../../../assets/posts/delete-x.svg";
 
   constructor(private userSvc: UserService) { }
 

@@ -1,7 +1,21 @@
 mat-card {
     margin-top: 3%;
+    color: var(--vetbook-dark-gray);
 }
-
+.card-header {
+    display: flex;
+}
+.create {
+    margin-left: 5rem;
+}
+.icon {
+    margin-bottom: 1rem;
+    margin-left: 16.8rem;
+}
+.icon:hover {
+    width: 14px;
+    cursor: pointer;
+}
 .card {
     display: flex;
     margin: 2% 3.5%;
@@ -28,10 +42,29 @@ mat-card {
 }
 
 button {
-    left: 22rem;
+    left: 14rem; //14rem
     bottom: -0.5rem;
 }
 
 .hide {
     display: none;
+}
+.card-footer {
+    display: flex;
+}
+
+
+.add-items {
+        flex-basis: 8rem;
+    margin-top: 1rem;
+}
+.item {
+    height: 20px;
+    width: auto;
+    margin-right: 13%; 
+    
+}
+.item:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
 }

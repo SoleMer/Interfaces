@@ -16,11 +16,12 @@
         </div>
     </div>
     <div class="navegation">
-        <a [routerLink]="['home']"><img src="../../assets/nav/HouseDoor.svg" alt="home" class="icon"></a>
-        <a [routerLink]="['chat']"><img src="../../assets/nav/ChatLeftDots.svg" alt="chat" class="icon"></a>
+        <a [routerLink]="['home']"><img src="../../assets/nav/HouseDoor.svg" alt="home" class="icon home" (click)="updateSelectorPage()"></a>
+        <a [routerLink]="['chat']"><img src="../../assets/nav/ChatLeftDots.svg" alt="chat" class="icon chat" (click)="updateSelectorPage()"></a>
         <a (click)="toggleProfileOption()"><img src="../../assets/nav/purple-profile-icon.png" alt="profile"
-                class="icon"></a>
-        <a href=""><img src="../../assets/nav/Bell.svg" alt="news" class="icon"></a>
+                class="icon profile"></a>
+        <a ><img src="../../assets/nav/Bell.svg" alt="news" class="icon bell" (click)="updateSelectorPage()"></a>
+        <div class="{{selectorPage}} selector"></div>
     </div>
     <div class="{{profileOptionClass}}">
         <a [routerLink]="['profile']">
@@ -29,11 +30,11 @@
                 <div class="label">
                     <mat-label class="label-text">Ver perfil</mat-label>
                 </div>
-            </div>
+            </div> 
         </a>
         <a [routerLink]="['../login']">
             <div class="option" (click)="toggleProfileOption()">
-                <img src="../../assets/nav/purple-profile-icon.png" alt="profile" class="icon">
+                <img src="../../../../assets/posts/logout(1).svg" alt="logout" class="icon">
                 <div class="label">
                     <mat-label class="label-text">Cerrar sesión</mat-label>
                 </div>

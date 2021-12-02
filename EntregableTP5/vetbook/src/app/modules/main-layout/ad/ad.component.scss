@@ -1,10 +1,7 @@
-.person {
-    display: flex;
-    margin: 1rem 0;
-}
 mat-card {
     color: var(--vetbook-dark-gray);
 }
+
 .name {
     margin-bottom: 0;
     font-size: large;
@@ -12,10 +9,12 @@ mat-card {
 .user-info {
     line-height: 1px;
 }
-.add {
-    margin-left: 17%;
-    margin-top: 2%;
+
+.card-header {
+    display: flex;
+    margin: 1rem 0;
 }
-.add:hover {
-    cursor: pointer;
+
+.post-img {
+    width: 14rem;
 }
