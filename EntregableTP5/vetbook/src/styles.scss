@@ -35,6 +35,17 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: var(--vetbook-background);
 }
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--vetbook-dark-gray);
+    border-radius: 40px;
+}
 nav {
     background-color: var(--vetbook-primary);
     width: 100%;
@@ -64,4 +75,9 @@ a:hover {
 
 .secondary-information {
     font-size: smaller;
+}
+.profile-pic-min {
+    margin-right: 3%;
+    height: 50px;
+    width: auto;
 }

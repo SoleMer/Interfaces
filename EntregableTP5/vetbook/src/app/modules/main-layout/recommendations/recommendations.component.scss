@@ -1,0 +1,21 @@
+.person {
+    display: flex;
+    margin: 1rem 0;
+}
+mat-card {
+    color: var(--vetbook-dark-gray);
+}
+.name {
+    margin-bottom: 0;
+    font-size: large;
+}
+.user-info {
+    line-height: 1px;
+}
+.add {
+    margin-left: 17%;
+    margin-top: 2%;
+}
+.add:hover {
+    cursor: pointer;
+}

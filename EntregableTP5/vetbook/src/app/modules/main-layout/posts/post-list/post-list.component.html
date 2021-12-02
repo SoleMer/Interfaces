@@ -1,13 +1,15 @@
 <mat-card *ngFor="let post of posts" class="vet-section">
     <div class="card card-header">
-        <h3 class="title">{{post.userName}}</h3>
-        <span class="secondary-information">{{post.date}}</span>
+        <img src="{{post.user.profilePicture}}" alt="" class="profile-pic-min">
+        <div class="user-info">
+            <h3 class="title">{{post.user.name}} {{post.user.lastname}}</h3>
+            <span class="secondary-information">{{post.date}}</span>
+        </div>
     </div>
-    <mat-divider></mat-divider>
     <div class="card card-body">
         <p *ngIf="post.text != null">{{post.text}}</p>
         <div *ngIf="post.images.length > 0" class="images">
-            <img *ngFor="letimg of post.images" src="img" alt="">
+            <img *ngFor="let img of post.images" src="{{img}}" alt="" class="post-img">
         </div>
     </div>
     <mat-divider></mat-divider>

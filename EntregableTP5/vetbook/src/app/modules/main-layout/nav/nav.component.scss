@@ -13,7 +13,7 @@
 
 .logo {
     height: 50px;
-    margin: 0.5rem 1rem;
+    margin: 0.2rem 1rem;
 }
 
 .icon {
@@ -30,7 +30,38 @@ form {
 .hide {
     display: none;
 }
-
+.view {
+    position: fixed;
+    background-color: white;
+    top: 3rem;
+    right: 5.8rem;
+    width: 11rem;
+    z-index: 999;
+    
+}
+.view .option {
+    display: flex;
+    padding: 3%;
+}
+.option:hover {
+    cursor: pointer;
+    background-color: var(--vetbook-light-primary);
+}
+.view .label {
+    margin-top: 5%;
+}
+.label-text {
+    color: var(--vetbook-dark-gray);
+    font-size: large;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+    font-weight: initial;
+}
 .search {
     position: fixed;
     background-color: white;
@@ -54,4 +85,26 @@ form {
 
 mat-divider {
     border-top-color: var(--vetbook-dark-gray);
+}
+
+.home:visited {
+    content: url(../../../../assets/posts/fill-home.svg);
+}
+
+.selector {
+    width: 50px;
+    height: 7px;
+    background-color: #520EA8;
+}
+
+.selector-chat {
+    margin-left: 3.2rem;
+}
+
+.selector-profile {
+    margin-left: 6.3rem;
+}
+
+.selector-bell {
+    margin-left: 9.6rem;
 }

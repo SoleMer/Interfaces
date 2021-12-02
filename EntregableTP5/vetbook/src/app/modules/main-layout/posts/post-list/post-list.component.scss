@@ -5,12 +5,12 @@ mat-card {
 }
 
 .card {
-    margin: 2% 5%;
+    margin: 2% 3.5%;
     color: var(--vetbook-dark-gray);
 }
 
 mat-divider {
-    border-top-color: var(--vetbook-dark-gray);
+    border-top: solid 3px var(--vetbook-background);
 }
 
 .mat-card .mat-divider-horizontal {
@@ -19,6 +19,9 @@ mat-divider {
 }
 .title {
     margin-bottom: 0;
+}
+.card-header {
+    display: flex;
 }
 .card-body p {
     margin-top: 1.5em;
@@ -30,4 +33,8 @@ mat-divider {
 }
 app-reaction {
     margin-right: 5%;
+}
+
+.post-img {
+    width: 31rem;
 }

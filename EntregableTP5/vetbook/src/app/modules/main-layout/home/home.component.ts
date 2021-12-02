@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 @Component({
@@ -10,9 +11,10 @@ export class HomeComponent implements OnInit {
 
     userId = 0;
 
-    constructor() { }
+    constructor(private generalSvc: GeneralService) { }
 
     ngOnInit(): void {
+        this.generalSvc.setCurrentPage("home");
     }
 
 }

@@ -41,4 +41,15 @@ export class ReactionComponent implements OnInit {
         }
     }
 
+    hover(event: Event) {
+        console.log(event)
+        if (this.type == "like") {
+            this.pathImg = "../../../../../assets/posts/megustalleno.svg";
+        } else if (this.type == "comment") {
+            this.pathImg = "../../../../../assets/posts/comentar.svg";
+        } else if (this.type == "share") {
+            this.pathImg = "../../../../../assets/posts/compartir.svg";
+        }
+    }
+
 }

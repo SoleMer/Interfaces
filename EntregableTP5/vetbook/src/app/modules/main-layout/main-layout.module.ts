@@ -11,6 +11,10 @@ import { ReactionComponent } from './posts/reaction/reaction.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
+import { IconComponent } from './icon/icon.component';
+import { AdComponent } from './ad/ad.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     ReactionComponent,
     ProfileComponent,
     ChatComponent,
-    NewPostComponent
+    NewPostComponent,
+    ProfileHeaderComponent,
+    RecommendationsComponent,
+    IconComponent,
+    AdComponent
   ],
   imports: [
     CommonModule,

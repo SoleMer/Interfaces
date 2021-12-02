@@ -1,0 +1,13 @@
+<mat-card class="vet-section">
+    <h3>Recomendaciones</h3>
+    <div class="card">
+        <div *ngFor="let user of users" class="person">
+            <img src="{{user.profilePicture}} " alt="" class="profile-pic-min">
+            <div class="user-info">
+                <h3 class="name">{{user.name}} {{user.lastname}}</h3>
+                <span class="secondary-information">{{user.description}}</span>
+            </div>
+            <app-icon class="add" [img1]="addImg" [img2]="deleteImg"></app-icon>
+        </div>
+    </div>
+</mat-card>

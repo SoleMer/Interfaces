@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 @Component({
@@ -8,15 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    userId = 0;
+    userId = 1;
 
-    constructor() { }
+    constructor(private generalSvc: GeneralService) { }
 
     ngOnInit(): void {
-        let userId = localStorage.getItem('userId');
+        this.generalSvc.setCurrentPage("profile");
+        /*let userId = localStorage.getItem('userId');
         if (userId != null) {
             this.userId = parseInt(userId);
-        }
+        }*/
     }
 
 }

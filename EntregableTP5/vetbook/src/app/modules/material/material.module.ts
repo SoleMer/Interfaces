@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
   declarations: [],
@@ -20,6 +22,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatDividerModule,
     ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   exports: [
       MatIconModule,
@@ -30,6 +34,8 @@ import { MatDividerModule } from '@angular/material/divider';
       MatCardModule,
       MatDividerModule,
       ReactiveFormsModule,
+      MatOptionModule,
+      MatSelectModule,
   ]
 })
 export class MaterialModule { }
