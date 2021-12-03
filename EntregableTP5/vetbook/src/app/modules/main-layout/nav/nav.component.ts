@@ -1,7 +1,9 @@
 import { AbstractType, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { GeneralService } from 'src/app/services/general.service';
+import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,21 +13,20 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavComponent implements OnInit {
 
-    users: User[] = [];
-    searchClass: String = "hide";
-    filter!: FormGroup;
     dataSource: User[] = [];
     profileOptionClass: String = "hide";
     selectorPage: String = "home";
+    timer: any;
+    filter!: FormGroup;
+
 
     constructor(private userSvc: UserService,
         private formBuilder: FormBuilder,
-        private generalSvc: GeneralService) { }
+        private generalSvc: GeneralService,
+        private searchSvc: SearchService) { }
 
     ngOnInit(): void {
         this.updateSelectorPage();
-        this.users = this.userSvc.getUsers();
-        this.dataSource = this.users;
         this.filter = this.formBuilder.group({
             search: [null, null],
         });
@@ -50,34 +51,6 @@ export class NavComponent implements OnInit {
         }
     }
 
-    applyFilter() {
-        this.dataSource = [];
-        this.users.forEach(u => {
-            if (!this.dataSource.includes(u)) {
-                if (u.name.toLowerCase().includes(this.filter.value.search.trim().toLowerCase())
-                    && !this.dataSource.includes(u)) {
-                    this.dataSource.push(u);
-                }
-                if (u.lastname.toLowerCase().includes(this.filter.value.search.trim().toLowerCase())
-                    && !this.dataSource.includes(u)) {
-                    this.dataSource.push(u);
-                }
-                if (u.description.toLowerCase().includes(this.filter.value.search.trim().toLowerCase())
-                    && !this.dataSource.includes(u)) {
-                    this.dataSource.push(u);
-                }
-            }
-        });
-    }
-
-    searchToggle() {
-        if (this.searchClass == "search") {
-            this.searchClass = "hide";
-        } else {
-            this.searchClass = "search";
-        }
-    }
-
     toggleProfileOption(page: string) {
         if (this.profileOptionClass == "view") {
             this.profileOptionClass = "hide";
@@ -94,4 +67,17 @@ export class NavComponent implements OnInit {
         this.updateSelectorPage();
     }
 
+    readSearch(event: KeyboardEvent) {
+        if (event.key === "Enter") {
+            console.log(this.filter.value.search)   
+            this.searchSvc.setKeyWord(this.filter.value.search.trim().toLowerCase());
+            this.timer = setTimeout(() => {
+                this.redirect(`vet/search`);
+            }, 1000);
+        }
+    }
+
+    redirect(path: string) {
+        location.href = path;
+    }
 }

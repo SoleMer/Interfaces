@@ -1,0 +1,28 @@
+<div class="container">
+    <div *ngIf="typeResults == 'persons'" class="section">
+        <div *ngIf="posts.length > 0 ; else noResult">
+            <h3 class="result-title there-are-results">Personas encontradas: {{persons.length}}</h3>
+            <app-person-list></app-person-list>
+        </div>
+    </div>
+    <div *ngIf="typeResults == 'posts'" class="section">
+        <div *ngIf="posts.length > 0 ; else noResult">
+            <h3 class="result-title there-are-results">Publicaciones encontradas: {{posts.length}}</h3>
+            <app-post-list></app-post-list>
+        </div>
+    </div>
+    <div *ngIf="typeResults == 'ads'"  class="section">
+        <div *ngIf="ads.length > 0 ; else noResult">
+            <h3 class="result-title there-are-results">Publicidades encontradas: {{ads.length}}</h3>
+            <app-ad-list></app-ad-list>
+        </div>
+    </div>
+</div>
+
+<ng-template #noResult>
+    <div class="no-result">
+        <h3 class="no-result-title result-title">No se encontraron publicidades.</h3>
+        <p class="no-result-p">Revisá tu ortografía. </p>
+        <p class="no-result-p">Probá no usar caracteres especiales como: *?´%&$ </p>
+    </div>
+</ng-template>

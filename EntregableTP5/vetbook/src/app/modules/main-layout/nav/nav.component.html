@@ -3,18 +3,10 @@
     <form [formGroup]="filter">
         <mat-form-field class="filter">
             <mat-label>Buscar</mat-label>
-            <input formControlName="search" matInput autocomplete="off" (click)="searchToggle()"
-                (keyup)="applyFilter()">
+            <input formControlName="search" matInput autocomplete="off"
+                (keyup)="readSearch($event)">
         </mat-form-field>
     </form>
-    <div class="{{searchClass}}">
-        <div *ngFor="let user of dataSource" class="user">
-            <div class="info">
-                <p>{{user.name}} {{user.lastname}}</p>
-                <span>{{user.description}}</span>
-            </div>
-        </div>
-    </div>
     <div class="navegation">
         <a [routerLink]="['home']"><img src="../../assets/nav/HouseDoor.svg" alt="home" class="icon home" (click)="changePage('home')"></a>
         <a ><img src="../../assets/nav/ChatLeftDots.svg" alt="chat" class="icon chat" (click)="changePage('chat')"></a>

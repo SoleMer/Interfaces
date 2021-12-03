@@ -4,6 +4,7 @@ import { VetComponent } from './vet/vet.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
 			{
 				path: 'profile',
 				component: ProfileComponent,
+			},
+			{
+				path: 'search',
+				component: SearchComponent,
 			},
 		]
 	},

@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    margin-left: 35%;
+    margin-top: 1%;
+}
+
+.section {
+    background-color: var(--vetbook-background-section);
+    padding: 1%;
+    width: 35rem;
+}
+
+.no-result {
+    width: 35rem;
+    
+}
+
+.no-result-title {
+    color: var(--vetbook-warn);
+}
+
+.no-result-p {
+    font-size: large;
+}
+
+.result-title {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.there-are-results {
+    color: var(--vetbook-accent);
+}

@@ -39,7 +39,7 @@ const POSTS: Post[] = [
         usersIdShared: [],
     }, //agregar más posts
 ]
-
+const ADS: Post[] = [];
 const AD: Post = {
     id: 0,
     date: new Date(), //arreglar formato de fecha
@@ -130,5 +130,50 @@ export class PostService {
 
     getAd(): Post {
         return AD;
+    }
+
+    getPostsSearched(keyWord: string): Post[] {
+        let posts: Post[] = [];
+        POSTS.forEach(p => {
+            if (!posts.includes(p)) {
+                if (p.text.toLowerCase().includes(keyWord) && !posts.includes(p)) {
+                    posts.push(p);
+                }
+                if (p.user.name.toLowerCase().includes(keyWord) && !posts.includes(p)) {
+                    posts.push(p);
+                }
+                if (p.user.lastname.toLowerCase().includes(keyWord) && !posts.includes(p)) {
+                    posts.push(p);
+                }
+                if (p.user.description.toLowerCase().includes(keyWord) && !posts.includes(p)) {
+                    posts.push(p);
+                }
+            }
+        });
+        return posts;
+    }
+
+    getAdsSearched(keyWord: string): Post[] {
+        let ads: Post[] = [];
+        ADS.forEach(p => {
+            if (!ads.includes(p)) {
+                if (p.text.toLowerCase().includes(keyWord) && !ads.includes(p)) {
+                    ads.push(p);
+                }
+                if (p.images[0].toLowerCase().includes(keyWord) && !ads.includes(p)) {
+                    ads.push(p);
+                }
+                if (p.user.name.toLowerCase().includes(keyWord) && !ads.includes(p)) {
+                    ads.push(p);
+                }
+                if (p.user.lastname.toLowerCase().includes(keyWord) && !ads.includes(p)) {
+                    ads.push(p);
+                }
+                if (p.user.description.toLowerCase().includes(keyWord) && !ads.includes(p)) {
+                    ads.push(p);
+                }
+            }
+        });
+        return ads;
     }
 }

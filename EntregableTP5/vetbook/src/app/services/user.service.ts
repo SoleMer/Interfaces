@@ -30,21 +30,21 @@ const USERS: User[] = [
 ]; //agregar usuarios
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
-    
-    
+
+
     constructor() { }
-    
-    
+
+
     getUsers(): User[] {
         return USERS;
     }
-   
+
     getCurrentUserProfilePicture(): String {
         let userId = localStorage.getItem('userId');
-        if (typeof(userId) === "string") {
+        if (typeof (userId) === "string") {
             let userIdInt = parseInt(userId);
             let user = USERS.find(u => u.id === userIdInt);
             if (user != null) {
@@ -60,7 +60,7 @@ export class UserService {
             id = parseInt(userId);
         }
         let user = USERS.find(u => u.id === id);
-        if (user!= null) {
+        if (user != null) {
             return user;
         }
         return {
@@ -74,11 +74,29 @@ export class UserService {
     }
 
     getRecommendations(): User[] {
-        let recommendations : User[] = [];
+        let recommendations: User[] = [];
         for (let i = 1; i < 4; i++) {
             recommendations.push(USERS[1]);
         };
         return recommendations;
     }
-   
+
+    getUsersSearched(keyWord: string): User[] {
+        let users: User[] = [];
+        USERS.forEach(u => {
+            if (!users.includes(u)) {
+                if (u.name.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.lastname.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.description.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+            }
+        });
+        return users;
+    }
+
 }

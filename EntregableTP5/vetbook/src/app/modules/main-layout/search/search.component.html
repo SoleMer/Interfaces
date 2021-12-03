@@ -1,0 +1,6 @@
+<div class="pagination">
+    <h5 [class]="selected == 'persons' ? 'selected' : 'no-selected'" id="persons" (click)="changeTab('persons')">Personas</h5>
+    <h5 [class]="selected == 'posts' ? 'selected' : 'no-selected'" id="posts" (click)="changeTab('posts')">Publicaciones</h5>
+    <h5 [class]="selected == 'ads' ? 'selected' : 'no-selected'" id="ads" (click)="changeTab('ads')">Publicidades</h5>
+</div>
+<app-search-results [typeResults]="selected" [persons]="persons" [posts]="posts" [ads]="ads"></app-search-results>
