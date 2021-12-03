@@ -78,13 +78,20 @@ export class NavComponent implements OnInit {
         }
     }
 
-    toggleProfileOption() {
+    toggleProfileOption(page: string) {
         if (this.profileOptionClass == "view") {
             this.profileOptionClass = "hide";
-            this.updateSelectorPage();
+            if (page != "") {
+                this.changePage(page);
+            }
         } else {
             this.profileOptionClass = "view";
         }
+    }
+
+    changePage(page: string) {
+        this.generalSvc.setCurrentPage(page);
+        this.updateSelectorPage();
     }
 
 }
