@@ -1,0 +1,35 @@
+.person {
+    display: flex;
+    margin: 1rem 0;
+}
+.name {
+    margin-bottom: 0;
+    font-size: large;
+}
+.user-info {
+    line-height: 1px;
+}
+.add {
+    margin-left: 17%;
+    margin-top: 2%;
+}
+.add:hover {
+    cursor: pointer;
+}
+
+mat-card {
+    color: var(--vetbook-dark-gray);
+    background-color: var(--vetbook-background-section);
+    width: 90%;
+    display: flex;
+}
+
+.add {
+
+    float: right;
+    margin-top: 2%;
+    position: absolute;
+    /* float: right; */
+    right: 10%;
+
+}

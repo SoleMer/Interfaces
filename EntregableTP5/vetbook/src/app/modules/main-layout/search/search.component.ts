@@ -24,7 +24,8 @@ export class SearchComponent implements OnInit {
         private searchSvc: SearchService) { }
 
     ngOnInit(): void {
-        this.searchSvc.keword.subscribe(k => this.keyWord$ = k);
+        //this.searchSvc.keword.subscribe(k => this.keyWord$ = k);
+        this.keyWord$ = this.searchSvc.getKeyWord();
         this.persons = this.userSvc.getUsersSearched(this.keyWord$);
         this.posts = this.postSvc.getPostsSearched(this.keyWord$);
         this.ads = this.postSvc.getAdsSearched(this.keyWord$);

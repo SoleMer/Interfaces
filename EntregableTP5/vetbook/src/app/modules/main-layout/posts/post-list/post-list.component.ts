@@ -14,15 +14,19 @@ export class PostListComponent implements OnInit {
     comment: String = "comment";
     share: String = "share";
     @Input() currentUserId: number = 0;
+    @Input() filteredPosts: Post[] = [];
 
     constructor(private postSvc: PostService) { }
 
     ngOnInit(): void {
-        
-        if (this.currentUserId == 0) {
-            this.posts = this.postSvc.getPosts();
+        if (this.filteredPosts.length == 0) {
+            if (this.currentUserId == 0) {
+                this.posts = this.postSvc.getPosts();
+            } else {
+                this.posts = this.postSvc.getPostsByUserId(this.currentUserId);
+            }
         } else {
-            this.posts = this.postSvc.getPostsByUserId(this.currentUserId);
+            this.posts = this.filteredPosts;
         }
     }
 

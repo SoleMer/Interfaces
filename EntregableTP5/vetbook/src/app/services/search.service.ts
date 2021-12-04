@@ -19,6 +19,9 @@ export class SearchService {
         this.keword.next(this._keyword);
     }
 
+    getKeyWord(): string {
+        return this._keyword;
+    }
 
     setTypeResult(type: string): void {
         this._typeResults = type;
