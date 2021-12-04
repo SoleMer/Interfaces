@@ -44,3 +44,28 @@ button {
     width: 13rem;
     margin-bottom: 5%;
 }
+
+@media only screen and (max-width: 450px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .logo{
+        height: 5vh;
+    }
+
+    .welcome h1 {
+        font-size: 2em;
+    }
+    .welcome {
+        margin-left: 8px;
+        flex-basis: 12rem;
+    }
+    .form-content {
+
+        margin-left: -2px;
+        width: 80%;
+    }
+   
+} 

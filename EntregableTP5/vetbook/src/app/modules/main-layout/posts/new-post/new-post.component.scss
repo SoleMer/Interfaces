@@ -68,3 +68,28 @@ button {
     filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
     cursor: pointer;
 }
+
+@media only screen and (max-width: 450px) {
+    button {
+       width: 90%;
+    } 
+
+    .input {
+        width: 90%;
+        background-color: white;
+        border: solid 1px var(--vetbook-dark-gray);
+        border-radius: 2px;
+    }
+
+    .writing-input {
+        height: 250px;
+    }
+    .profile-pic-min {
+        display: none;
+    }
+    .card {
+        width: 100%;
+        flex-direction: column;
+
+    }
+}

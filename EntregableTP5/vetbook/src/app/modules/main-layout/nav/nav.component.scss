@@ -108,3 +108,41 @@ mat-divider {
 .selector-bell {
     margin-left: 9.6rem;
 }
+
+#nav-search {
+    display: none;
+}
+
+@media only screen and (max-width: 450px) {
+    form{
+        display: none;
+    }
+    nav {
+        justify-content: center;
+        flex-direction: column;
+        align-content: space-around;
+        align-items: center;
+        height: fit-content;
+
+    }
+    .icon{
+        height: 25px;
+        width: auto;
+    }
+    .logo{
+        height: 25px;
+    }
+    .navegation {
+        width: 100%;
+        display: flex;
+        left: auto;
+        top: 0px;
+        justify-content: space-around;
+         
+    }
+
+    #nav-search {
+        display: initial;
+    }
+   
+} 

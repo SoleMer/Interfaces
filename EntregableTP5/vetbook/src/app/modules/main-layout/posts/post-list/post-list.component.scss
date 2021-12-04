@@ -38,3 +38,9 @@ app-reaction {
 .post-img {
     width: 31rem;
 }
+
+@media only screen and (max-width: 450px) {
+    .post-img {
+        width: 100%;
+    }
+}

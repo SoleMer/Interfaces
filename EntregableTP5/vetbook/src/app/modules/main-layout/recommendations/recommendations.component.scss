@@ -19,3 +19,17 @@ mat-card {
 .add:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 450px) {
+    .card{
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+
+    }
+
+    .person {
+        width: 250px;
+        margin: auto;
+    }
+}
