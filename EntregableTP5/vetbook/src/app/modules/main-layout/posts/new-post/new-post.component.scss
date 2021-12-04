@@ -53,16 +53,14 @@ button {
     display: flex;
 }
 
-
 .add-items {
-        flex-basis: 8rem;
+    flex-basis: 8rem;
     margin-top: 1rem;
 }
 .item {
     height: 20px;
     width: auto;
-    margin-right: 13%; 
-    
+    margin-right: 13%;
 }
 .item:hover {
     filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
@@ -71,8 +69,8 @@ button {
 
 @media only screen and (max-width: 450px) {
     button {
-       width: 90%;
-    } 
+        width: 90%;
+    }
 
     .input {
         width: 90%;
@@ -90,6 +88,18 @@ button {
     .card {
         width: 100%;
         flex-direction: column;
-
+    }
+    .icon {
+        margin-left: 7.8rem;
+    }
+    .create {
+        margin-left: 1rem;
+    }
+    .add-items {
+        flex-basis: 12rem;
+    }
+    button {
+        width: 35%;
+        left: -0.5rem;
     }
 }

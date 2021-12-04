@@ -1,4 +1,10 @@
+<div *ngIf="isOpen" class="options">
+    <div *ngFor="let option of options" (click)="action(option)" class="option">
+        <p>{{option}}</p>
+    </div>
+</div>
+
 <div>
     <img src="{{pathImg}}" alt="{{type}}" (click)="react()">
-    <span>{{quantity}}</span>
+    <span *ngIf="quantity >= 0">{{quantity}}</span>
 </div>
