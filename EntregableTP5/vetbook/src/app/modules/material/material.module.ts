@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   exports: [
       MatIconModule,
@@ -38,7 +40,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
       ReactiveFormsModule,
       MatOptionModule,
       MatSelectModule,
-      MatGridListModule
+      MatGridListModule,
+      MatDialogModule
   ]
 })
 export class MaterialModule { }

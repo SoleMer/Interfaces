@@ -13,10 +13,11 @@ export class PostListComponent implements OnInit {
     like: String = "like";
     comment: String = "comment";
     share: String = "share";
+    options: String = "options";
     @Input() currentUserId: number = 0;
     @Input() filteredPosts: Post[] = [];
 
-    constructor(private postSvc: PostService) { }
+    constructor(private postSvc: PostService,) { }
 
     ngOnInit(): void {
         if (this.filteredPosts.length == 0) {
@@ -29,5 +30,6 @@ export class PostListComponent implements OnInit {
             this.posts = this.filteredPosts;
         }
     }
+
 
 }

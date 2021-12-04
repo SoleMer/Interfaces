@@ -39,6 +39,12 @@ app-reaction {
     width: 31rem;
 }
 
+.options {
+    float: right;
+    margin-right: 0;
+    position: relative;
+    bottom: 12px;
+}
 @media only screen and (max-width: 450px) {
     .post-img {
         width: 100%;

@@ -176,4 +176,9 @@ export class PostService {
         });
         return ads;
     }
+
+    itsMyPost(id: number): boolean {
+        let post: Post = this.getPost(id);
+        return post.user.id == 1;
+    }
 }

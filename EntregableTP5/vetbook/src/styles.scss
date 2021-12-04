@@ -18,6 +18,7 @@
 --vetbook-accent: #52BF98;
 --vetbook-light-accent: #9EEBCF;
 --vetbook-warn: #ec407a;
+--vetbook-light-warn: #FD70A3;
 --vetbook-background: #E5E5E5;
 --vetbook-background-section: #F0F0F0;
 --vetbook-dark-gray: #535353;
@@ -58,6 +59,13 @@ nav {
 .btn-done:hover {
     background-color: var(--vetbook-light-accent);
 }
+.btn-cancel {
+    background-color: var(--vetbook-warn);
+    color: var(--vetbook-dark-gray);
+}
+.btn-cancel:hover {
+    background-color: var(--vetbook-light-warn);
+}
 a {
     color: var(--vetbook-primary);
 }
@@ -80,4 +88,11 @@ a:hover {
     margin-right: 3%;
     height: 50px;
     width: auto;
+}
+app-confirm-pop-up {
+    color: var(--vetbook-dark-gray);
+}
+
+.mat-dialog-container {
+    background-color: var(--vetbook-background-section);
 }

@@ -19,5 +19,6 @@
             <app-reaction [type]='comment' [quantity]=post.commentsList.length [postId]="post.id"></app-reaction>
             <app-reaction [type]='share' [quantity]=post.usersIdShared.length [postId]="post.id"></app-reaction>
         </div>
+        <app-reaction [type]='options' [quantity]="-1" [postId]="post.id" class="options"></app-reaction>
     </div>
 </mat-card>

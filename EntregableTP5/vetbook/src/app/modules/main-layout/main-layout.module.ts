@@ -19,6 +19,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { PersonListComponent } from './person-list/person-list.component';
 import { AdListComponent } from './ad-list/ad-list.component';
+import { ConfirmPopUpComponent } from './confirm-pop-up/confirm-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdListComponent } from './ad-list/ad-list.component';
     SearchComponent,
     SearchResultsComponent,
     PersonListComponent,
-    AdListComponent
+    AdListComponent,
+    ConfirmPopUpComponent
   ],
   imports: [
     CommonModule,
