@@ -11,6 +11,7 @@ export class PostListComponent implements OnInit {
 
     posts: Post[] = [];
     like: String = "like";
+    dislike: String = "dislike";
     comment: String = "comment";
     share: String = "share";
     options: String = "options";

@@ -26,16 +26,24 @@ export class ReactionComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.type == "like") {
-            this.pathImg = "../../../../../assets/posts/megusta.svg";
+            if (this.postSvc.isLiked(this.postId))
+                this.pathImg = "../../../../../assets/posts/megustalleno.svg";
+            else
+                this.pathImg = "../../../../../assets/posts/megusta.svg";
+        } else if (this.type == "dislike") {
+            if (this.postSvc.isDisliked(this.postId))
+            this.pathImg = "../../../../../assets/posts/dislikelleno.svg";
+            else
+            this.pathImg = "../../../../../assets/posts/dislike.svg";
         } else if (this.type == "comment") {
             this.pathImg = "../../../../../assets/posts/comentar.svg";
         } else if (this.type == "share") {
             this.pathImg = "../../../../../assets/posts/compartir.svg";
         } else if (this.type == "options") {
             this.pathImg = "../../../../../assets/posts/options.svg";
-            if (this.postSvc.itsMyPost(this.postId)) 
+            if (this.postSvc.itsMyPost(this.postId))
                 this.options = OPTIONS_OWNER_POSTS;
-            else 
+            else
                 this.options = OPTIONS_ANOTHER_POSTS;
         }
     }
@@ -50,9 +58,17 @@ export class ReactionComponent implements OnInit {
                 this.pathImg = "../../../../../assets/posts/megustalleno.svg";
             }
         } else if (this.type == "comment") {
-            
+
         } else if (this.type == "share") {
-            
+
+        } else if (this.type == "dislike") {
+            if (this.postSvc.isDisliked(this.postId)) {
+                this.postSvc.dislikeDown(this.postId);
+                this.pathImg = "../../../../../assets/posts/dislike.svg";
+            } else {
+                this.postSvc.dislikeUp(this.postId);
+                this.pathImg = "../../../../../assets/posts/dislikelleno.svg";
+            }
         } else if (this.type == "options") {
             this.isOpen = !this.isOpen;
         }
@@ -69,7 +85,7 @@ export class ReactionComponent implements OnInit {
         }
     }
 
-    
+
     openDialog(action: string, warning: string) {
         this.matDialog.open(ConfirmPopUpComponent, {
             data: {

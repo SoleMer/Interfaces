@@ -17,6 +17,7 @@ const POSTS: Post[] = [
         images: ["../..//assets/posts/images/img3.png"],
         video: "",
         usersIdLiked: [],
+        usersIdDisliked: [],
         commentsList: [],
         usersIdShared: [],
     },
@@ -35,6 +36,7 @@ const POSTS: Post[] = [
         images: [],
         video: "",
         usersIdLiked: [],
+        usersIdDisliked: [],
         commentsList: [],
         usersIdShared: [],
     }, //agregar más posts
@@ -55,6 +57,7 @@ const AD: Post = {
     images: ["../../../../assets/posts/images/pub.png"],
     video: "",
     usersIdLiked: [],
+    usersIdDisliked: [],
     commentsList: [],
     usersIdShared: [],
 }
@@ -97,6 +100,7 @@ export class PostService {
             images: [],
             video: "",
             usersIdLiked: [],
+            usersIdDisliked: [],
             commentsList: [],
             usersIdShared: [],
         };
@@ -107,6 +111,9 @@ export class PostService {
         let userId = localStorage.getItem('userId');
         if (userId != null) {
             post.usersIdLiked.push(parseInt(userId));
+            if (this.isDisliked(postId)) {
+                this.dislikeDown(postId);
+            }
         }
     }
 
@@ -124,6 +131,35 @@ export class PostService {
         let userId = localStorage.getItem('userId');
         if (userId != null) {
             return post.usersIdLiked.includes(parseInt(userId))
+        }
+        return false;
+    }
+
+    dislikeUp(postId: number) {
+        let post: Post = this.getPost(postId);
+        let userId = localStorage.getItem('userId');
+        if (userId != null) {
+            post.usersIdDisliked.push(parseInt(userId));
+            if (this.isLiked(postId)) {
+                this.likeDown(postId);
+            }
+        }
+    }
+
+    dislikeDown(postId: number) {
+        let post: Post = this.getPost(postId);
+        let userId = localStorage.getItem('userId');
+        if (userId != null) {
+            let i = post.usersIdLiked.indexOf(parseInt(userId));
+            post.usersIdDisliked.splice(i, 1);
+        }
+    }
+
+    isDisliked(postId: number): boolean {
+        let post: Post = this.getPost(postId);
+        let userId = localStorage.getItem('userId');
+        if (userId != null) {
+            return post.usersIdDisliked.includes(parseInt(userId))
         }
         return false;
     }

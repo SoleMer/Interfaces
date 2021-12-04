@@ -24,6 +24,7 @@ export class AdComponent implements OnInit {
         images: ["../../../../assets/posts/images/pub.png"],
         video: "",
         usersIdLiked: [],
+        usersIdDisliked: [],
         commentsList: [],
         usersIdShared: [],
     };

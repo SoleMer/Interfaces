@@ -9,6 +9,7 @@ export interface Post {
     images: String[];
     video: String;
     usersIdLiked: number[];
+    usersIdDisliked: number[];
     commentsList: Comment[];
     usersIdShared: number[];
 }
