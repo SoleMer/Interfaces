@@ -1,11 +1,10 @@
 <nav>
     <a [routerLink]="['home']" class="nav-icon"><img src="../../assets/vet/logolargo.svg" alt="vet" class="logo"></a>
     <form [formGroup]="filter">
-        <mat-form-field class="filter">
-            <mat-label>Buscar</mat-label>
-            <input formControlName="search" matInput autocomplete="off"
+        <div class="form-field filter">
+            <input formControlName="search" placeholder="Buscar" class="input" matInput autocomplete="off"
                 (keyup)="readSearch($event)">
-        </mat-form-field>
+        </div>
     </form>
     <div class="navegation">
         <a [routerLink]="['home']"><img src="../../assets/nav/HouseDoor.svg" alt="home" class="icon home" (click)="changePage('home')"></a>

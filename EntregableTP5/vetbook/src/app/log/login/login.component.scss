@@ -44,7 +44,22 @@ button {
     width: 13rem;
     margin-bottom: 5%;
 }
-
+.form-field {
+    text-align: left;
+    margin-bottom: 5%;
+}
+.input {
+    background-color: white;
+    border: solid 1px var(--vetbook-background);
+    border-radius: 2px;
+    height: 30px;
+    border-radius: 3px;
+    width: 75%;
+    margin-left: 11%;
+}
+.form-field mat-label {
+    margin-left: 11%;
+}
 @media only screen and (max-width: 450px) {
     .content {
         flex-direction: column;
