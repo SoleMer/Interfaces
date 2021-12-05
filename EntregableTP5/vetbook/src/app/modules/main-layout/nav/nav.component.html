@@ -35,3 +35,8 @@
         </a>
     </div>
 </nav>
+
+
+<div *ngIf="isLoading" class="load-ring">
+    <app-load-ring *ngIf="isLoading" ></app-load-ring>
+</div>

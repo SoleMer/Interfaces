@@ -5,6 +5,8 @@ import { User } from 'src/app/models/user';
 import { GeneralService } from 'src/app/services/general.service';
 import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadRingComponent } from '../load-ring/load-ring.component';
 
 @Component({
     selector: 'app-nav',
@@ -18,12 +20,13 @@ export class NavComponent implements OnInit {
     selectorPage: String = "home";
     timer: any;
     filter!: FormGroup;
-
+    isLoading: boolean = false;
 
     constructor(private userSvc: UserService,
         private formBuilder: FormBuilder,
         private generalSvc: GeneralService,
-        private searchSvc: SearchService) { }
+        private searchSvc: SearchService,
+        private matDialog: MatDialog) { }
 
     ngOnInit(): void {
         this.updateSelectorPage();
@@ -71,10 +74,17 @@ export class NavComponent implements OnInit {
         if (event.key === "Enter") {
             console.log(this.filter.value.search)   
             this.searchSvc.setKeyWord(this.filter.value.search.trim().toLowerCase());
-            this.timer = setTimeout(() => {
-                this.redirect(`vet/search`);
-            }, 1000);
+            this.loading(`vet/search`);
+            
         }
+    }
+
+    loading(path: string) {
+       this.isLoading = true;
+       this.timer = setTimeout(() => {
+        this.redirect(path);
+        this.isLoading = false;
+    }, 1000);
     }
 
     redirect(path: string) {

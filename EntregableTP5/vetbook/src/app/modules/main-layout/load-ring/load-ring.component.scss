@@ -1,0 +1,71 @@
+
+.star-container{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    margin-top: 18%;
+}
+
+.star{
+    animation: starMovement 1s ease .1s infinite;
+}
+
+.star-container .spark {
+    width: 8%;
+    height: 8%;
+    background-color:  #7710FA;
+    position: absolute;
+    border-radius: 100%;
+    transform: rotate(calc(45deg * var(--i))) translate(50px, 0);
+    opacity: 0;
+    animation: sparkMovement 1s ease calc(0.125s * var(--i)) infinite;
+}
+.star-container .circle {
+    width: 80%;
+    height: 80%;
+    border: 1px solid red;
+    position: absolute;
+    border-radius: 100%;
+}
+@keyframes starMovement {
+    0% {
+        opacity: 0.2;
+        /**transform: rotate(0deg);*/
+        width: 45px;
+        height: 45px;
+    }
+
+    60% {
+        opacity: .8;
+        width: 50px;
+        height: 50px;
+    }
+
+    100% {
+        /**transform: rotate(360deg);*/
+        width: 40px;
+        height: 40px;
+        opacity: .2;
+    }
+}
+
+
+@keyframes sparkMovement {
+    0% {
+        opacity: 0;
+
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: .1;
+    }
+}

@@ -113,6 +113,15 @@ mat-divider {
     display: none;
 }
 
+.load-ring {
+    width: 100%;
+    height: 100%;
+    background-color: var(--vetbook-light-primary);
+    position: absolute;
+    z-index: 999;
+    filter: opacity(0.8);
+}
+
 @media only screen and (max-width: 450px) {
     form{
         display: none;

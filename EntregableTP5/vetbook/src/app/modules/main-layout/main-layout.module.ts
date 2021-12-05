@@ -20,6 +20,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { PersonListComponent } from './person-list/person-list.component';
 import { AdListComponent } from './ad-list/ad-list.component';
 import { ConfirmPopUpComponent } from './confirm-pop-up/confirm-pop-up.component';
+import { LoadRingComponent } from './load-ring/load-ring.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ConfirmPopUpComponent } from './confirm-pop-up/confirm-pop-up.component
     SearchResultsComponent,
     PersonListComponent,
     AdListComponent,
-    ConfirmPopUpComponent
+    ConfirmPopUpComponent,
+    LoadRingComponent,
   ],
   imports: [
     CommonModule,

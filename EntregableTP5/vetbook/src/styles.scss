@@ -96,3 +96,7 @@ app-confirm-pop-up {
 .mat-dialog-container {
     background-color: var(--vetbook-background-section);
 }
+
+app-load-ring .mat-dialog-container {
+    background-color: transparent;
+}
