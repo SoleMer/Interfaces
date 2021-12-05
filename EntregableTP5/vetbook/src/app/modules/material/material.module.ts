@@ -11,6 +11,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -27,7 +30,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatOptionModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatCheckboxModule,
   ],
   exports: [
       MatIconModule,
@@ -41,7 +47,10 @@ import { MatDialogModule } from '@angular/material/dialog';
       MatOptionModule,
       MatSelectModule,
       MatGridListModule,
-      MatDialogModule
+      MatDialogModule,
+      MatStepperModule,
+      MatRadioModule,
+      MatCheckboxModule,
   ]
 })
 export class MaterialModule { }
