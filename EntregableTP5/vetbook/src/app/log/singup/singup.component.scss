@@ -1,0 +1,101 @@
+
+.container {
+    text-align: center;
+    margin-top: 5%;
+}
+.logo {
+    height: 10vh;
+    width: auto;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15%;
+}
+mat-radio-button {
+    margin-right: 5%;
+    margin-top: 1%;
+}
+ul {
+    list-style-type: none;
+}
+section {
+    text-align: left;
+    margin-bottom: 20%;
+}
+img {
+    width: 35px;
+    margin: auto;
+    margin-bottom: 40%;
+}
+h3 {
+    font-size: xx-large;
+    text-align: initial;
+    color: var(--vetbook-dark-gray);
+}
+.welcome h1 {
+    font-size: 4em;
+    line-height: 1em;
+    color: var(--vetbook-dark-gray);
+}
+.form-content {
+    background-color: var(--vetbook-section-background);
+    flex-basis: 17rem;
+    display: flex;
+    flex-direction: column;
+    
+    text-align: center;
+    margin-left: 43%;
+}
+mat-label {
+    color: var(--vetbook-dark-gray);
+}
+
+.mat-form-field-underline {
+    border-bottom-color: var(--vetbook-dark-gray);
+}
+form {
+    margin: 2rem 0 2rem;
+}
+.form-field {
+    text-align: left;
+    margin-bottom: 5%;
+}
+button {
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.input {
+    width: 98%;
+    background-color: white;
+    border: solid 1px var(--vetbook-background);
+    border-radius: 2px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+@media only screen and (max-width: 450px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .logo{
+        height: 5vh;
+    }
+
+    .welcome h1 {
+        font-size: 2em;
+    }
+    .welcome {
+        margin-left: 8px;
+        flex-basis: 12rem;
+    }
+    .form-content {
+
+        margin-left: -2px;
+        width: 80%;
+    }
+   
+} 

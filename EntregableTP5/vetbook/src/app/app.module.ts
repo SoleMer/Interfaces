@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { LoginComponent } from './log/login/login.component';
 import { SingupComponent } from './log/singup/singup.component';
+import { SingUpPopUpComponent } from './log/sing-up-pop-up/sing-up-pop-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SingupComponent,
+    SingUpPopUpComponent,
   ],
   imports: [
     BrowserModule,
