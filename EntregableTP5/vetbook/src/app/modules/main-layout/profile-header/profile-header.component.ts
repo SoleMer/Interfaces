@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileHeaderComponent implements OnInit {
 
+    @Input() userId: number = 0;
     user: User = {
         id: 1,
         name: "",
@@ -21,7 +22,7 @@ export class ProfileHeaderComponent implements OnInit {
     constructor(private userSvc: UserService) { }
 
     ngOnInit(): void {
-        this.user = this.userSvc.getUser('1');
+        this.user = this.userSvc.getUser(this.userId.toString());
     }
 
 }

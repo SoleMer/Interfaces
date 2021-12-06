@@ -16,8 +16,8 @@ const POSTS: Post[] = [
         text: "",
         images: ["../..//assets/posts/images/img3.png"],
         video: "",
-        usersIdLiked: [],
-        usersIdDisliked: [],
+        usersIdLiked: [2,2,2,2,2,2,2,2,2,2,2,2],
+        usersIdDisliked: [3],
         commentsList: [],
         usersIdShared: [],
     },
@@ -35,11 +35,49 @@ const POSTS: Post[] = [
         text: "Teo, te estamos buscando, te extrañamos! Por favor si alguien lo ha visto o lo tiene comunicarse al 333-3333 lo estamos esperando.",
         images: [],
         video: "",
-        usersIdLiked: [],
-        usersIdDisliked: [],
+        usersIdLiked: [1,2,3,4,5,5,5,5,5,5,55,55,55,5,5,5,5,5,5,5,5,5,5,55,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+        usersIdDisliked: [4,5,6,7,8,7],
+        commentsList: [],
+        usersIdShared: [2,22,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,22,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+    },
+    {
+        id: 1,
+        date: new Date(), //arreglar formato de fecha
+        user: {
+            id: 3,
+            name: "Marta",
+            lastname: "Stuart",
+            description: "Veterinaria",
+            profilePicture: "../../assets/profiles-pictures/perfil2.png",
+            coverPicture: "",
+        },
+        text: "",
+        images: ["../../assets/profiles-pictures/fotos/img.jpg"],
+        video: "",
+        usersIdLiked: [2,3,4],
+        usersIdDisliked: [4,4,4],
         commentsList: [],
         usersIdShared: [],
-    }, //agregar más posts
+    },
+    {
+        id: 1,
+        date: new Date(), //arreglar formato de fecha
+        user: {
+            id: 1,
+            name: "Cesar",
+            lastname: "Millan",
+            description: "Veterinario",
+            profilePicture: "../../assets/profiles-pictures/perfil3.png",
+            coverPicture: "",
+        },
+        text: "",
+        images: ["../../assets/profiles-pictures/fotos/galeria.jpg"],
+        video: "",
+        usersIdLiked: [2,3,4,5,6,7,7,7,8],
+        usersIdDisliked: [3,3,3],
+        commentsList: [],
+        usersIdShared: [2,2],
+    },
 ]
 const ADS: Post[] = [];
 const AD: Post = {
@@ -66,7 +104,7 @@ const AD: Post = {
     providedIn: 'root'
 })
 export class PostService {
-    
+
 
     constructor() { }
 

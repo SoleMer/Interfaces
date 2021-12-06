@@ -9,7 +9,6 @@ import { NavComponent } from 'src/app/modules/main-layout/nav/nav.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { ReactionComponent } from './posts/reaction/reaction.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ChatComponent } from './chat/chat.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
@@ -21,6 +20,7 @@ import { PersonListComponent } from './person-list/person-list.component';
 import { AdListComponent } from './ad-list/ad-list.component';
 import { ConfirmPopUpComponent } from './confirm-pop-up/confirm-pop-up.component';
 import { LoadRingComponent } from './load-ring/load-ring.component';
+import { Profile2Component } from './profile2/profile2.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { LoadRingComponent } from './load-ring/load-ring.component';
     PostListComponent,
     ReactionComponent,
     ProfileComponent,
-    ChatComponent,
     NewPostComponent,
     ProfileHeaderComponent,
     RecommendationsComponent,
@@ -42,6 +41,7 @@ import { LoadRingComponent } from './load-ring/load-ring.component';
     AdListComponent,
     ConfirmPopUpComponent,
     LoadRingComponent,
+    Profile2Component,
   ],
   imports: [
     CommonModule,

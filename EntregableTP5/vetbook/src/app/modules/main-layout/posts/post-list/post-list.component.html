@@ -2,7 +2,7 @@
     <div class="card card-header">
         <img src="{{post.user.profilePicture}}" alt="" class="profile-pic-min">
         <div class="user-info">
-            <h3 class="title">{{post.user.name}} {{post.user.lastname}}</h3>
+            <a [routerLink]="['../profile2']"> <h3 class="title">{{post.user.name}} {{post.user.lastname}}</h3></a>
             <span class="secondary-information">{{post.date}}</span>
         </div>
     </div>

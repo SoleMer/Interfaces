@@ -20,6 +20,10 @@ mat-divider {
 .title {
     margin-bottom: 0;
 }
+.user-info a {
+    text-decoration: none;
+    color: var(--vetbook-dark-gray);
+}
 .card-header {
     display: flex;
 }

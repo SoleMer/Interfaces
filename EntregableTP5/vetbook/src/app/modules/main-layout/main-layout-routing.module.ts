@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VetComponent } from './vet/vet.component';
 import { HomeComponent } from './home/home.component';
-import { ChatComponent } from './chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { Profile2Component } from './profile2/profile2.component';
 
 const routes: Routes = [
     {
@@ -21,16 +21,16 @@ const routes: Routes = [
 				component: HomeComponent,
 			},
 			{
-				path: 'chat',
-				component: ChatComponent,
-			},
-			{
 				path: 'profile',
 				component: ProfileComponent,
 			},
 			{
 				path: 'search',
 				component: SearchComponent,
+			},
+			{
+				path: 'profile2',
+				component: Profile2Component,
 			},
 		]
 	},

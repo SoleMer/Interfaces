@@ -8,7 +8,7 @@ import { User } from '../models/user';
         description: "",
         profilePicture: "",
         coverPicture: "",
-    }
+    },
     */
 const USERS: User[] = [
     {
@@ -24,9 +24,33 @@ const USERS: User[] = [
         name: "María",
         lastname: "García",
         description: "Aficionada",
-        profilePicture: "../../assets/profiles-pictures/perfil5.png",
+        profilePicture: "../../assets/profiles-pictures/perfil5.png", //cambiar foto perfil
+        coverPicture: "../../assets/profiles-pictures/fotos/dogs.jpg",
+    },
+    {
+        id: 3,
+        name: "Marta",
+        lastname: "Stuart",
+        description: "Veterinaria",
+        profilePicture: "../../assets/profiles-pictures/perfil2.png",
         coverPicture: "",
-    }
+    },
+    {
+        id: 1,
+        name: "Cesar",
+        lastname: "Millan",
+        description: "Veterinario",
+        profilePicture: "../../assets/profiles-pictures/perfil3.png",
+        coverPicture: "",
+    },
+    {
+        id: 1,
+        name: "Franco",
+        lastname: "Milazzo",
+        description: "Aficionado",
+        profilePicture: "../../assets/profiles-pictures/perfil4.png",
+        coverPicture: "",
+    },
 ]; //agregar usuarios
 
 @Injectable({
@@ -76,7 +100,7 @@ export class UserService {
     getRecommendations(): User[] {
         let recommendations: User[] = [];
         for (let i = 1; i < 4; i++) {
-            recommendations.push(USERS[1]);
+            recommendations.push(USERS[i]);
         };
         return recommendations;
     }

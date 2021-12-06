@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 
 
@@ -9,7 +9,7 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class ProfileComponent implements OnInit {
 
-    userId = 1;
+    @Input() userId: number = 1;
 
     constructor(private generalSvc: GeneralService) { }
 
