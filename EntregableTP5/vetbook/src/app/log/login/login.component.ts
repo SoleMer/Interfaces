@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     pawPrints: boolean[] = [false, false, false, false, false, false, false, false, false, false];
     timer: any;
 
-    letters: String[] = ["V", "e", "t", "b", "o", "o", "k"];
+    letters: String[] = ["v", "e", "t", "b", "o", "o", "k"];
     vetbook: String = "";
 
     constructor(private router: Router) { }
