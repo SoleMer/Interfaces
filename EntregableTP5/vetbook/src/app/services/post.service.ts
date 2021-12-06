@@ -63,7 +63,7 @@ const POSTS: Post[] = [
         id: 1,
         date: new Date(), //arreglar formato de fecha
         user: {
-            id: 1,
+            id: 4,
             name: "Cesar",
             lastname: "Millan",
             description: "Veterinario",

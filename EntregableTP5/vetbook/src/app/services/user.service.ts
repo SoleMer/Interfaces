@@ -36,7 +36,7 @@ const USERS: User[] = [
         coverPicture: "",
     },
     {
-        id: 1,
+        id: 4,
         name: "Cesar",
         lastname: "Millan",
         description: "Veterinario",
@@ -44,7 +44,7 @@ const USERS: User[] = [
         coverPicture: "",
     },
     {
-        id: 1,
+        id: 5,
         name: "Franco",
         lastname: "Milazzo",
         description: "Aficionado",
