@@ -1,0 +1,33 @@
+<img *ngIf="pawPrints[9]" src="../../../assets/huella.png" alt="" class="huella huella-derecha huella-principal">
+<img *ngIf="pawPrints[7]" src="../../../assets/huella.png" alt="" class="huella huella-derecha huella3">
+<img *ngIf="pawPrints[5]" src="../../../assets/huella.png" alt="" class="huella huella-derecha huella5">
+<img *ngIf="pawPrints[3]" src="../../../assets/huella.png" alt="" class="huella huella-derecha huella7">
+<img *ngIf="pawPrints[1]" src="../../../assets/huella.png" alt="" class="huella huella-derecha huella9">
+<img *ngIf="pawPrints[10]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella1">
+<img *ngIf="pawPrints[8]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella2">
+<img *ngIf="pawPrints[6]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella4">
+<img *ngIf="pawPrints[4]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella6">
+<img *ngIf="pawPrints[2]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella8">
+<img *ngIf="pawPrints[0]" src="../../../assets/huella.png" alt="" class="huella huella-izquierda huella10">
+<div class="container">
+    <h1 class="vet">{{vetbook}}</h1>
+</div>
+<div class="content" [class]="vetbook != '' ? 'content-after' : 'content-before'">
+    <div class="welcome">
+        <h1>Encontrar y dar soluciones veterinarias</h1>
+    </div>
+    <div class="form-content">
+        <form action="">
+            <div class="form-field">
+                <mat-label>Usuario</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Contraseña</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <button mat-raised-button class="btn-done" (click)="login()">Iniciar sesión</button>
+            <br><a (click)="singup()">No estoy registrado</a>
+        </form>
+    </div>
+</div>

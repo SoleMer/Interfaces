@@ -1,0 +1,44 @@
+div {
+    display: flex;
+}
+img {
+    width: 20px;
+    margin-right: 20%;
+}
+img:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
+}
+
+span:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
+}
+
+.options {
+    background-color: var(--vetbook-background-section);
+    display: block;
+    position: absolute;
+    right: 0em;
+    bottom: 0.5em;
+    border: solid 1px var(--vetbook-background);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 11rem;
+}
+.option {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.option {
+    color: var(--vetbook-dark-gray);
+}
+
+.option:hover {
+    background-color: var(--vetbook-light-primary);
+    cursor: pointer;
+}
+.option p {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}

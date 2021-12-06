@@ -1,0 +1,25 @@
+<mat-card *ngFor="let post of posts" class="vet-section">
+    <div class="card card-header">
+        <img src="{{post.user.profilePicture}}" alt="" class="profile-pic-min">
+        <div class="user-info">
+            <a [routerLink]="['../profile2']"> <h3 class="title">{{post.user.name}} {{post.user.lastname}}</h3></a>
+            <span class="secondary-information">{{post.date}}</span>
+        </div>
+    </div>
+    <div class="card card-body">
+        <p *ngIf="post.text != null">{{post.text}}</p>
+        <div *ngIf="post.images.length > 0" class="images">
+            <img *ngFor="let img of post.images" src="{{img}}" alt="" class="post-img">
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="card card-footer">
+        <div class="reactions">
+            <app-reaction [type]='like' [quantity]=post.usersIdLiked.length [postId]="post.id"></app-reaction>
+            <app-reaction [type]='dislike' [quantity]=post.usersIdDisliked.length [postId]="post.id"></app-reaction>
+            <app-reaction [type]='comment' [quantity]=post.commentsList.length [postId]="post.id"></app-reaction>
+            <app-reaction [type]='share' [quantity]=post.usersIdShared.length [postId]="post.id"></app-reaction>
+        </div>
+        <app-reaction [type]='options' [quantity]="-1" [postId]="post.id" class="options"></app-reaction>
+    </div>
+</mat-card>

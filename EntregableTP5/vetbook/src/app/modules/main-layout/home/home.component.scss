@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+}
+
+.center-column {
+    flex-basis: 35rem;
+    margin-left: 21%;
+}
+
+app-recommendations {
+    flex-basis: 16rem;
+    margin-left: 1%;
+    margin-top: 4.5%;
+}
+app-ad {
+    
+    flex-basis: 16rem;
+    margin-left: 20.3rem;
+    margin-top: 4.5%;
+}
+
+@media only screen and (max-width: 450px) {
+    .container {
+        flex-direction: column;
+    }
+    .center-column {
+   margin-left: 0%;}
+   app-ad {
+       display: none;
+   }
+   app-recommendations {
+       flex-basis: auto;
+       margin-top: 2%;
+       margin-left: auto;
+       width: 100%;
+
+
+
+   }
+
+  
+} 

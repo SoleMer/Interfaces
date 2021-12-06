@@ -1,0 +1,9 @@
+<app-profile-header [userId]="userId"></app-profile-header>
+<div class="pagination">
+    <h5 class="selected">Publicaciones</h5>
+    <h5 class="no-selected">Información</h5>
+    <h5 class="no-selected">Amigos</h5>
+</div>
+<div class="container">
+    <app-post-list [currentUserId]="userId"></app-post-list>
+</div>

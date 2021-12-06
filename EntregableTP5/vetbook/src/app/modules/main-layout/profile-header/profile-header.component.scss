@@ -1,0 +1,36 @@
+.cover {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.profile-pic-max {
+    width: 20rem;
+    margin-top: -9%;
+    margin-right: 81%;
+
+}
+
+.container {
+    background-color: var(--vetbook-background-section);
+    text-align: center;
+    height: 510px;
+}
+
+.user-info {
+    margin-top: -6%;
+}
+
+.user-info h1 {
+    font-size: 5em;
+}
+
+.user-info h6 {
+    font-size: 1.5em
+}
+
+.btn-done {
+    float: right;
+    margin-top: -4%;
+    right: 3.5rem;
+}

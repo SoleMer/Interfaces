@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+}
+
+
+app-post-list {
+    flex-basis: 35rem;
+    margin-left: 35%;
+}
+
+.pagination {
+    margin: 1rem 1rem;
+    position: absolute;
+}
+
+.pagination h5 {
+    font-size: initial;
+}
+.selected {
+    color: var(--vetbook-primary);
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: initial;
+}
+
+.selected:hover {
+    cursor: pointer;
+}
+
+.no-selected:hover {
+    color: var(--vetbook-primary);
+    cursor: pointer;
+}

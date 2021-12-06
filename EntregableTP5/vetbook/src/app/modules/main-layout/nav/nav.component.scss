@@ -1,0 +1,177 @@
+
+.navegation {
+    position: relative;
+    display: inline;
+    float: right;
+    top: 1rem;
+    left: 68rem;
+}
+
+.nav-icon {
+    margin-right: 2%;
+}
+
+.logo {
+    height: 50px;
+    margin: 0.2rem 1rem;
+}
+
+.icon {
+    height: 35px;
+    width: auto;
+    margin: 0 0.5rem;
+}
+nav {
+    display: flex;
+}
+form {
+    margin-top: 0.5%;
+}
+.hide {
+    display: none;
+}
+.view {
+    position: fixed;
+    background-color: white;
+    top: 3rem;
+    right: 5.8rem;
+    width: 11rem;
+    z-index: 999;
+    
+}
+.view .option {
+    display: flex;
+    padding: 3%;
+}
+.option:hover {
+    cursor: pointer;
+    background-color: var(--vetbook-light-primary);
+}
+.view .label {
+    margin-top: 5%;
+}
+.label-text {
+    color: var(--vetbook-dark-gray);
+    font-size: large;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+    font-weight: initial;
+}
+.search {
+    position: fixed;
+    background-color: white;
+    top: 3rem;
+    left: 21rem;
+    width: 12rem;
+}
+.search .user {
+    padding: 5%;
+}
+.user:hover {
+    background-color: var(--vetbook-light-primary);
+}
+.search p {
+    margin-bottom: 0;
+    font-size: large;
+}
+.search span {
+    font-size: smaller;
+}
+
+mat-divider {
+    border-top-color: var(--vetbook-dark-gray);
+}
+
+.home:visited {
+    content: url(../../../../assets/posts/fill-home.svg);
+}
+
+.selector {
+    width: 50px;
+    height: 7px;
+    background-color: #520EA8;
+}
+
+.selector-chat {
+    margin-left: 3.2rem;
+}
+
+.selector-profile {
+    margin-left: 6.3rem;
+}
+
+.selector-bell {
+    margin-left: 9.6rem;
+}
+
+#nav-search {
+    display: none;
+}
+
+.input {
+    width: 98%;
+    background-color: white;
+    border: solid 1px var(--vetbook-background);
+    border-radius: 2px;
+    height: 30px;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+
+.input::placeholder {
+    color: var(--vetbook-light-primary);
+}
+
+.load-ring {
+    width: 100%;
+    height: 100%;
+    background-color: var(--vetbook-light-primary);
+    position: absolute;
+    z-index: 999;
+    filter: opacity(0.8);
+}
+
+@media only screen and (max-width: 450px) {
+    form{
+        display: none;
+    }
+    nav {
+        justify-content: center;
+        flex-direction: column;
+        align-content: space-around;
+        align-items: center;
+        height: fit-content;
+    }
+    .icon{
+        height: 25px;
+        width: auto;
+    }
+    .logo{
+        height: 25px;
+    }
+    .navegation {
+        width: 100%;
+        display: flex;
+        left: auto;
+        top: 0px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+         
+    }
+
+    #nav-search {
+        display: initial;
+    }
+
+    .selector {
+        display: none;
+        order: 10;
+
+    }
+   
+} 

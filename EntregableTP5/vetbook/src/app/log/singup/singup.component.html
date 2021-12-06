@@ -1,0 +1,100 @@
+<nav>
+    <h3>Creá tu cuenta en </h3>
+    <img src="../../../assets/vet/logolargo.svg" alt="">
+</nav>
+<div class="paralax">
+<div class="content">
+    <div *ngIf="step == 0" class="form-content">
+        <img src="../../../assets/sing-up/estado1.svg" alt="">
+        <h3>Información de contacto</h3>
+        <form action="">
+            <div class="form-field">
+                <mat-label>Usuario</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Mail</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Contraseña</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <button mat-raised-button class="btn-done" (click)="increaseStep()">Continuar</button>
+            <a (click)="signIn()">Ya tengo cuenta</a>
+        </form>
+    </div>
+    <div *ngIf="step == 1" class="form-content">
+        <img src="../../../assets/sing-up/estado2.svg" alt="">
+        <h3>Información personal</h3>
+        <form action="">
+            <div class="form-field">
+                <mat-label>Nombre</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Apellido</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input type="date" class="input" matInput autocomplete="off">
+            </div>
+            <button mat-raised-button class="btn-done" (click)="increaseStep()">Continuar</button>
+            <a (click)="decreaseStep()">Atrás</a>
+        </form>
+    </div>
+    <div *ngIf="step == 2" class="form-content">
+        <img src="../../../assets/sing-up/estado3.svg" alt="">
+        <h3>Información de ubicación</h3>
+        <form action="">
+            <div class="form-field">
+                <mat-label>Ciudad</mat-label>
+                <input type="text" class="input" matInput autocomplete="off">
+            </div>
+            <div class="form-field">
+                <mat-label>Tipo usuario</mat-label><br>
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1">Profesional</mat-radio-button>
+                    <mat-radio-button value="2">Aficionado/a</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="form-field">
+                <mat-label>Matrícula</mat-label>
+                <input type="date" disabled="true" class="input" matInput autocomplete="off">
+            </div>
+            <button mat-raised-button class="btn-done" (click)="increaseStep()">Continuar</button>
+            <a (click)="decreaseStep()">Atrás</a>
+        </form>
+    </div>
+    <div *ngIf="step == 3" class="form-content">
+        <img src="../../../assets/sing-up/estado4.svg" alt="">
+        <h3>Intereses / especialidad</h3>
+        <form action="">
+            <section class="example-section">
+                <span class="example-list-section">
+                    <ul>
+                        <li>
+                            <mat-checkbox>
+                                Animales pequeños
+                            </mat-checkbox>
+                        </li>
+                        <li>
+                            <mat-checkbox>
+                                Animales grandes
+                            </mat-checkbox>
+                        </li>
+                        <li>
+                            <mat-checkbox>
+                                Animales exóticos
+                            </mat-checkbox>
+                        </li>
+                    </ul>
+                </span>
+            </section>
+            <button mat-raised-button class="btn-done" (click)="singUp()">Registrarme</button>
+            <a (click)="decreaseStep()">Atrás</a>
+        </form>
+    </div>
+    </div>
+</div>

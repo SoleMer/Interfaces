@@ -1,0 +1,41 @@
+<nav>
+    <a [routerLink]="['home']" class="nav-icon"><img src="../../assets/vet/logolargo.svg" alt="vet" class="logo"></a>
+    <form [formGroup]="filter">
+        <div class="form-field filter">
+            <input formControlName="search" placeholder="Buscar" class="input" matInput autocomplete="off"
+                (keyup)="readSearch($event)">
+        </div>
+    </form>
+    <div class="navegation">
+        <a [routerLink]="['home']"><img src="../../assets/nav/HouseDoor.svg" alt="home" class="icon home" (click)="changePage('home')"></a>
+        <a [routerLink]="['search']" id = "nav-search"><img src="../../assets/nav/Search.svg" alt="search" class="icon"></a>
+        <a ><img src="../../assets/nav/ChatLeftDots.svg" alt="chat" class="icon chat" (click)="changePage('chat')"></a>
+        <a (click)="toggleProfileOption('')"><img src="../../assets/nav/purple-profile-icon.png" alt="profile"
+                class="icon profile"></a>
+        <a ><img src="../../assets/nav/Bell.svg" alt="news" class="icon bell" (click)="changePage('bell')"></a>
+        <div class="{{selectorPage}} selector"></div>
+    </div>
+    <div class="{{profileOptionClass}}">
+        <a [routerLink]="['profile']">
+            <div class="option" (click)="toggleProfileOption('profile')">
+                <img src="../../../../assets/profiles-pictures/perfil6.png" alt="profile" class="icon">
+                <div class="label">
+                    <mat-label class="label-text">Ver perfil</mat-label>
+                </div>
+            </div> 
+        </a>
+        <a [routerLink]="['../login']">
+            <div class="option" (click)="toggleProfileOption('home')">
+                <img src="../../../../assets/posts/logout(1).svg" alt="logout" class="icon">
+                <div class="label">
+                    <mat-label class="label-text">Cerrar sesión</mat-label>
+                </div>
+            </div>
+        </a>
+    </div>
+</nav>
+
+
+<div *ngIf="isLoading" class="load-ring">
+    <app-load-ring *ngIf="isLoading" ></app-load-ring>
+</div>

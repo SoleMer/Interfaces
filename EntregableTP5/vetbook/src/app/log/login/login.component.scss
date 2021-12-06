@@ -1,0 +1,149 @@
+
+.container {
+    text-align: center;
+    margin-top: 7.3%;
+}
+.logo {
+    height: 10vh;
+    width: auto;
+}
+.vetbook {
+    text-align: left;
+}
+.vet {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 90px;
+    font-weight: bold;
+    color: var(--vetbook-primary);
+   
+    text-align: left;
+    margin-left: 41%;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+}
+.content-before {
+    margin-top: 19%;
+}
+.content-after {
+    margin-top: 10%;
+}
+.welcome {
+    flex-basis: 23rem;
+    margin-left: 15%;
+    z-index: 999;
+    margin-top: 1%;
+}
+.welcome h1 {
+    font-size: 4em;
+    line-height: 1em;
+    color: var(--vetbook-dark-gray);
+}
+.form-content {
+    background-color: var(--vetbook-section-background);
+    flex-basis: 17rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vetbook-dark-gray);
+    text-align: center;
+    margin-left: 30%;
+}
+mat-label {
+    color: var(--vetbook-dark-gray);
+}
+
+.mat-form-field-underline {
+    border-bottom-color: var(--vetbook-dark-gray);
+}
+form {
+    margin: 2rem 0 2rem;
+}
+button {
+    width: 13rem;
+    margin-bottom: 5%;
+}
+.form-field {
+    text-align: left;
+    margin-bottom: 5%;
+}
+.input {
+    background-color: white;
+    border: solid 1px var(--vetbook-background);
+    border-radius: 2px;
+    height: 30px;
+    border-radius: 3px;
+    width: 75%;
+    margin-left: 11%;
+}
+.form-field mat-label {
+    margin-left: 11%;
+}
+
+.huella {
+    position: absolute;
+    width: 76px;
+}
+.huella-izquierda {
+    left: 31.5%;
+}
+.huella-derecha {
+    left: 36.9%;
+}
+.huella-principal {
+    top: 113px;
+}
+.huella1 {
+    top: 27px;
+}
+.huella2 {
+    top: 199px;
+}
+.huella3 {
+    top: 285px;
+}
+.huella4 {
+    top: 371px;
+}
+.huella5 {
+    top: 457px;
+}
+.huella6 {
+    top: 543px;
+}
+.huella7 {
+    top: 629px;
+}
+.huella8 {
+    top: 715px;
+}
+.huella9 {
+    top: 801px;
+}
+.huella10 {
+    top: 887px;
+}
+@media only screen and (max-width: 450px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .logo{
+        height: 5vh;
+    }
+
+    .welcome h1 {
+        font-size: 2em;
+    }
+    .welcome {
+        margin-left: 8px;
+        flex-basis: 12rem;
+    }
+    .form-content {
+
+        margin-left: -2px;
+        width: 80%;
+    }
+   
+} 

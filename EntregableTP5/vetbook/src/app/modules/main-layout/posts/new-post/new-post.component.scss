@@ -1,0 +1,105 @@
+mat-card {
+    margin-top: 15%;
+    color: var(--vetbook-dark-gray);
+}
+.card-header {
+    display: flex;
+}
+.create {
+    margin-left: 5rem;
+}
+.icon {
+    margin-bottom: 1rem;
+    margin-left: 16.8rem;
+}
+.icon:hover {
+    width: 14px;
+    cursor: pointer;
+}
+.card {
+    display: flex;
+    margin: 2% 3.5%;
+    color: var(--vetbook-dark-gray);
+}
+
+::-webkit-input-placeholder {
+    color: var(--vetbook-light-primary);
+}
+
+.input {
+    width: 27rem;
+    background-color: white;
+    border: solid 1px var(--vetbook-dark-gray);
+    border-radius: 2px;
+}
+
+.initial-input {
+    height: 40px;
+}
+
+.writing-input {
+    height: 100px;
+}
+
+button {
+    left: 14rem; //14rem
+    bottom: -0.5rem;
+}
+
+.hide {
+    display: none;
+}
+.card-footer {
+    display: flex;
+}
+
+.add-items {
+    flex-basis: 8rem;
+    margin-top: 1rem;
+}
+.item {
+    height: 20px;
+    width: auto;
+    margin-right: 13%;
+}
+.item:hover {
+    filter: invert(16%) sepia(100%) saturate(3748%) hue-rotate(263deg) brightness(94%) contrast(111%);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+    button {
+        width: 90%;
+    }
+
+    .input {
+        width: 90%;
+        background-color: white;
+        border: solid 1px var(--vetbook-dark-gray);
+        border-radius: 2px;
+    }
+
+    .writing-input {
+        height: 250px;
+    }
+    .profile-pic-min {
+        display: none;
+    }
+    .card {
+        width: 100%;
+        flex-direction: column;
+    }
+    .icon {
+        margin-left: 7.8rem;
+    }
+    .create {
+        margin-left: 1rem;
+    }
+    .add-items {
+        flex-basis: 12rem;
+    }
+    button {
+        width: 35%;
+        left: -0.5rem;
+    }
+}
