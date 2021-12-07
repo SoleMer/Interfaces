@@ -1,8 +1,14 @@
 <div class="container">
-    <div *ngIf="typeResults == 'persons'" class="section">
-        <div *ngIf="posts.length > 0 ; else noResult">
-            <h3 class="result-title there-are-results">Personas encontradas: {{persons.length}}</h3>
-            <app-person-list [users]="persons"></app-person-list>
+    <div *ngIf="typeResults == 'vets'" class="section ">
+        <div *ngIf="vets.length > 0 ; else noResult">
+            <h3 class="result-title there-are-results">Profesionales encontrados: {{vets.length}}</h3>
+            <app-person-list [users]="vets"></app-person-list>
+        </div>
+    </div>
+    <div *ngIf="typeResults == 'amateurs'" class="section ">
+        <div *ngIf="amateurs.length > 0 ; else noResult">
+            <h3 class="result-title there-are-results">Aficionados encontrados: {{amateurs.length}}</h3>
+            <app-person-list [users]="amateurs"></app-person-list>
         </div>
     </div>
     <div *ngIf="typeResults == 'posts'" class="section">
@@ -11,17 +17,11 @@
             <app-post-list [filteredPosts]="posts"></app-post-list>
         </div>
     </div>
-    <div *ngIf="typeResults == 'ads'"  class="section">
-        <div *ngIf="ads.length > 0 ; else noResult">
-            <h3 class="result-title there-are-results">Publicidades encontradas: {{ads.length}}</h3>
-            <app-ad-list></app-ad-list>
-        </div>
-    </div>
 </div>
 
 <ng-template #noResult>
     <div class="no-result">
-        <h3 class="no-result-title result-title">No se encontraron publicidades.</h3>
+        <h3 class="no-result-title result-title">No se encontraron resultados para esta búsqueda.</h3>
         <p class="no-result-p">Revisá tu ortografía. </p>
         <p class="no-result-p">Probá no usar caracteres especiales como: *?´%&$ </p>
     </div>

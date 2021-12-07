@@ -11,10 +11,10 @@ import { SearchService } from 'src/app/services/search.service';
 export class SearchResultsComponent implements OnInit {
 
     @Input() typeResults: String = "";
-    @Input() persons: User[] = [];
+    @Input() vets: User[] = [];
+    @Input() amateurs: User[] = [];
     @Input() posts: Post[] = [];
-    @Input() ads: Post[] = [];
-    search: string = "Personas";
+    search: string = "profesionales";
 
   constructor(private searchSvc: SearchService) { }
 

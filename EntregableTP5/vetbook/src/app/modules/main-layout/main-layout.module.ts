@@ -21,6 +21,7 @@ import { AdListComponent } from './ad-list/ad-list.component';
 import { ConfirmPopUpComponent } from './confirm-pop-up/confirm-pop-up.component';
 import { LoadRingComponent } from './load-ring/load-ring.component';
 import { Profile2Component } from './profile2/profile2.component';
+import { FormPopUpComponent } from './form-pop-up/form-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { Profile2Component } from './profile2/profile2.component';
     ConfirmPopUpComponent,
     LoadRingComponent,
     Profile2Component,
+    FormPopUpComponent,
   ],
   imports: [
     CommonModule,

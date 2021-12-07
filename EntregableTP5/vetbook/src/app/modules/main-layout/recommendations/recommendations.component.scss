@@ -1,6 +1,7 @@
 .person {
     display: flex;
     margin: 1rem 0;
+    margin-left: 1.5rem;
 }
 mat-card {
     color: var(--vetbook-dark-gray);
@@ -31,6 +32,7 @@ mat-card {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        margin: auto;
 
 
     }

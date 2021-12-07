@@ -71,8 +71,7 @@ export class NavComponent implements OnInit {
     }
 
     readSearch(event: KeyboardEvent) {
-        if (event.key === "Enter") {
-            console.log(this.filter.value.search)   
+        if (event.key === "Enter") {   
             this.searchSvc.setKeyWord(this.filter.value.search.trim().toLowerCase());
             this.loading(`vet/search`);
             

@@ -34,7 +34,8 @@ html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: var(--vetbook-background);
+    background-color: var(--vetbook-background-section);
+    /*background-image: url(assets/paralax1.png);*/
 }
 ::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -53,20 +54,23 @@ nav {
     height: 4rem;
     position: fixed;
     z-index: 999;
+    justify-content: space-around;
 }
 .btn-done {
-    background-color: var(--vetbook-accent);
+    background-color: var(--vetbook-light-accent);
     color: var(--vetbook-dark-gray);
 }
 .btn-done:hover {
-    background-color: var(--vetbook-light-accent);
+    background-color: var(--vetbook-accent);
+    color: var(--vetbook-background-section);
 }
 .btn-cancel {
-    background-color: var(--vetbook-warn);
+    background-color: var(--vetbook-light-warn);
     color: var(--vetbook-dark-gray);
 }
 .btn-cancel:hover {
-    background-color: var(--vetbook-light-warn);
+    background-color: var(--vetbook-warn);
+    color: var(--vetbook-background-section);
 }
 a {
     color: var(--vetbook-primary);
@@ -76,7 +80,7 @@ a:hover {
     cursor: pointer;
 }
 .vet-section {
-    background-color: var(--vetbook-background-section);
+    background-color: white;
 }
 .title {
     font-weight: bold!important;
@@ -102,3 +106,5 @@ app-confirm-pop-up {
 app-load-ring .mat-dialog-container {
     background-color: transparent;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

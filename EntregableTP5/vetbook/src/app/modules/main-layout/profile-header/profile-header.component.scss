@@ -1,13 +1,13 @@
 .cover {
     width: 100%;
-    height: 350px;
+    height: 80%;
     object-fit: cover;
 }
 
 .profile-pic-max {
-    width: 20rem;
-    margin-top: -9%;
-    margin-right: 81%;
+    width: 17rem;
+    margin-top: -9.3%;
+    margin-right: 68%;
 
 }
 
@@ -18,19 +18,22 @@
 }
 
 .user-info {
-    margin-top: -6%;
+    margin-top: -5%;
+    text-align: left;
+    margin-left: 29rem;
 }
 
 .user-info h1 {
-    font-size: 5em;
+    font-size: 3em;
+    color: var(--vetbook-dark-gray);
 }
 
 .user-info h6 {
     font-size: 1.5em
 }
 
-.btn-done {
+.btn {
     float: right;
     margin-top: -4%;
-    right: 3.5rem;
+    right: 26.5rem;
 }

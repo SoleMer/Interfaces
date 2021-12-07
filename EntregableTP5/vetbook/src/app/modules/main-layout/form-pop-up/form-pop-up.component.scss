@@ -1,0 +1,29 @@
+footer {
+    text-align: end;
+}
+
+button {
+    margin-left: 3%;
+    width: 20%;
+}
+
+h3 {
+    color: var(--vetbook-primary);
+    font-size: x-large;
+}
+.input {
+    width: 98%;
+    background-color: white;
+    border: solid 1px var(--vetbook-background);
+    border-radius: 2px;
+    height: 40px;
+    border-radius: 3px;
+}
+.form-field {
+    margin-bottom: 5%;
+}
+mat-radio-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3%;
+}

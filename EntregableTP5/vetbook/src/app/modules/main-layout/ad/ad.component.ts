@@ -9,9 +9,9 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class AdComponent implements OnInit {
 
-    post: Post = {
+    posts: Post[] = [{
         id: 0,
-        date: new Date(), //arreglar formato de fecha
+        date: "", //arreglar formato de fecha
         user: {
             id: 0,
             name: "Balanceados Exibal",
@@ -27,12 +27,32 @@ export class AdComponent implements OnInit {
         usersIdDisliked: [],
         commentsList: [],
         usersIdShared: [],
-    };
+    },
+    {
+        id: 0,
+        date: "", //arreglar formato de fecha
+        user: {
+            id: 0,
+            name: "Dog chow",
+            lastname: "",
+            description: "Publicidad",
+            profilePicture: "../../assets/dogChow.jpg",
+            coverPicture: "",
+        },
+        text: "",
+        images: ["../../../../assets/dogChow.jpeg"],
+        video: "",
+        usersIdLiked: [],
+        usersIdDisliked: [],
+        commentsList: [],
+        usersIdShared: [],
+    },
+];
 
     constructor(private postSvc: PostService) { }
 
     ngOnInit(): void {
-        this.post = this.postSvc.getAd();
+        //.post = this.postSvc.getAd();
     }
 
 }

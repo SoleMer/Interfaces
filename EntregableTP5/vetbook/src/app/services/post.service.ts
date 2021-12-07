@@ -4,7 +4,7 @@ import { Post } from '../models/post';
 const POSTS: Post[] = [
     {
         id: 1,
-        date: new Date(), //arreglar formato de fecha
+        date: "Hace 2h", //arreglar formato de fecha
         user: {
             id: 1,
             name: "Juan",
@@ -23,7 +23,7 @@ const POSTS: Post[] = [
     },
     {
         id: 2,
-        date: new Date(), //arreglar formato de fecha
+        date: "4 de Diciembre", //arreglar formato de fecha
         user: {
             id: 2,
             name: "María",
@@ -42,7 +42,7 @@ const POSTS: Post[] = [
     },
     {
         id: 1,
-        date: new Date(), //arreglar formato de fecha
+        date: "25 de Noviembre", //arreglar formato de fecha
         user: {
             id: 3,
             name: "Marta",
@@ -61,7 +61,7 @@ const POSTS: Post[] = [
     },
     {
         id: 1,
-        date: new Date(), //arreglar formato de fecha
+        date: "25 de Noviembre", //arreglar formato de fecha
         user: {
             id: 4,
             name: "Cesar",
@@ -82,7 +82,7 @@ const POSTS: Post[] = [
 const ADS: Post[] = [];
 const AD: Post = {
     id: 0,
-    date: new Date(), //arreglar formato de fecha
+    date: "25 de Noviembre", //arreglar formato de fecha
     user: {
         id: 0,
         name: "Balanceados Exibal",
@@ -125,7 +125,7 @@ export class PostService {
         }
         return {
             id: 0,
-            date: new Date(),
+            date: "",
             user: {
                 id: 0,
                 name: "",

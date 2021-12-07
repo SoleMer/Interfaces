@@ -12,7 +12,9 @@ mat-card {
 mat-divider {
     border-top: solid 3px var(--vetbook-background);
 }
-
+.card-body p {
+    font-size: 15px;
+}
 .mat-card .mat-divider-horizontal {
     width: 92%;
     margin: 0 4%;
@@ -40,7 +42,7 @@ app-reaction {
 }
 
 .post-img {
-    width: 31rem;
+    width: 100%;
 }
 
 .options {
@@ -52,5 +54,8 @@ app-reaction {
 @media only screen and (max-width: 450px) {
     .post-img {
         width: 100%;
+    }
+    p {
+        margin-bottom: 0px;
     }
 }

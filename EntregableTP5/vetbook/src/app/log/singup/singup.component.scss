@@ -1,5 +1,5 @@
 .paralax {
-    background: url(../../../assets/paralax.png);
+    background: url(../../../assets/paralax1.png);
     animation: movebg 16s linear infinite;
     height: 100%;
     position: relative;
@@ -41,27 +41,34 @@ nav img {
     display: flex;
     flex-direction: row;
     margin-top: 15%;
+
 }
 mat-radio-button {
     margin-right: 5%;
     margin-top: 1%;
+    color: var(--vetbook-background-section);
+}
+.mat-checkbox-inner-container {
+    color: var(--vetbook-background-section);
 }
 ul {
     list-style-type: none;
+    color: var(--vetbook-background-section);
 }
 section {
     text-align: left;
     margin-bottom: 20%;
 }
 img {
-    width: 35px;
+    width: 90%;
     margin: auto;
-    margin-bottom: 40%;
+    margin-bottom: 14%;
 }
 h3 {
     font-size: xx-large;
     text-align: initial;
-    color: var(--vetbook-dark-gray);
+    color: var(--vetbook-background-section);
+    margin-left: 2rem;
 }
 .welcome h1 {
     font-size: 4em;
@@ -69,33 +76,39 @@ h3 {
     color: var(--vetbook-dark-gray);
 }
 .form-content {
-    background-color: var(--vetbook-background-section);
+    background-color: var(--vetbook-primary);
     padding: 1%;
-    flex-basis: 17rem;
+    flex-basis: 23rem;
     display: flex;
     flex-direction: column;
     border: solid 1px var(--vetbook-background-section);
     text-align: center;
-    margin-left: 43%;
+    margin-left: 39%;
     margin-top: 10%;
 }
 mat-label {
-    color: var(--vetbook-dark-gray);
+    color: var(--vetbook-background-section);
 }
-
+a {
+    color: var(--vetbook-background-section);
+}
 .mat-form-field-underline {
     border-bottom-color: var(--vetbook-dark-gray);
 }
 form {
     margin: 2rem 0 2rem;
+    padding: 8%;
 }
 .form-field {
     text-align: left;
     margin-bottom: 5%;
+    color: var(--vetbook-background-section);
 }
 button {
     width: 100%;
     margin-bottom: 5%;
+    height: 43px;
+    margin-top: 8%;
 }
 
 .input {
@@ -103,7 +116,7 @@ button {
     background-color: white;
     border: solid 1px var(--vetbook-background);
     border-radius: 2px;
-    height: 30px;
+    height: 40px;
     border-radius: 3px;
 }
 

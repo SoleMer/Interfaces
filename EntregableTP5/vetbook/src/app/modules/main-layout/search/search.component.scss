@@ -1,10 +1,11 @@
 .pagination {
-    margin: 1rem 1rem;
+    margin: 7rem 10rem;
     position: absolute;
 }
 
 .pagination h5 {
-    font-size: initial;
+    font-size: x-large;
+    line-height: 3rem;
 }
 .selected {
     color: var(--vetbook-primary);
