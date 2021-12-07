@@ -1,6 +1,6 @@
 <nav>
     <a [routerLink]="['home']" class="nav-icon"><img src="../../assets/vet/logolargo.svg" alt="vet" class="logo"></a>
-    <form [formGroup]="filter">
+    <form [formGroup]="filter" [routerLink]="['search']">
         <div class="form-field filter">
             <input formControlName="search" placeholder="Buscar" class="input" matInput autocomplete="off"
                 (keyup)="readSearch($event)">
