@@ -4,17 +4,18 @@
 
 
 app-post-list {
-    flex-basis: 35rem;
-    margin-left: 35%;
+    flex-basis: 45rem;
+    margin-left: 32%;
 }
 
 .pagination {
-    margin: 1rem 1rem;
+    margin: 3rem 11rem;
     position: absolute;
 }
 
 .pagination h5 {
-    font-size: initial;
+    font-size: x-large;
+    line-height: 3rem;
 }
 .selected {
     color: var(--vetbook-primary);

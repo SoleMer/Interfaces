@@ -1,4 +1,18 @@
-
+.paralax {
+    background: url(../../../assets/paralax.png);
+    animation: movebg 16s linear infinite;
+    height: 100%;
+    position: relative;
+    margin-top: -274px;
+}
+@keyframes movebg {
+    0% {
+        background-position: 1580px;
+    }
+    100% {
+        background-position: 0;
+    }
+}
 .container {
     text-align: center;
     margin-top: 7.3%;
@@ -22,18 +36,19 @@
 .content {
     display: flex;
     flex-direction: row;
+    
 }
 .content-before {
-    margin-top: 19%;
+    margin-top: 15%;
 }
 .content-after {
-    margin-top: 10%;
+    margin-top: 6%;
 }
 .welcome {
     flex-basis: 23rem;
     margin-left: 15%;
     z-index: 999;
-    margin-top: 1%;
+    margin-top: 7%;
 }
 .welcome h1 {
     font-size: 4em;
@@ -41,18 +56,22 @@
     color: var(--vetbook-dark-gray);
 }
 .form-content {
-    background-color: var(--vetbook-section-background);
-    flex-basis: 17rem;
+    background-color: var(--vetbook-primary);
+    flex-basis: 25rem;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--vetbook-dark-gray);
     text-align: center;
+    height: 50vh;
     margin-left: 30%;
 }
 mat-label {
-    color: var(--vetbook-dark-gray);
+    color: var(--vetbook-background-section);
 }
-
+.inicio {
+    color: var(--vetbook-background-section);
+    font-size: 2rem;
+}
 .mat-form-field-underline {
     border-bottom-color: var(--vetbook-dark-gray);
 }
@@ -60,18 +79,20 @@ form {
     margin: 2rem 0 2rem;
 }
 button {
-    width: 13rem;
+    width: 19.3rem;
     margin-bottom: 5%;
+    margin-top: 4%;
+    height: 43px;
 }
 .form-field {
     text-align: left;
-    margin-bottom: 5%;
+    margin-bottom: 12%;
 }
 .input {
     background-color: white;
     border: solid 1px var(--vetbook-background);
     border-radius: 2px;
-    height: 30px;
+    height: 40px;
     border-radius: 3px;
     width: 75%;
     margin-left: 11%;
@@ -79,7 +100,9 @@ button {
 .form-field mat-label {
     margin-left: 11%;
 }
-
+a {
+    color: var(--vetbook-background-section);
+}
 .huella {
     position: absolute;
     width: 76px;

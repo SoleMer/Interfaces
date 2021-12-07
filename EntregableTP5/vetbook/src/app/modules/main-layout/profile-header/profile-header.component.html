@@ -8,6 +8,7 @@
     </div>
 
     <div class="actions">
-        <button mat-raised-button class="btn-done">Editar perfil</button>
+        <button  *ngIf="userId == 1" mat-raised-button class="btn-done btn">Editar perfil</button>
+        <button  *ngIf="userId == 2" mat-raised-button class="btn-cancel btn">Eliminar</button>
     </div>
 </div>

@@ -4,22 +4,22 @@
     display: inline;
     float: right;
     top: 1rem;
-    left: 68rem;
+    
 }
 
 .nav-icon {
-    margin-right: 2%;
+   margin-right: 2%;
 }
 
 .logo {
     height: 50px;
-    margin: 0.2rem 1rem;
+    margin: 0.2rem 0;
 }
 
 .icon {
     height: 35px;
     width: auto;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
 }
 nav {
     display: flex;
@@ -86,6 +86,9 @@ a:hover {
 mat-divider {
     border-top-color: var(--vetbook-dark-gray);
 }
+.filter {
+    width: 20rem;
+}
 
 .home:visited {
     content: url(../../../../assets/posts/fill-home.svg);
@@ -96,17 +99,20 @@ mat-divider {
     height: 7px;
     background-color: #520EA8;
 }
+.selector-home {
+    margin-left: 0.5rem;
+}
 
 .selector-chat {
-    margin-left: 3.2rem;
+    margin-left: 4.7rem;
 }
 
 .selector-profile {
-    margin-left: 6.3rem;
+    margin-left: 8.8rem;
 }
 
 .selector-bell {
-    margin-left: 9.6rem;
+    margin-left: 12.9rem;
 }
 
 #nav-search {
@@ -114,7 +120,7 @@ mat-divider {
 }
 
 .input {
-    width: 98%;
+    width: 100%;
     background-color: white;
     border: solid 1px var(--vetbook-background);
     border-radius: 2px;
