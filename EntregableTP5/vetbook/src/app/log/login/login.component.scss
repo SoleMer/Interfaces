@@ -48,12 +48,15 @@
     flex-basis: 23rem;
     margin-left: 15%;
     z-index: 999;
-    margin-top: 7%;
+    margin-top: 2%;
 }
 .welcome h1 {
     font-size: 4em;
     line-height: 1em;
     color: var(--vetbook-dark-gray);
+}
+.welcome img {
+    margin-top: 1%;
 }
 .form-content {
     background-color: var(--vetbook-primary);

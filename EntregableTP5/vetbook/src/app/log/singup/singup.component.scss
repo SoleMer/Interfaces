@@ -46,9 +46,14 @@ nav img {
 mat-radio-button {
     margin-right: 5%;
     margin-top: 1%;
+    color: var(--vetbook-background-section);
+}
+.mat-checkbox-inner-container {
+    color: var(--vetbook-background-section);
 }
 ul {
     list-style-type: none;
+    color: var(--vetbook-background-section);
 }
 section {
     text-align: left;
@@ -63,6 +68,7 @@ h3 {
     font-size: xx-large;
     text-align: initial;
     color: var(--vetbook-background-section);
+    margin-left: 2rem;
 }
 .welcome h1 {
     font-size: 4em;
@@ -96,6 +102,7 @@ form {
 .form-field {
     text-align: left;
     margin-bottom: 5%;
+    color: var(--vetbook-background-section);
 }
 button {
     width: 100%;

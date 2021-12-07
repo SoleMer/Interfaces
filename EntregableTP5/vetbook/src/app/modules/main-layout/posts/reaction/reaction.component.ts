@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmPopUpComponent } from '../../confirm-pop-up/confirm-pop-up.component';
+import { FormPopUpComponent } from '../../form-pop-up/form-pop-up.component';
 
 const OPTIONS_OWNER_POSTS: String[] = ["Editar", "Eliminar", "Promocionar"];
 const OPTIONS_ANOTHER_POSTS: String[] = ["Guardar", "Copiar", "Denunciar publicación"];
@@ -32,9 +33,9 @@ export class ReactionComponent implements OnInit {
                 this.pathImg = "../../../../../assets/posts/megusta.svg";
         } else if (this.type == "dislike") {
             if (this.postSvc.isDisliked(this.postId))
-            this.pathImg = "../../../../../assets/posts/dislikelleno.svg";
+                this.pathImg = "../../../../../assets/posts/dislikelleno.svg";
             else
-            this.pathImg = "../../../../../assets/posts/dislike.svg";
+                this.pathImg = "../../../../../assets/posts/dislike.svg";
         } else if (this.type == "comment") {
             this.pathImg = "../../../../../assets/posts/comentar.svg";
         } else if (this.type == "share") {
@@ -87,12 +88,16 @@ export class ReactionComponent implements OnInit {
 
 
     openDialog(action: string, warning: string) {
-        this.matDialog.open(ConfirmPopUpComponent, {
-            data: {
-                action: action,
-                warning: warning,
-            }
-        });
+        if (action == "promocionar") {
+            this.matDialog.open(FormPopUpComponent, {});
+        } else {
+            this.matDialog.open(ConfirmPopUpComponent, {
+                data: {
+                    action: action,
+                    warning: warning,
+                }
+            });
+        }
     }
 
 }

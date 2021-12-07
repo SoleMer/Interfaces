@@ -1,6 +1,6 @@
 .person {
     display: flex;
-    margin: 1rem 0;
+    margin: 0.3rem 0;
 }
 .name {
     margin-bottom: 0;
@@ -8,6 +8,11 @@
 }
 .user-info {
     line-height: 1px;
+    text-align: left;
+}
+.title {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 .add {
     margin-left: 17%;
@@ -19,7 +24,7 @@
 
 mat-card {
     color: var(--vetbook-dark-gray);
-    background-color: var(--vetbook-background-section);
+    background-color: white;
     width: 90%;
     display: flex;
 }
@@ -32,4 +37,25 @@ mat-card {
     /* float: right; */
     right: 10%;
 
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    width: 100%;
+    margin-top: 0;
+    padding-top: 50px;
+    text-align: center;
+}
+
+
+@for $r from 0 through 1 {
+    @for $c from 0 through 1 {
+        @if #{$c} == 0 {
+            .person-#{$c} {grid-column: 1};
+        } @else {
+            .person-#{$c} {grid-column: 2};
+        }
+    }
 }

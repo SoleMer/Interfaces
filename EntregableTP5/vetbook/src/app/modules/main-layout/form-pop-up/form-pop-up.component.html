@@ -1,0 +1,21 @@
+<form action="">
+    <h3>Promocionar</h3>
+    <p>Al promocionar una publicación, ésta aparece en un lugar privilegiado en muro de los demás usuarios.</p>
+    <div class="form-field">
+        <mat-label>¿Por cuánto tiempo querés promocionar tu publicacón? Se aplicarán cargos.</mat-label><br>
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1">1 día ($250)</mat-radio-button>
+            <mat-radio-button value="2">15 días ($3500)</mat-radio-button>
+            <mat-radio-button value="3">30 días ($7000)</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="form-field">
+        <mat-label>Ingresá el número de tu tarjeta</mat-label>
+        <input type="text" class="input" matInput autocomplete="off">
+    </div>
+    <p>Por tu seguridad, te vamos a enviar un correo electrónico para confirmar tus datos y el pago.</p>
+    <footer>
+        <button mat-raised-button class="btn-cancel" [mat-dialog-close]="true">Cancelar</button>
+        <button mat-raised-button class="btn-done" [mat-dialog-close]="true">Enviar</button>
+    </footer>
+</form>

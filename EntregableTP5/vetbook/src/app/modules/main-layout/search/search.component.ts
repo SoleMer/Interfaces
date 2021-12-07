@@ -12,12 +12,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SearchComponent implements OnInit {
 
-    persons: User[] = [];
+    vets: User[] = [];
+    amateurs: User[] = [];
     posts: Post[] = [];
-    ads: Post[] = [];
-    typeResults: string = "persons";
+    typeResults: string = "vets";
     keyWord$: string = "";
-    selected: string = "persons";
+    selected: string = "vets";
 
     constructor(private userSvc: UserService,
         private postSvc: PostService,
@@ -26,9 +26,9 @@ export class SearchComponent implements OnInit {
     ngOnInit(): void {
         //this.searchSvc.keword.subscribe(k => this.keyWord$ = k);
         this.keyWord$ = this.searchSvc.getKeyWord();
-        this.persons = this.userSvc.getUsersSearched(this.keyWord$);
+        this.vets = this.userSvc.getVetsSearched(this.keyWord$);
+        this.amateurs = this.userSvc.getAmateursSearched(this.keyWord$);
         this.posts = this.postSvc.getPostsSearched(this.keyWord$);
-        this.ads = this.postSvc.getAdsSearched(this.keyWord$);
     }
 
     changeTab(tab: string) {

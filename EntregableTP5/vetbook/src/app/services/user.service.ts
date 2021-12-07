@@ -123,4 +123,41 @@ export class UserService {
         return users;
     }
 
+    getVetsSearched(keyWord: string): User[] {
+        let users: User[] = [];
+        let vets: User[] = USERS.filter(u => u.description.includes("Veterinari"));
+        vets.forEach(u => {
+            if (!users.includes(u)) {
+                if (u.name.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.lastname.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.description.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+            }
+        });
+        return users;
+    }
+
+    getAmateursSearched(keyWord: string): User[] {
+        let users: User[] = [];
+        let amateurs: User[] = USERS.filter(u => !u.description.includes("Veterinari"));
+        amateurs.forEach(u => {
+            if (!users.includes(u)) {
+                if (u.name.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.lastname.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+                if (u.description.toLowerCase().includes(keyWord) && !users.includes(u)) {
+                    users.push(u);
+                }
+            }
+        });
+        return users;
+    }
 }

@@ -7,7 +7,7 @@
         </div>
         <app-icon class="add" [img1]="addImg" [img2]="deleteImg"></app-icon>
     </div>
-</div> -->
+</div> 
 <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile *ngFor="let user of users" class="person">
         <mat-card>
@@ -20,3 +20,14 @@
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
+-->
+<div class="grid">
+    <mat-card *ngFor="let user of users" class="person">
+        <img src="{{user.profilePicture}} " alt="" class="profile-pic-min">
+        <div class="user-info">
+            <h3 class="title">{{user.name}} {{user.lastname}}</h3>
+            <span class="secondary-information">{{user.description}}</span>
+        </div>
+        <app-icon class="add" [img1]="addImg" [img2]="deleteImg"></app-icon>
+    </mat-card>
+</div>

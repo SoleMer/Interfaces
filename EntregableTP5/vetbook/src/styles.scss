@@ -62,13 +62,15 @@ nav {
 }
 .btn-done:hover {
     background-color: var(--vetbook-accent);
+    color: var(--vetbook-background-section);
 }
 .btn-cancel {
-    background-color: var(--vetbook-warn);
+    background-color: var(--vetbook-light-warn);
     color: var(--vetbook-dark-gray);
 }
 .btn-cancel:hover {
-    background-color: var(--vetbook-light-warn);
+    background-color: var(--vetbook-warn);
+    color: var(--vetbook-background-section);
 }
 a {
     color: var(--vetbook-primary);

@@ -1,16 +1,11 @@
 <mat-card class="vet-section">
     <h3>Publicidades</h3>
-    <!--<div class="card card-header">
-        <img src="{{post.user.profilePicture}}" alt="" class="profile-pic-min">
-        <div class="user-info">
-            <h3 class="name">{{post.user.name}} </h3>
-            <span class="secondary-information">{{post.user.description}}</span>
-        </div>
-    </div>-->
+    <div *ngFor="let p of posts">
     <div class="card card-body">
         <div class="images">
-            <img *ngFor="let img of post.images" src="{{img}}" alt="" class="post-img">
+            <img *ngFor="let img of p.images" src="{{img}}" alt="" class="post-img">
         </div>
     </div>
     <mat-divider></mat-divider>
+</div>
 </mat-card>

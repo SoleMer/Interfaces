@@ -1,12 +1,12 @@
 .cover {
     width: 100%;
-    height: 350px;
+    height: 80%;
     object-fit: cover;
 }
 
 .profile-pic-max {
     width: 17rem;
-    margin-top: -6.3%;
+    margin-top: -9.3%;
     margin-right: 68%;
 
 }
@@ -18,7 +18,9 @@
 }
 
 .user-info {
-    margin-top: -6%;
+    margin-top: -5%;
+    text-align: left;
+    margin-left: 29rem;
 }
 
 .user-info h1 {
@@ -33,5 +35,5 @@
 .btn {
     float: right;
     margin-top: -4%;
-    right: 11rem;
+    right: 26.5rem;
 }

@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export interface Post {
     id: number;
-    date: Date;
+    date: String;
     user: User;
     text: String;
     images: String[];
